@@ -1,7 +1,10 @@
 module.exports = function (sequelize, DataTypes) {
     var Request = sequelize.define("Request", {
         // Giving the Author model a name of type STRING
-        status: DataTypes.STRING,
+        status: {
+            type: DataTypes.STRING,
+            defaultValue: "pending"
+        },
         approvedDate: {
             type: DataTypes.DATE,
             allowNull: true,
