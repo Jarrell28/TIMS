@@ -1,25 +1,30 @@
 import React from 'react';
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 
+import '../css/nav.css';
+import logo from '../images/TIMS-logo-06.svg';
+
 // Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 const MainNav = () => {
     return (
         <SideNav
+
             onSelect={(selected) => {
                 // Add your code here
             }}
         >
             <SideNav.Toggle />
-            <SideNav.Nav defaultSelected="home">
+            <SideNav.Nav defaultSelected="products">
 
+            <img src={logo} className="navLogo" alt='title or description' />
 
                 {/* PRODUCT SEARCH TAB */}
                 {/* LINK WITH DROP DOWN*/}
                 <NavItem eventKey="products">
                     <NavIcon>
-                        <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
+                        <i className="fa fa-search" style={{ fontSize: '1.75em' }} />
                     </NavIcon>
                     <NavText>
                         Product Search
@@ -46,9 +51,9 @@ const MainNav = () => {
 
 
                 {/* LAPTOP LOANERS (SINGLE LINK) */}
-                <NavItem eventKey="history">
+                <NavItem eventKey="laptop">
                     <NavIcon>
-                        <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
+                        <i className="fa fa-laptop" style={{ fontSize: '1.75em' }} />
                     </NavIcon>
                     <NavText className="subTitle">Laptop Checkout</NavText>
                 </NavItem>
@@ -56,19 +61,18 @@ const MainNav = () => {
 
                 {/* YOUR HISTORY (SINGLE LINK) */}
                 <NavItem eventKey="history">
-                    <NavIcon>
-                        <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
-                    </NavIcon>
+                    <NavIcon><i className="fas fa-history" style={{ fontSize: '1.75em' }} /></NavIcon>
                     <NavText>Your History</NavText>
                 </NavItem>
 
 
-                {/* LOG OUT (SINGLE LINK) */}
-                <NavItem eventKey="history">
+
+                {/* LOGOUT (SINGLE LINK) */}
+                <NavItem eventKey="logOut">
                     <NavIcon>
-                        <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
+                        <i className="fas fa-sign-out-alt" style={{ fontSize: '1.75em' }} />
                     </NavIcon>
-                    <NavText>Log Out</NavText>
+                    <NavText className="subTitle">Logout</NavText>
                 </NavItem>
 
             </SideNav.Nav>

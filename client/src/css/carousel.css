@@ -13,14 +13,12 @@ body {
 .coverflow__figure__3bk_C{
     box-shadow: none !important;
     margin: 25px !important;
-    flex: 50 50 !important;
+
 }
 
 /* 2nd Main Container for every image */
 .coverflow__cover__25-7e {
     box-shadow: none !important;
-
-
 }
 
 .coverflow__cover__25-7e{
@@ -29,7 +27,7 @@ body {
 .coverflow__figure__3bk_C{
     box-shadow: none !important;
     margin: 25px !important;
-    flex: 50 50 !important;
+    /* flex: 10 10 !important; */
 }
 
 
