@@ -50,7 +50,7 @@ const MainNav = () => {
                     <NavIcon>
                         <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
                     </NavIcon>
-                    <NavText>Laptop Checkout</NavText>
+                    <NavText className="subTitle">Laptop Checkout</NavText>
                 </NavItem>
 
 
