@@ -1,0 +1,37 @@
+body {
+    margin: 0 !important;
+    /* width: 100% !important; */
+}
+
+/* .element.style {
+    transform: translateX(-450px) rotateY(20deg) scale(0.25)
+} */
+
+
+/*1st  Main Container for every image */
+.coverflow__figure__3bk_C{
+    box-shadow: none !important;
+    margin: 25px !important;
+    flex: 50 50 !important;
+}
+
+/* 2nd Main Container for every image */
+.coverflow__cover__25-7e {
+    box-shadow: none !important;
+
+
+}
+
+.coverflow__cover__25-7e{
+    width: 100%;
+}
+.coverflow__figure__3bk_C{
+    box-shadow: none !important;
+    margin: 25px !important;
+    flex: 50 50 !important;
+}
+
+
+/* .-webkit-box-reflect{
+    below .25px -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0))
+} */
