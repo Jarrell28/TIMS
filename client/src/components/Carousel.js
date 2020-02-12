@@ -10,7 +10,7 @@ import img7 from '../images/docking-station_Dell-Dock-WD-15.png';
 import img8 from '../images/hard-drive_Samsung-860-EVO-500GB-SSD.png';
 
 import '../css/carousel.css';
-
+import '../css/main.css';
 
 var Coverflow = require('react-coverflow');
 
@@ -24,7 +24,6 @@ const Carousel = () => {
             enableHeading={false}
         >
             <div
-
                 role="menuitem"
                 tabIndex="0"
             >
@@ -34,8 +33,10 @@ const Carousel = () => {
                     style={{ display: 'block', width: '100%' }}
                 /> */}
             </div>
-            <img src={img} alt='title or description' data-action="" />
 
+
+
+            <img src={img} alt='title or description' data-action="" />
             <img src={img2} alt='title or description' data-action="" />
             <img src={img3} alt='title or description' />
             <img src={img4} alt='title or description' />

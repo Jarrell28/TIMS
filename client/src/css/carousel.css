@@ -34,3 +34,15 @@ body {
 /* .-webkit-box-reflect{
     below .25px -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0))
 } */
+.headlines {
+    background-color: #E5E5E5;
+    text-align: center;
+    margin: 0;
+    padding-top: 20px;
+}
+.sub-headline {
+    font-size: 15px;
+    background-color: #E5E5E5;
+    text-align: center;
+    padding-top:5px;
+}
