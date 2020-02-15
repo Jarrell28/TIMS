@@ -9,6 +9,7 @@ import MainNav from './components/Nav';
 import Carousel from './components/Carousel';
 import CarouselHeadlines from './components/CarouselHeadlines';
 import InventoryTable from './components/InventoryTable';
+import Loaner from './pages/Loaner'
 
 import axios from 'axios';
 
@@ -33,13 +34,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App" >
-        <MainNav />
-        <CarouselHeadlines />
-        <Carousel />
+      // <div className="App" >
+      //   <MainNav />
+      //   <CarouselHeadlines />
+      //   <Carousel />
 
-        <InventoryTable rowData={this.state.rowData} />
-      </div>
+      //   <InventoryTable rowData={this.state.rowData} />
+      // </div>
+      <Loaner />
     )
 
   }

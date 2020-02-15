@@ -3,12 +3,12 @@
 use employee_db;
 
 
-insert into user
-    (username, password, email, role)
+insert into users
+    (username, password, email, role, createdAt, updatedAt)
 values( 'Jarrell Houston', ' jpassword', ' jhouston2882@gmail.com', ' technician', "2020-02-11 13:38:00", "2020-02-11 13:38:00");
 
-insert into user
-    (username, password, email, role)
+insert into users
+    (username, password, email, role, createdAt, updatedAt)
 values
     ('Andrew Meyers', 'apassword', 'ameyers@gmail.com', 'Manager', "2020-02-11 13:38:00", "2020-02-11 13:38:00");
 
@@ -76,7 +76,7 @@ value
 INSERT into loaners
     (model, brand, serialNumber, expenseNumber, CustomerId, checkedOut, checkoutDate, checkoutIn,techId, createdAt, updatedAt)
 values
-    ('Latitude 7450', 'Dell', '8GKG893', 'E034536300', NULL, NULL, NULL, NULL, NULL, now(), now());
+    ('Latitude 7450', 'Dell', '8GKG893', 'E034536300', NULL, NULL, NULL, NULL, "1", now(), now());
 
 INSERT into loaners
     (model, brand, serialNumber, expenseNumber, CustomerId, checkedOut, checkoutDate, checkoutIn,techId, createdAt, updatedAt)
