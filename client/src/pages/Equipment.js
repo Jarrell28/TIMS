@@ -3,8 +3,6 @@ import InventoryTable from '../components/InventoryTable';
 
 import axios from 'axios';
 
-
-
 class Equipment extends Component {
     constructor(props) {
         super(props);
