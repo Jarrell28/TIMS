@@ -8,6 +8,8 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import MainNav from './components/Nav';
 import Carousel from './components/Carousel';
 import CarouselHeadlines from './components/CarouselHeadlines';
+
+import Loaner from './pages/Loaner'
 import Equipment from './pages/Equipment';
 
 import {
@@ -30,7 +32,7 @@ class App extends Component {
           <Carousel />
           <Switch>
             <Route exact path="/" component={Equipment} />
-            {/* <Route exact path="/loaner" component={Loaner} /> */}
+            <Route exact path="/loaner" component={Loaner} />
             {/* <Route exact path="/books/:id" component={Detail} /> */}
             {/* <Route component={NoMatch} /> */}
           </Switch>
