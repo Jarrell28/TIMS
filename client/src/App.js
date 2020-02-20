@@ -8,6 +8,7 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import MainNav from './components/Nav';
 import Carousel from './components/Carousel';
 import CarouselHeadlines from './components/CarouselHeadlines';
+import SearchBar from './components/SearchBar';
 
 import Loaner from './pages/Loaner'
 import Equipment from './pages/Equipment';
@@ -28,6 +29,7 @@ class App extends Component {
       <Router>
         <div className="App" >
           <MainNav />
+          <SearchBar />
           <CarouselHeadlines />
           <Carousel />
           <Switch>

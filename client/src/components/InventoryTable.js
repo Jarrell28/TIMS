@@ -28,7 +28,8 @@ const InventoryTable = (props) => {
         <div
             className="ag-theme-balham"
             style={{
-                width: '100%'
+                width: '100%',
+               
             }}
         >
             <AgGridReact
