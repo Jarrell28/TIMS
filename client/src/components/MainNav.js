@@ -1,5 +1,6 @@
 import React from 'react';
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import { Link } from 'react-router-dom';
 
 import '../css/nav.css';
 import logo from '../images/TIMS-logo-06.svg';
@@ -18,7 +19,7 @@ const MainNav = () => {
             <SideNav.Toggle />
             <SideNav.Nav defaultSelected="products">
 
-            <img src={logo} className="navLogo" alt='title or description' />
+                <Link to="/"><img src={logo} className="navLogo" alt='title or description' /></Link>
 
                 {/* PRODUCT SEARCH TAB */}
                 {/* LINK WITH DROP DOWN*/}
@@ -53,15 +54,15 @@ const MainNav = () => {
                 {/* LAPTOP LOANERS (SINGLE LINK) */}
                 <NavItem eventKey="laptop">
                     <NavIcon>
-                        <i className="fa fa-laptop" style={{ fontSize: '1.75em' }} />
+                        <Link to="/loaners"> <i className="fa fa-laptop" style={{ fontSize: '1.75em' }} /></Link>
                     </NavIcon>
-                    <NavText className="subTitle">Laptop Checkout</NavText>
+                    <NavText className="subTitle"><Link to="/loaners">Laptop Checkout</Link></NavText>
                 </NavItem>
 
 
                 {/* YOUR HISTORY (SINGLE LINK) */}
                 <NavItem eventKey="history">
-                    <NavIcon><i className="fas fa-history" style={{ fontSize: '1.75em' }} /></NavIcon>
+                    <NavIcon><i className="fa fa-history" style={{ fontSize: '1.75em' }} /></NavIcon>
                     <NavText>Your History</NavText>
                 </NavItem>
 
@@ -70,7 +71,7 @@ const MainNav = () => {
                 {/* LOGOUT (SINGLE LINK) */}
                 <NavItem eventKey="logOut">
                     <NavIcon>
-                        <i className="fas fa-sign-out-alt" style={{ fontSize: '1.75em' }} />
+                        <i className="fa fa-sign-out" style={{ fontSize: '1.75em' }} />
                     </NavIcon>
                     <NavText className="subTitle">Logout</NavText>
                 </NavItem>
