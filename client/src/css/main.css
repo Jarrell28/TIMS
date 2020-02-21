@@ -28,3 +28,10 @@
     height: 90%;
     border-radius: 10px;
 }
+
+.add-button {
+    background-color: #EAEAEA;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom:10px;
+}

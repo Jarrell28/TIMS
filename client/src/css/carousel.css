@@ -35,26 +35,35 @@ body {
     below .25px -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0))
 } */
 .headlines {
-    background-color: #E5E5E5;
     text-align: center;
     margin: 0;
     padding-top: 20px;
 }
 .sub-headline {
     font-size: 15px;
-    background-color: #E5E5E5;
     text-align: center;
     padding-top:5px;
 }
 
 .slick-slide {
-    transform: scale(0.7);
-    opacity: .6;
+    transform: scale(0.5);
+    opacity: .4;
     transition: all .5s;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
+/* Active Image in Carousel */
 .slick-current {
-    transform: scale(1);
+    transform: scale(1.5);
     transition: all .5s;
     opacity: 1;
+}
+
+.slick-current:focus {
+    outline: none;
+}
+
+.slick-list {
+    padding: 75px 100px 50px !important; 
 }

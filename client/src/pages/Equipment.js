@@ -104,7 +104,7 @@ class Equipment extends Component {
         return (
             <div className="container-fluid equipment-container">
                 <div className="container">
-                    <button onClick={this.toggleNewItem}>Add New Item</button>
+                    <button onClick={this.toggleNewItem} className="add-button">Add New Item</button>
                     <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} />
                     <Transition
                         native

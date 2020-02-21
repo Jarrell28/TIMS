@@ -33,9 +33,10 @@ class App extends Component {
           <MainNav />
 
           {/* <div className="container"> */}
+          {/*<Carousel /> */}
+          <SlickSlider />
           <CarouselHeadlines />
-          <Carousel />
-          {/* <SlickSlider /> */}
+          <SearchBar />
 
           {/* </div> */}
           <Switch>
