@@ -1,46 +1,116 @@
-.search-box {
-    background: #FBFBFB;
-    border: 1px solid #EAEAEA;
-    border-radius: 3px;
-  }
-   
-  .search-box {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    background-color: #f2f2f2;
-    background: #FBFBFB;
-      border: 1px solid #EAEAEA;
-      border-radius: 3px;
-      height: 27px;
-      margin-top: 8px;
-      font-size: 14px;
-    max-width: 200px;
-  }
-   
-  .search-input {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    background-color: transparent;
-    border: 0px;
-    padding: 5px 0px;
-    font-size: 1em;
+$background-color: #fff;
+$search-bg-color: #fff;
+$icon-color: #9E0707;
+$transition: all .5s ease;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: $background-color;
+}
+
+.search {
+  width: 100px;
+  height: 100px;
+  margin: 40px auto 0;
+  background-color: $search-bg-color;
+  position: relative;
+  overflow: hidden;
+  transition: $transition;
+  &:before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 100%;
     position: relative;
-    outline: 0px;
-    width: 75%;
+    background-color: $icon-color;
+    transition: $transition;
   }
-   
-  .search-box {
-    background: #FBFBFB;
-    border: 1px solid #EAEAEA;
-    border-radius: 3px;
-  }
-  .search-icon {
-    float: left;
-    color: #000;
-    padding: 2px 10px;
-    & img {
-      width: 16px;
+  &.open {
+    width: 420px;
+    &:before {
+      height: 60px;
+      margin: 20px 0 20px 30px;
+      position: absolute;
     }
   }
+}
+
+.search-box {
+  width: 100%;
+  height: 100%;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+  color: #000;
+  padding: 20px 100px 20px 45px;
+  font-size: 40px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.search-button {
+  width: 100px;
+  height: 100px;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.search-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  border: 3px solid $icon-color;
+  display: block;
+  position: relative;
+  margin-left: 5px;
+  transition: $transition;
+  &:before {
+    content: '';
+    width: 3px;
+    height: 15px;
+    position: absolute;
+    right: -2px;
+    top: 30px;
+    display: block;
+    background-color: $icon-color;
+    transform: rotate(-45deg);
+    transition: $transition;
+  }
+  &:after {
+    content: '';
+    width: 3px;
+    height: 15px;
+    position: absolute;
+    right: -12px;
+    top: 40px;
+    display: block;
+    background-color: $icon-color;
+    transform: rotate(-45deg);
+    transition: $transition;
+  }
+  .open & {
+    margin: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    &:before {
+      transform: rotate(52deg);
+      right: 22px;
+      top: 23px;
+      height: 18px;
+    }
+    &:after {
+      transform: rotate(-230deg);
+      right: 22px;
+      top: 13px;
+      height: 18px;
+    }
+  }
+}

@@ -4,11 +4,12 @@ import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/rea
 
 // Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
-// import "./css/main.css";
+import { Button } from 'reactstrap';
 
 import MainNav from './components/MainNav';
 import Carousel from './components/Carousel';
 import CarouselHeadlines from './components/CarouselHeadlines';
+import SearchBar from './components/SearchBar';
 import SlickSlider from './components/SlickSlider';
 
 import Loaner from './pages/Loaner'
