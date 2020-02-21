@@ -18,23 +18,12 @@ const Carousel = () => {
     return (
         <Coverflow
             width={960}
-            height={480}
+            height={300}
             displayQuantityOfSide={2}
             navigation={false}
             enableHeading={false}
+            active={1}
         >
-            <div
-                role="menuitem"
-                tabIndex="0"
-            >
-                {/* <img
-                    src='[image/path/please_change]'
-                    alt='title or description'
-                    style={{ display: 'block', width: '100%' }}
-                /> */}
-            </div>
-
-
 
             <img src={img} alt='title or description' data-action="" />
             <img src={img2} alt='title or description' data-action="" />

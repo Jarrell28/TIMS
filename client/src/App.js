@@ -6,10 +6,11 @@ import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/rea
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import { Button } from 'reactstrap';
 
-import MainNav from './components/Nav';
+import MainNav from './components/MainNav';
 import Carousel from './components/Carousel';
 import CarouselHeadlines from './components/CarouselHeadlines';
 import SearchBar from './components/SearchBar';
+import SlickSlider from './components/SlickSlider';
 
 import Loaner from './pages/Loaner'
 import Equipment from './pages/Equipment';
@@ -30,12 +31,16 @@ class App extends Component {
       <Router>
         <div className="App" >
           <MainNav />
-          <Carousel />
+
+          {/* <div className="container"> */}
           <CarouselHeadlines />
-          <SearchBar />
+          <Carousel />
+          {/* <SlickSlider /> */}
+
+          {/* </div> */}
           <Switch>
             <Route exact path="/" component={Equipment} />
-            <Route exact path="/loaner" component={Loaner} />
+            <Route exact path="/loaners" component={Loaner} />
             {/* <Route exact path="/books/:id" component={Detail} /> */}
             {/* <Route component={NoMatch} /> */}
           </Switch>

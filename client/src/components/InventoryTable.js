@@ -4,8 +4,6 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
-import NewItem from './NewItem';
-
 import axios from 'axios';
 
 const InventoryTable = (props) => {
@@ -39,9 +37,12 @@ const InventoryTable = (props) => {
                 onCellValueChanged={onCellValueChanged}
                 domLayout="autoHeight"
                 onGridReady={onGridReady}
+                rowSelection='single'
+                buttonRenderer={props.buttonRenderer}
+
             >
             </AgGridReact>
-        </div>
+        </div >
     )
 }
 

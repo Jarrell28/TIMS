@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import MainNav from '../components/Nav'
+import MainNav from '../components/MainNav'
 import CarouselHeadlines from '../components/CarouselHeadlines'
 import Carousel from '../components/Carousel'
 import InventoryTable from '../components/InventoryTable'
-
-
-
 
 
 export default class Loaner extends Component {
@@ -26,9 +23,17 @@ export default class Loaner extends Component {
             }, {
                 headerName: "Warranty Expiration", field: "warrantyExpiration", sortable: true, filter: true, editable: true
             }, {
-                headerName: "Category", field: "category", sortable: true, filter: true, editable: true
+                headerName: "Customer ID", field: "customerId", sortable: true, filter: true, editable: true
+            }, {
+                headerName: "Checked Out", field: "checkedOut", sortable: true, filter: true, editable: true
+            }, {
+                headerName: "Date Out", field: "checkoutDate", sortable: true, filter: true, editable: true
+            }, {
+                headerName: "Date In", field: "checkoutIn", sortable: true, filter: true, editable: true
+            }, {
+                headerName: "Technician", field: "techName", sortable: true, filter: true, editable: true
             }],
-            rowDate: [],
+            rowData: [],
 
             inputNames: [
                 {
@@ -63,7 +68,7 @@ export default class Loaner extends Component {
         axios.get("http://localhost:3001/api/loaners").then(response => {
             console.log(response.data)
             response.data.forEach(item => {
-                // item.category = item.Category.name
+                item.techName = item.tech.name
             })
             this.setState({ rowData: response.data })
         });
