@@ -55,7 +55,7 @@ class Equipment extends Component {
         axios.get("http://localhost:3001/api/equipment").then(response => {
             console.log(response.data)
             response.data.forEach(item => {
-                item.category = item.Category.name
+                // item.category = item.Category.name
             })
             this.setState({ rowData: response.data })
         });

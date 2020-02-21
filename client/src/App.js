@@ -4,6 +4,7 @@ import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/rea
 
 // Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import { Button } from 'reactstrap';
 
 import MainNav from './components/Nav';
 import Carousel from './components/Carousel';
@@ -29,9 +30,9 @@ class App extends Component {
       <Router>
         <div className="App" >
           <MainNav />
-          <SearchBar />
-          <CarouselHeadlines />
           <Carousel />
+          <CarouselHeadlines />
+          <SearchBar />
           <Switch>
             <Route exact path="/" component={Equipment} />
             <Route exact path="/loaner" component={Loaner} />
