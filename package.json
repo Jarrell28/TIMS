@@ -28,6 +28,8 @@
     "express-fileupload": "^1.1.6",
     "if-env": "^1.0.4",
     "mysql2": "^1.7.0",
-    "sequelize": "^4.44.3"
+    "react-slick": "^0.25.2",
+    "sequelize": "^4.44.3",
+    "slick-carousel": "^1.8.1"
   }
 }
