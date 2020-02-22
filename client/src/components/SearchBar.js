@@ -8,25 +8,28 @@ import ReactDOM from 'react-dom';
 class SearchBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { toggle: "" }
+        this.state = { toggle: "" };
     }
-    animate() {
-        this.setState({ toggle: "open" })
-        // $(this).parent().toggleClass('open');
+    handle = () => {
+        if (this.state.toggle === '') {
+            this.setState({ toggle: 'open' });
+        }
+        else {
+            this.setState({ toggle: '' });
+        }
     }
 
     render() {
         return (
             <div>
-                <div class="search-small">>
-                <div class="search">
-                        <input type="search" class="search-box" />
-                        <span class="search-button {this.state.toggle}" onClick={this.animate}>
-                            <span class="search-icon"></span>
-                        </span>
-                    </div>
+                <div className={this.state.toggle ? this.state.toggle + " search" : "search"}>
+                    <input type="search" className="search-box" />
+                    <span className={this.state.toggle ? this.state.toggle + " search-button" : "search-button"} onClick={this.handle}>
+                        <span className="search-icon"></span>
+                    </span>
                 </div>
             </div>
+
         )
     }
 }
