@@ -28,7 +28,7 @@ body {
     transition: $transition;
   }
   &.open {
-    width: 600px;
+    width: 1000px;
     &:before {
       height: 60px;
       margin: 20px 0 20px 30px;
@@ -42,7 +42,7 @@ body {
   height: 100%;
   box-shadow: none;
   border: none;
-  background: transparent;
+  background: #F6F7F7;
   color: #000;
   padding: 20px 100px 20px 45px;
   font-size: 40px;

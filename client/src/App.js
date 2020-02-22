@@ -34,8 +34,11 @@ class App extends Component {
 
           {/* <div className="container"> */}
           {/*<Carousel /> */}
-          <SlickSlider />
-          <CarouselHeadlines />
+          <div className="shadowy">
+            <SlickSlider />
+            <CarouselHeadlines />
+          </div>
+
           <SearchBar />
           {/* EQUIPMENT TABLE */}
           <Switch>

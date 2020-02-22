@@ -1,3 +1,38 @@
-/* .dataGrid .ag-header-row .ag-header-cell-text {
- color: lightgray;
-} */
+
+.ag-theme-balham .ag-root{
+   border: none; 
+}
+
+/* Table Container */
+.ag-body-viewport.ag-layout-auto-height .ag-center-cols-container{
+    min-height:2000px;
+}
+
+/* Table Header Titles */
+.ag-theme-balham .ag-header-cell, .ag-theme-balham .ag-header-group-cell {
+    text-transform: uppercase;
+    font-family: 'Muli', 700, sans-serif;
+    color:#B2B2B2;
+}
+
+/* Table Header - Row Background */
+.ag-theme-balham .ag-header {
+    background-color:#F6F7F7;
+    margin-bottom: 1%;
+    border: none;
+}
+
+.ag-theme-balham .ag-cell {
+    line-height: 30px;
+    padding-top:8px;
+    padding-bottom:8px;
+    
+}
+
+
+/* Each Row */
+.ag-theme-balham .ag-row{
+    border-top: white 10px solid !important;
+    border-bottom: white 10px solid !important;
+    background-color: #F6F7F7;
+}

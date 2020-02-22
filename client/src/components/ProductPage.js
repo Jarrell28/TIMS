@@ -12,7 +12,7 @@ class ProductPage extends Component {
     render() {
         return (
             <div className="container-fluid">
-                    <button onClick={this.toggleNewItem} className="add-button">Add New Equipment</button>
+                    <button onClick={this.toggleNewItem} className="add-button">Checkout Item</button>
                    
                     <Transition
                         native
@@ -25,12 +25,7 @@ class ProductPage extends Component {
                         {show => show && (props => (
                             <div className="newItem">
                                 <animated.div style={props}>
-                                    <NewItem inputNames={this.state.inputNames} handleFormSubmit={this.handleFormSubmit}>
-                                        <div className="d-flex justify-content-between">
-                                            <h2>Add New Equipment</h2>
-                                            <span onClick={this.toggleNewItem}>Close</span>
-                                        </div>
-                                    </NewItem>
+                                    
                                 </animated.div>
                             </div>
                         ))}
