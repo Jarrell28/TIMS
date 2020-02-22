@@ -1,5 +1,5 @@
-$background-color: #fff;
-$search-bg-color: #fff;
+$background-color: none;
+$search-bg-color: none;
 $icon-color: #9E0707;
 $transition: all .5s ease;
 * {
@@ -10,10 +10,18 @@ body {
   background: $background-color;
 }
 
+// .search-small{
+//  height:50%;
+// }
+
+
+
 .search {
+  font-family: 'Muli', sans-serif;
+  font-size: 20px;
   width: 100px;
   height: 100px;
-  margin: 40px auto 0;
+  margin: 20px auto 0;
   background-color: $search-bg-color;
   position: relative;
   overflow: hidden;
@@ -28,7 +36,7 @@ body {
     transition: $transition;
   }
   &.open {
-    width: 420px;
+    width: 80%;
     &:before {
       height: 60px;
       margin: 20px 0 20px 30px;

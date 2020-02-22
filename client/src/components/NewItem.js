@@ -17,6 +17,7 @@ const NewItem = (props) => {
         <form onSubmit={props.handleFormSubmit}>
             {props.children}
             {renderInputs}
+            {/* This button is inside module pop up */}
             <input className="add-button" type="submit" value="Add Item" />
         </form>
     )

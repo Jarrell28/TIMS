@@ -37,8 +37,7 @@ class App extends Component {
           <SlickSlider />
           <CarouselHeadlines />
           <SearchBar />
-
-          {/* </div> */}
+          {/* EQUIPMENT TABLE */}
           <Switch>
             <Route exact path="/" component={Equipment} />
             <Route exact path="/loaners" component={Loaner} />
