@@ -102,9 +102,9 @@ class Equipment extends Component {
 
     render() {
         return (
-            <div className="container-fluid equipment-container">
-                <div className="container">
-                    <button onClick={this.toggleNewItem}>Add New Item</button>
+            <div className="container-fluid">
+                <div className="table-container">
+                    <button onClick={this.toggleNewItem} className="add-button">Add New Equipment</button>
                     <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} />
                     <Transition
                         native

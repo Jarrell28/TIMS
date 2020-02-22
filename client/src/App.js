@@ -33,11 +33,11 @@ class App extends Component {
           <MainNav />
 
           {/* <div className="container"> */}
+          {/*<Carousel /> */}
+          <SlickSlider />
           <CarouselHeadlines />
-          <Carousel />
-          {/* <SlickSlider /> */}
-
-          {/* </div> */}
+          <SearchBar />
+          {/* EQUIPMENT TABLE */}
           <Switch>
             <Route exact path="/" component={Equipment} />
             <Route exact path="/loaners" component={Loaner} />

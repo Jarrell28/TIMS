@@ -1,5 +1,7 @@
 import React from 'react';
+import "../css/main.css";
 
+// This is the ADD NEW PRODUCT Module Component
 const NewItem = (props) => {
 
     const renderInputs = props.inputNames.map(input => {
@@ -15,7 +17,8 @@ const NewItem = (props) => {
         <form onSubmit={props.handleFormSubmit}>
             {props.children}
             {renderInputs}
-            <input className="btn btn-danger" type="submit" value="Add Item" />
+            {/* This button is inside module pop up */}
+            <input className="add-button" type="submit" value="Add Item" />
         </form>
     )
 }

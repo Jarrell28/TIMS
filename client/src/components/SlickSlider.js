@@ -19,11 +19,12 @@ export default class SlickSlider extends Component {
             className: "center",
             centerMode: true,
             infinite: true,
-            centerPadding: "60px",
+            centerPadding: "100px",
             slidesToShow: 5,
             speed: 500,
             focusOnSelect: true,
-            initialSlide: 3
+            initialSlide: 5,
+            border:"none"
         };
         return (
             <div className="slickslider">

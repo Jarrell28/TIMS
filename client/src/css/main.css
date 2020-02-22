@@ -11,6 +11,17 @@
     background: #fff;
 } */
 
+.table-container{
+    width:90%;
+    /* background: #F7F7F7; */
+    margin: 0 auto;
+}
+
+h2{
+    font-family: 'Muli', sans-serif;
+    margin-bottom: 5px;
+}
+
 .newItem {
     position: absolute;
     top: 0;
@@ -27,4 +38,26 @@
     padding: 20px;
     height: 90%;
     border-radius: 10px;
+}
+
+/* add new equipment item button */
+.add-button {
+    font-family: 'Muli', sans-serif;
+    font-size: 13px;
+    background-color: #EDE4E4;
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom:10px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border: none;
+}
+
+.add-button:hover {
+	background:linear-gradient(to bottom, #e3dada 5%, #ede4e4 100%);
+	background-color:#e3dada;
+}
+.add-button:active {
+	position:relative;
+	top:1px;
 }
