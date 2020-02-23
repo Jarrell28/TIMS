@@ -11,9 +11,9 @@ import axios from 'axios';
 const InventoryTable = (props) => {
 
     const onCellValueChanged = (event) => {
-        console.log(event);
+        console.log("ID", event.data.id);
         axios({
-            url: "http://localhost:3001/api/equipment/" + event.data.id,
+            url: "/api/equipment/" + event.data.id,
             method: "PUT",
             data: event.data
         }).then(data => console.log(data));

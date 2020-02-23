@@ -72,8 +72,13 @@ export default class Loaner extends Component {
 
     render() {
         return (
-            <div className="container" >
-                <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} />
+            <div>
+                <MainNav />
+                <CarouselHeadlines />
+                <Carousel />
+                <div className="container" >
+                    <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} />
+                </div>
             </div>
         )
     }

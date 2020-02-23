@@ -4,11 +4,11 @@ use employee_db;
 
 
 insert into users
-    (username, password, email, role, createdAt, updatedAt)
+    (name, password, email, role, createdAt, updatedAt)
 values( 'Jarrell Houston', ' jpassword', ' jhouston2882@gmail.com', ' technician', "2020-02-11 13:38:00", "2020-02-11 13:38:00");
 
 insert into users
-    (username, password, email, role, createdAt, updatedAt)
+    (name, password, email, role, createdAt, updatedAt)
 values
     ('Andrew Meyers', 'apassword', 'ameyers@gmail.com', 'Manager', "2020-02-11 13:38:00", "2020-02-11 13:38:00");
 
@@ -58,19 +58,6 @@ values
     ("Keyboard", "2020-02-11 13:38:00", "2020-02-11 13:38:00");
 
 
-INSERT into loaners
-    (model, brand, serialNumber, expenseNumber, techId, CustomerId, checkoutDate, checkoutIn, checkedOut)
-value
-('Latitude 7450',
-'Dell',
-'8GKG893','E034536300',
-'NULL',
-'NULL',
-'NULL',
-'NULL',
-'FALSE'
-);
-
 -- loaner table-- 
 
 INSERT into loaners
@@ -103,7 +90,7 @@ values
 INSERT into requests
     (status, approvedDate, createdAt, updatedAt, userRequestId, userApproveId, EquipmentId, LoanerId)
 values
-    ('approved', NULL, now(), now(), '1', '2', '2', Null);
+    ('approved', NULL, now(), now(), '1', '2', '1', '1');
 
 
 INSERT into requests

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import InventoryTable from '../components/InventoryTable';
 
+import MainNav from '../components/Nav';
+import Carousel from '../components/Carousel';
+import CarouselHeadlines from '../components/CarouselHeadlines';
+
 import axios from 'axios';
 
 class Equipment extends Component {
@@ -52,19 +56,25 @@ class Equipment extends Component {
     }
 
     componentDidMount() {
+        console.log("componenet mounted")
         axios.get("http://localhost:3001/api/equipment").then(response => {
             console.log(response.data)
-            response.data.forEach(item => {
-                item.category = item.Category.name
-            })
+            //response.data.forEach(item => {
+            // item.category = item.Category.name
+            //})
             this.setState({ rowData: response.data })
         });
     }
 
     render() {
         return (
-            <div className="container">
-                <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} />
+            <div>
+                <MainNav />
+                <CarouselHeadlines />
+                <Carousel />
+                <div className="container">
+                    <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} />
+                </div>
             </div>
         )
     }

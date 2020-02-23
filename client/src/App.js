@@ -11,6 +11,7 @@ import CarouselHeadlines from './components/CarouselHeadlines';
 
 import Loaner from './pages/Loaner'
 import Equipment from './pages/Equipment';
+import FormPage from './components/login';
 
 import {
   BrowserRouter as Router,
@@ -27,11 +28,9 @@ class App extends Component {
     return (
       <Router>
         <div className="App" >
-          <MainNav />
-          <CarouselHeadlines />
-          <Carousel />
           <Switch>
             <Route exact path="/" component={Equipment} />
+            <Route exact path="/login" component={FormPage} />
             <Route exact path="/loaner" component={Loaner} />
             {/* <Route exact path="/books/:id" component={Detail} /> */}
             {/* <Route component={NoMatch} /> */}
