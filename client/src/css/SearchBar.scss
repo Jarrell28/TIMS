@@ -12,9 +12,12 @@ body {
 }
 
 .search {
+  
   width: 100px;
   height: 100px;
-  margin: 40px auto 0;
+  margin: 40px auto .25%;
+  padding-top: 15px;
+  padding-bottom: 15px;
   background-color: $search-bg-color;
   position: relative;
   overflow: hidden;
@@ -29,7 +32,7 @@ body {
     transition: $transition;
   }
   &.open {
-    width: 1000px;
+    width: 70%;
     &:before {
       height: 60px;
       margin: 20px 0 20px 30px;
@@ -43,10 +46,12 @@ body {
   height: 100%;
   box-shadow: none;
   border: none;
-  background: #F6F7F7;
+  background: #E7E8E9;
   color: #000;
   padding: 20px 100px 20px 45px;
-  font-size: 40px;
+  font-size: 30px;
+   margin-top: 1%;
+   margin-bottom: 1%;
   &:focus {
     outline: none;
   }

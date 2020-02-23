@@ -31,7 +31,7 @@ const MainNav = () => {
                         Product Search
                     </NavText>
 
-                    <NavItem eventKey="products/barchart">
+                    <NavItem eventKey="products/barchart" className="nav-color">
                         <NavText>Towers</NavText>
                     </NavItem>
                     <NavItem eventKey="products/barchart">
