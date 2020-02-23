@@ -68,13 +68,23 @@ h2{
 
 .shadowy {
 /* height: 45vh; */
+    width: 100%;
     padding-bottom: 30px;
-    box-shadow: 5px 10px 25px 2px rgb(236, 236, 236) !important;
+    /* box-shadow: 5px 10px 25px 2px rgb(236, 236, 236) !important; */
+    -webkit-box-shadow: 0px 13px 15px 3px rgba(155,155,155,0.41); 
+    box-shadow: 0px 13px 15px 3px rgba(155, 155, 155, 0.18);
+    position:relative;
+    z-index: 1;
+    /* border-bottom: solid 30px #fff;
+    filter: drop-shadow(0 0 5px #333); */
+
 }
 
 .table-bg-container{
+    width: 100%;
     background-color: #E7E8E9;
-    /* margin-top: -40px;
-    z-index: -1; */
+    z-index: 0;
+    position: relative;
+    margin-top: -40px;
 
 }

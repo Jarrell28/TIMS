@@ -39,14 +39,23 @@ img {
     below .25px -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0))
 } */
 .headlines {
+    font-family: 'Muli', 700, sans-serif;
     text-align: center;
     margin: 0;
     padding-top: 15px;
+    font-size: 33px;
 }
 .sub-headline {
+    font-family: 'Muli', sans-serif;
     font-size: 22px;
     text-align: center;
     padding-top:5px;
+}
+.sub-headline-in-stock{
+    text-align: center;
+    color: #25CCF7;
+    font-family: 'Muli', sans-serif;
+    letter-spacing: 2px;
 }
 
 /* .img {
