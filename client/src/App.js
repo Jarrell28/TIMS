@@ -34,16 +34,23 @@ class App extends Component {
 
           {/* <div className="container"> */}
           {/*<Carousel /> */}
-          <SlickSlider />
-          <CarouselHeadlines />
-          <SearchBar />
+          <div className="shadowy">
+            <SlickSlider />
+            <CarouselHeadlines />
+          </div>
+
+
           {/* EQUIPMENT TABLE */}
+          <div className="table-bg-container">
+          <SearchBar />
           <Switch>
             <Route exact path="/" component={Equipment} />
             <Route exact path="/loaners" component={Loaner} />
             {/* <Route exact path="/books/:id" component={Detail} /> */}
             {/* <Route component={NoMatch} /> */}
           </Switch>
+          </div>
+         
         </div>
       </Router>
     )

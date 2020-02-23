@@ -26,8 +26,10 @@ const InventoryTable = (props) => {
         <div
             className="ag-theme-balham"
             style={{
+                // background: 'black',
                 width: '100%',
-               
+                height: "400px"
+
             }}
         >
             <AgGridReact
@@ -35,7 +37,8 @@ const InventoryTable = (props) => {
                 rowData={props.rowData}
                 getRowNodeId={data => data.id}
                 onCellValueChanged={onCellValueChanged}
-                domLayout="autoHeight"
+                rowHeight="75"
+                domLayout="normal"
                 onGridReady={onGridReady}
                 rowSelection='single'
                 buttonRenderer={props.buttonRenderer}
@@ -45,5 +48,6 @@ const InventoryTable = (props) => {
         </div >
     )
 }
+// domLayout="autoHeight"
 
 export default InventoryTable;

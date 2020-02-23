@@ -8,11 +8,20 @@ body {
 }
 
 .sidenav---sidenav---_2tBP {
-    background:#9e0707 !important;
+    background:#2C3A47 !important;
+    color: #fff;
 }
 
 .navLogo {
     margin: 15px;
     margin-bottom: 20px;
     margin-top: 10px;
+}
+
+.sidenav---navicon---3gCRo {
+background-color: #25CCF7;
+}
+
+.sidenav---navtext---1AE_f{
+color: #fff;
 }

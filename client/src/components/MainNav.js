@@ -30,11 +30,9 @@ const MainNav = () => {
                     <NavText>
                         Product Search
                     </NavText>
-                    <NavItem eventKey="products/linechart">
-                        <NavText>Laptops</NavText>
-                    </NavItem>
+
                     <NavItem eventKey="products/barchart">
-                        <NavText>Desktops</NavText>
+                        <NavText>Towers</NavText>
                     </NavItem>
                     <NavItem eventKey="products/barchart">
                         <NavText>Docking Stations</NavText>
@@ -57,6 +55,12 @@ const MainNav = () => {
                         <Link to="/loaners"> <i className="fa fa-laptop" style={{ fontSize: '1.75em' }} /></Link>
                     </NavIcon>
                     <NavText className="subTitle"><Link to="/loaners">Laptop Checkout</Link></NavText>
+                    <NavItem eventKey="products/loaners-mac">
+                        <NavText>Mac</NavText>
+                    </NavItem>
+                    <NavItem eventKey="products/loaners-windows">
+                        <NavText>Windows</NavText>
+                    </NavItem>
                 </NavItem>
 
 

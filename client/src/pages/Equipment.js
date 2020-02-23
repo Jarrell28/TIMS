@@ -5,6 +5,8 @@ import { Transition, animated } from 'react-spring/renderprops';
 import InventoryTable from '../components/InventoryTable';
 import NewItem from '../components/NewItem';
 
+import '../css/dataGrid.css';
+
 class Equipment extends Component {
     constructor(props) {
         super(props);
