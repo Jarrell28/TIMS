@@ -39,14 +39,18 @@ class App extends Component {
             <CarouselHeadlines />
           </div>
 
-          <SearchBar />
+
           {/* EQUIPMENT TABLE */}
+          <div className="table-bg-container">
+          <SearchBar />
           <Switch>
             <Route exact path="/" component={Equipment} />
             <Route exact path="/loaners" component={Loaner} />
             {/* <Route exact path="/books/:id" component={Detail} /> */}
             {/* <Route component={NoMatch} /> */}
           </Switch>
+          </div>
+         
         </div>
       </Router>
     )

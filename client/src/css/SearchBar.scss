@@ -1,6 +1,6 @@
-$background-color: #fff;
-$search-bg-color: #fff;
-$icon-color: #9E0707;
+$background-color: #E7E8E9;
+$search-bg-color: #E7E8E9;
+$icon-color: #25CCF7;
 $transition: all .5s ease;
 * {
   box-sizing: border-box;
@@ -8,6 +8,7 @@ $transition: all .5s ease;
 
 body {
   background: $background-color;
+
 }
 
 .search {
