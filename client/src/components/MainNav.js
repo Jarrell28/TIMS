@@ -1,9 +1,9 @@
 import React from 'react';
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import { Link } from 'react-router-dom';
 
 import '../css/nav.css';
-import logo from '../images/TIMS-logo-06.svg';
+// import logo from '../images/TIMS-logo-06.svg';
 
 // Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
@@ -19,7 +19,7 @@ const MainNav = () => {
             <SideNav.Toggle />
             <SideNav.Nav defaultSelected="products">
 
-                <Link to="/"><img src={logo} className="navLogo" alt='title or description' /></Link>
+                <Link to="/"><img src="images/TIMS-logo-06.svg" className="navLogo" alt='title or description' /></Link>
 
                 {/* PRODUCT SEARCH TAB */}
                 {/* LINK WITH DROP DOWN*/}
