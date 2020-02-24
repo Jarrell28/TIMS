@@ -1,5 +1,4 @@
 import React from 'react';
-import { Carousel } from 'reactstrap';
 
 // css styling ---> Carousel.css
 const CarouselHeadlines = () => {

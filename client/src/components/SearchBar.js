@@ -1,9 +1,5 @@
 import React from 'react';
 import '../css/SearchBar.scss';
-import ReactDOM from 'react-dom';
-// import $ from "jquery";
-
-
 
 class SearchBar extends React.Component {
     constructor(props) {

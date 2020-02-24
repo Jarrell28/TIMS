@@ -1,16 +1,9 @@
-import React, { Component } from 'react';
-
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import React from 'react';
 
 // Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
-import { Button } from 'reactstrap';
 
 import MainNav from './components/MainNav';
-import Carousel from './components/Carousel';
-import CarouselHeadlines from './components/CarouselHeadlines';
-import SearchBar from './components/SearchBar';
-import SlickSlider from './components/SlickSlider';
 
 import Loaner from './pages/Loaner'
 import Equipment from './pages/Equipment';
@@ -21,40 +14,22 @@ import {
   Route
 } from "react-router-dom";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+const App = () => {
+  return (
+    <Router>
+      <div className="App" >
+        <MainNav />
 
-  render() {
-    return (
-      <Router>
-        <div className="App" >
-          <MainNav />
+        <Switch>
+          <Route exact path="/" component={Equipment} />
+          <Route exact path="/loaners" component={Loaner} />
+          {/* <Route exact path="/books/:id" component={Detail} /> */}
+          {/* <Route component={NoMatch} /> */}
+        </Switch>
 
-          {/* <div className="container"> */}
-          {/*<Carousel /> */}
-          <div className="shadowy">
-            <SlickSlider />
-            <CarouselHeadlines />
-          </div>
-
-
-          {/* EQUIPMENT TABLE */}
-          <div className="table-bg-container">
-          <SearchBar />
-          <Switch>
-            <Route exact path="/" component={Equipment} />
-            <Route exact path="/loaners" component={Loaner} />
-            {/* <Route exact path="/books/:id" component={Detail} /> */}
-            {/* <Route component={NoMatch} /> */}
-          </Switch>
-          </div>
-         
-        </div>
-      </Router>
-    )
-  }
+      </div>
+    </Router >
+  )
 }
 
 export default App;

@@ -14,9 +14,13 @@ const NewItem = (props) => {
     })
 
     return (
-        <form onSubmit={props.handleFormSubmit}>
-            {props.children}
+        <form onSubmit={props.handleFormSubmit} encType="multipart/form-data" style={{ overflow: "auto" }}>
+            <div className="d-flex justify-content-between">
+                <h2>Add New Equipment</h2>
+                <span onClick={props.toggleNewItem}>Close</span>
+            </div>
             {renderInputs}
+            {props.children}
             {/* This button is inside module pop up */}
             <input className="add-button" type="submit" value="Add Item" />
         </form>
