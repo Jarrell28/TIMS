@@ -31,12 +31,19 @@ class App extends Component {
       <Router>
         <div className="App" >
           <MainNav />
+          <SlickSlider />
+          <CarouselHeadlines />
+
+
+          {/* EQUIPMENT TABLE */}
+
           <Switch>
             <Route exact path="/" component={Equipment} />
             <Route exact path="/loaners" component={Loaner} />
             {/* <Route exact path="/books/:id" component={Detail} /> */}
             {/* <Route component={NoMatch} /> */}
           </Switch>
+
         </div>
       </Router>
     )

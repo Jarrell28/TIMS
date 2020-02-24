@@ -16,6 +16,10 @@ body {
 
 }
 
+img {
+    -webkit-box-reflect: below 1px -webkit-linear-gradient(bottom, rgba(black, .6) , rgba(black, .1) 20%, rgba(black, 0) 30%, rgba(black, 0));
+}
+
 /* 2nd Main Container for every image */
 .coverflow__cover__25-7e {
     box-shadow: none !important;
@@ -35,14 +39,23 @@ body {
     below .25px -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0))
 } */
 .headlines {
+    font-family: 'Muli', 700, sans-serif;
     text-align: center;
     margin: 0;
     padding-top: 15px;
+    font-size: 33px;
 }
 .sub-headline {
+    font-family: 'Muli', sans-serif;
     font-size: 22px;
     text-align: center;
     padding-top:5px;
+}
+.sub-headline-in-stock{
+    text-align: center;
+    color: #25CCF7;
+    font-family: 'Muli', sans-serif;
+    letter-spacing: 2px;
 }
 
 /* .img {
@@ -56,6 +69,7 @@ body {
     transition: all .5s;
     padding-left: 15px;
     padding-right: 15px;
+    border-color: white;
 }
 
 /* Active Image in Carousel */

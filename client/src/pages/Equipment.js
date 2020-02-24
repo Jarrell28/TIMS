@@ -8,6 +8,8 @@ import CarouselHeadlines from '../components/CarouselHeadlines';
 import SearchBar from '../components/SearchBar';
 import SlickSlider from '../components/SlickSlider';
 
+import '../css/dataGrid.css';
+
 class Equipment extends Component {
     constructor(props) {
         super(props);
@@ -122,10 +124,14 @@ class Equipment extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <SlickSlider rowData={this.state.rowData} />
-                <CarouselHeadlines />
-                <SearchBar />
-                <div className="table-container">
+                <div className="shadowy">
+
+                    <SlickSlider rowData={this.state.rowData} />
+                    <CarouselHeadlines />
+                </div>
+                <div className="table-bg-container">
+                    <SearchBar />
+
                     <button onClick={this.toggleNewItem} className="add-button">Add New Equipment</button>
                     <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} />
                     <Transition
