@@ -4,6 +4,9 @@ import { Transition, animated } from 'react-spring/renderprops';
 
 import InventoryTable from '../components/InventoryTable';
 import NewItem from '../components/NewItem';
+import CarouselHeadlines from '../components/CarouselHeadlines';
+import SearchBar from '../components/SearchBar';
+import SlickSlider from '../components/SlickSlider';
 
 class Equipment extends Component {
     constructor(props) {
@@ -73,16 +76,24 @@ class Equipment extends Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault();
-        const newObj = {};
+
+        let formData = new FormData();
         const elements = e.target.elements;
 
         for (let i = 0; i < elements.length; i++) {
             if (elements[i].name) {
-                newObj[elements[i].name] = elements[i].value
+                // newObj[elements[i].name] = elements[i].value
+                formData.append(elements[i].name, elements[i].value)
             }
         }
 
-        axios.post("http://localhost:3001/api/equipment", newObj).then(response => {
+        formData.set("eImage", e.target.eImage.files[0]);
+
+        axios.post("http://localhost:3001/api/equipment", formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(response => {
             const newData = response.data;
             this.setState({ rowData: [...this.state.rowData, newData] });
         })
@@ -90,19 +101,30 @@ class Equipment extends Component {
 
     buttonRenderer = params => {
         let button = document.createElement('button');
-        var text = '';
+        var text = 'View';
         // one star for each medal
-        for (var i = 0; i < params.value; i++) {
-            text += '#';
-        }
+        button.setAttribute("data-id", params.value);
         button.innerHTML = text;
+        button.addEventListener('click', this.getEquipmentById);
 
         return button;
     }
 
+    getEquipmentById = e => {
+        const id = e.target.getAttribute('data-id');
+
+        axios.get("http://localhost:3001/api/equipment/" + id).then(response => {
+            console.log(response.data);
+        })
+    }
+
+
     render() {
         return (
             <div className="container-fluid">
+                <SlickSlider rowData={this.state.rowData} />
+                <CarouselHeadlines />
+                <SearchBar />
                 <div className="table-container">
                     <button onClick={this.toggleNewItem} className="add-button">Add New Equipment</button>
                     <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} />
