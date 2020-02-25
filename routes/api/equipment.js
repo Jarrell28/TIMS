@@ -36,7 +36,7 @@ router.post("/", function (req, res) {
     if (req.files) {
 
         const tempImage = req.files.eImage;
-        const imageFolder = path.join(__dirname, "../../client/src/images/");
+        const imageFolder = path.join(__dirname, "../../client/public/images/");
 
         tempImage.mv(imageFolder + tempImage.name, function (err) {
             if (err)

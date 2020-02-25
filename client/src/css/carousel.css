@@ -16,6 +16,10 @@ body {
 
 }
 
+img {
+    -webkit-box-reflect: below 1px -webkit-linear-gradient(bottom, rgba(black, .6) , rgba(black, .1) 20%, rgba(black, 0) 30%, rgba(black, 0));
+}
+
 /* 2nd Main Container for every image */
 .coverflow__cover__25-7e {
     box-shadow: none !important;
@@ -35,14 +39,55 @@ body {
     below .25px -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0))
 } */
 .headlines {
-    background-color: #E5E5E5;
+    font-family: 'Muli', 700, sans-serif;
     text-align: center;
     margin: 0;
-    padding-top: 20px;
+    padding-top: 15px;
+    font-size: 33px;
 }
 .sub-headline {
-    font-size: 15px;
-    background-color: #E5E5E5;
+    font-family: 'Muli', sans-serif;
+    font-size: 22px;
     text-align: center;
     padding-top:5px;
+}
+.sub-headline-in-stock{
+    text-align: center;
+    color: #25CCF7;
+    font-family: 'Muli', sans-serif;
+    letter-spacing: 2px;
+}
+
+/* .img {
+    -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(70%, transparent) , to(rgba(250, 250, 250, 0.1)));
+
+} */
+
+.slick-slide {
+    transform: scale(0.5);
+    opacity: .4;
+    transition: all .5s;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-color: white;
+}
+
+/* Active Image in Carousel */
+.slick-current {
+    transform: scale(1.75);
+    transition: all .5s;
+    opacity: 1;
+}
+
+.slick-current:focus {
+    outline: none;
+}
+
+.slick-list {
+    padding: 75px 100px 50px !important; 
+}
+
+.slickslider {
+    width: 90%;
+    margin: 0 auto;
 }
