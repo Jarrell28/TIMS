@@ -1,9 +1,9 @@
 import React from 'react';
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import { Link } from 'react-router-dom';
 
 import '../css/nav.css';
-import logo from '../images/TIMS-logo-06.svg';
+// import logo from '../images/TIMS-logo-06.svg';
 
 // Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
@@ -19,7 +19,7 @@ const MainNav = () => {
             <SideNav.Toggle />
             <SideNav.Nav defaultSelected="products">
 
-                <Link to="/"><img src={logo} className="navLogo" alt='title or description' /></Link>
+                <Link to="/"><img src="images/TIMS-logo-06.svg" className="navLogo" alt='title or description' /></Link>
 
                 {/* PRODUCT SEARCH TAB */}
                 {/* LINK WITH DROP DOWN*/}
@@ -29,12 +29,19 @@ const MainNav = () => {
                     </NavIcon>
                     <NavText><Link to="/">
                         Product Search
+<<<<<<< HEAD
                         </Link></NavText>
                     <NavItem eventKey="products/linechart">
                         <NavText>Laptops</NavText>
                     </NavItem>
                     <NavItem eventKey="products/barchart">
                         <NavText>Desktops</NavText>
+=======
+                    </NavText>
+
+                    <NavItem eventKey="products/barchart" className="nav-color">
+                        <NavText>Towers</NavText>
+>>>>>>> 9e47dc3352c90409d02ffaf1cd599173695973c2
                     </NavItem>
                     <NavItem eventKey="products/barchart">
                         <NavText>Docking Stations</NavText>
@@ -57,6 +64,12 @@ const MainNav = () => {
                         <Link to="/loaners"> <i className="fa fa-laptop" style={{ fontSize: '1.75em' }} /></Link>
                     </NavIcon>
                     <NavText className="subTitle"><Link to="/loaners">Laptop Checkout</Link></NavText>
+                    <NavItem eventKey="products/loaners-mac">
+                        <NavText>Mac</NavText>
+                    </NavItem>
+                    <NavItem eventKey="products/loaners-windows">
+                        <NavText>Windows</NavText>
+                    </NavItem>
                 </NavItem>
 
 

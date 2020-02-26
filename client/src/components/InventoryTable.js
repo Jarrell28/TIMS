@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -24,10 +24,13 @@ const InventoryTable = (props) => {
 
     return (
         <div
-            className="ag-theme-balham"
+            className="ag-theme-balham container"
             style={{
+                // background: 'black',
                 width: '100%',
-               
+                height: "400px",
+                background: 'transparent',
+                paddingBottom: "40px"
             }}
         >
             <AgGridReact
@@ -35,15 +38,16 @@ const InventoryTable = (props) => {
                 rowData={props.rowData}
                 getRowNodeId={data => data.id}
                 onCellValueChanged={onCellValueChanged}
-                domLayout="autoHeight"
+                rowHeight="75"
+                domLayout="normal"
                 onGridReady={onGridReady}
                 rowSelection='single'
                 buttonRenderer={props.buttonRenderer}
-
             >
             </AgGridReact>
         </div >
     )
 }
+// domLayout="autoHeight"
 
 export default InventoryTable;

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import MainNav from '../components/MainNav'
-import CarouselHeadlines from '../components/CarouselHeadlines'
-import Carousel from '../components/Carousel'
 import InventoryTable from '../components/InventoryTable'
 
 
