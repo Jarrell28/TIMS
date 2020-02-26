@@ -6,7 +6,7 @@ import LoginForm from './LoginForm';
 import SubmitButton from './SubmitButton';
 import './App.css';
 
-class App extends React.component {
+class App extends React.Component {
 
     async componentDidMount() {
 
@@ -34,88 +34,87 @@ class App extends React.component {
             }
         }
 
-        }
-
-    catch(e) {
-        UserStores.loading = false;
-        UserStores.isLoggedIn = false;
-
-    }
-
-}
-
-asyncdoLogout(); {
-
-    try {
-
-        let res = await fetch('/logout', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'content-type': 'application/json'
-            }
-        });
-
-        let result = await res.json();
-
-        if (result && result.success) {
+        catch (e) {
+            UserStores.loading = false;
             UserStores.isLoggedIn = false;
-            UserStores, username = '';
 
         }
 
     }
 
-    catch (e) {
-        console.log(e)
+    asyncdoLogout() {
+
+        try {
+
+            let res = await fetch('/logout', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'content-type': 'application/json'
+                }
+            });
+
+            let result = await res.json();
+
+            if (result && result.success) {
+                UserStores.isLoggedIn = false;
+                UserStores.username = '';
+
+            }
+
+        }
+
+        catch (e) {
+            console.log(e)
+        }
+
     }
+    // creating render logic 
+    render() {
 
-}
-// creating render logic 
-render() {
-
-    if (UserStores.loading) {
-        return (
-            <div className="app">
-                <div className='container'>
-                    Loding, please wait..
+        if (UserStores.loading) {
+            return (
+                <div className="app">
+                    <div className='container'>
+                        Loding, please wait..
                 </div>
-            </div>
-        );
-    }
+                </div>
+            );
+        }
 
-    else {
+        else {
 
-        if (UserStore.isLoggedIn) {
+            if (UserStore.isLoggedIn) {
+
+                return (
+                    <div className="app">
+                        <div className='container'>
+                            Welcome {userStore.username}
+
+                            <SubmitButton
+                                text={'log out'}
+                                disabled={false}
+                                onClick={() => this.doLogout()}
+                            />
+
+                        </div>
+                    </div>
+                );
+            }
 
             return (
                 <div className="app">
                     <div className='container'>
-                        Welcome {userStore.username}
-
                         <SubmitButton
                             text={'log out'}
                             disabled={false}
                             onClick={() => this.doLogout()}
                         />
-
+                        <LoginForm />
                     </div>
                 </div>
             );
         }
-
-        return (
-            <div className="app">
-                <div className='container'>
-                    <SubmitButton
-                        text={'log out'}
-                        disabled={false}
-                        onClick={() => this.doLogout()}
-                    />
-                    <LoginForm />
-                </div>
-            </div>
-        );
     }
 }
 

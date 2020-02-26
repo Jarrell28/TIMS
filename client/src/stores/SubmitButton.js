@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class SubmitButton extends React.component {
+class SubmitButton extends React.Component {
 
     render() {
         return (
@@ -9,8 +9,8 @@ class SubmitButton extends React.component {
 
                 <button
                     className='btn'
-                    disabled={this.this.props.disabled}
-                    onclick={() => this.props.onlcick()}
+                    disabled={this.props.disabled}
+                    onClick={() => this.props.onlcick()}
 
                 >
                     {this.props.text}

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import InventoryTable from '../components/InventoryTable'
+import CarouselHeadlines from '../components/CarouselHeadlines'
+import SlickSlider from '../components/SlickSlider'
 
 
 export default class Loaner extends Component {
@@ -75,9 +77,8 @@ export default class Loaner extends Component {
     render() {
         return (
             <div>
-                <MainNav />
+                <SlickSlider />
                 <CarouselHeadlines />
-                <Carousel />
                 <div className="container" >
                     <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} />
                 </div>

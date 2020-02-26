@@ -1,10 +1,10 @@
 import React from 'react';
 import InputField from './InputField';
 import SubmitButton from './SubmitButton';
-import UserStore from './stores/UserStore';
+import UserStore from './UserStore';
 
 
-class LoginForm extends React.component {
+class LoginForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -16,7 +16,7 @@ class LoginForm extends React.component {
         }
     }
 
-    setInputValue(property, vol) {
+    setInputValue(property, val) {
         val = val.trim();
         if (val.length > 12) {
             return;
@@ -26,93 +26,95 @@ class LoginForm extends React.component {
             [property]: val
 
         })
+    }
 
-        resetForm() {
-            this.setState({
-                username: '',
-                password: '',
-                buttonDisabled: false
+    resetForm() {
+        this.setState({
+            username: '',
+            password: '',
+            buttonDisabled: false
 
-            })
+        })
+    }
+
+    async asyncdoLogin() {
+
+        if (!this.state.username) {
+            return;
         }
 
-        asyncdoLogin() {
+        if (!this.state.password) {
+            return;
+        }
 
-            if (!this.state.username) {
-                return;
+        this.setState({
+            buttonDisabled: true
+        })
+
+        try {
+
+            let res = await fetch('/login', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: this.state.username,
+                    password: this.state.password
+                })
+
+            });
+
+            let result = await res.json();
+            if (result && result.success) {
+                UserStore.isLoggedIn = true;
+                UserStore.username = result.username;
             }
 
-            if (!this.state.password) {
-                return;
-            }
-
-            this.setState({
-                buttonDisabled: true
-            })
-
-            try {
-
-                let res = await fetch('/login', {
-                    method: 'post',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        username: this.state.username,
-                        password: this.state.password
-                    })
-
-                });
-
-                let result = await.res.json();
-                if (result && result.success) {
-                    UserStore.isLoggedIn = true;
-                    UserStore.username = result.username;
-                }
-
-                else if (result && result.success === false) {
-                    this.resetForm();
-                    alert(result.msg);
-                }
-                
-                )
-            }
-
-            catch (e) {
-                console.log(e);
+            else if (result && result.success === false) {
                 this.resetForm();
+                alert(result.msg);
             }
 
         }
 
+        catch (e) {
+            console.log(e);
+            this.resetForm();
+        }
 
-        render() {
-            return (
-                <div className="LoginForm">
-
-                    Log in
-                    <inputField
-                        type='text'
-                        placeholder='username'
-                        value={this.state.username ? this.state.username : ''}
-                        onChange={(val) => this.setInputValue('username', val)}
-                    />
-                    <inputField
-                        type='password'
-                        placeholder='password'
-                        value={this.state.password ? this.state.password : ''}
-                        onChange={(val) => this.setInputValue('password', val)}
-                    />
-                    <SubmitButton
-                        text='Login'
-                        disable={this.state.buttonDisabled}
-                        onClick={() => this.doLogin()}
-                    />
+    }
 
 
-                </div>
-            );
+    render() {
+        return (
+            <div className="LoginForm">
+
+                Log in
+                    <InputField
+                    type='text'
+                    placeholder='username'
+                    value={this.state.username ? this.state.username : ''}
+                    onChange={(val) => this.setInputValue('username', val)}
+                />
+                <InputField
+                    type='password'
+                    placeholder='password'
+                    value={this.state.password ? this.state.password : ''}
+                    onChange={(val) => this.setInputValue('password', val)}
+                />
+                <SubmitButton
+                    text='Login'
+                    disable={this.state.buttonDisabled}
+                    onClick={() => this.doLogin()}
+                />
 
 
-            export default loginForm;
+            </div>
+        );
+    }
+}
+
+
+export default LoginForm;

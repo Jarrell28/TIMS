@@ -5,9 +5,10 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 import MainNav from './components/MainNav';
 
+
 import Loaner from './pages/Loaner'
 import Equipment from './pages/Equipment';
-import FormPage from './components/login';
+import FormPage from './stores/LoginForm';
 
 import {
   BrowserRouter as Router,

@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class InputField extends React.component {
+class InputField extends React.Component {
 
     render() {
         return (
