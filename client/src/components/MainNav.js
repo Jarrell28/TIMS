@@ -25,11 +25,11 @@ const MainNav = () => {
                 {/* LINK WITH DROP DOWN*/}
                 <NavItem eventKey="products">
                     <NavIcon>
-                        <i className="fa fa-search" style={{ fontSize: '1.75em' }} />
+                        <Link to="/"> <i className="fa fa-search" style={{ fontSize: '1.75em' }} /></Link>
                     </NavIcon>
-                    <NavText>
+                    <NavText><Link to="/">
                         Product Search
-                    </NavText>
+                        </Link></NavText>
                     <NavItem eventKey="products/linechart">
                         <NavText>Laptops</NavText>
                     </NavItem>
@@ -80,5 +80,24 @@ const MainNav = () => {
         </SideNav>
     )
 }
+
+
+// axios call
+// component did mount
+// .map function
+
+// filter by categories
+
+// laptops category
+// componentDidMount() {
+//     axios.get("/category/:id").then(response => {
+//         console.log(response.data)
+//         response.data.forEach(item => {
+//             item.techName = item.tech.name
+//         })
+//         this.setState({ rowData: response.data })
+//     });
+
+
 
 export default MainNav;
