@@ -2,6 +2,13 @@ body {
     font-family: 'Muli', sans-serif;
     /* width: 100% !important; */
 }
+
+.navShadow{
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
 .subTitle{
     margin-left: 10px;
 }
@@ -40,6 +47,12 @@ Product Search, pop out nav  */
     color: #25CCF7;
 }
 
-
+.navitemClassName{
+    color: #25CCF7;
+}
+ /* Product Search - sub menu} */
+.sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL .sidenav---sidenav-subnav---1EN61 > .sidenav---sidenav-subnavitem---1cD47 > .sidenav---navitem---9uL5T{
+    color:#fff;
+}
 
 

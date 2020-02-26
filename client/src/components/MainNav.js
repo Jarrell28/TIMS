@@ -25,7 +25,7 @@ const MainNav = () => {
                 {/* LINK WITH DROP DOWN*/}
                 <NavItem eventKey="products">
                     <NavIcon>
-                        <i className="fa fa-search" style={{ fontSize: '1.75em' }} />
+                        <i className="fa fa-search" style={{ color: "#fff", fontSize: '1.75em' }} />
                     </NavIcon>
                     <NavText>
                         Product Search
@@ -52,7 +52,7 @@ const MainNav = () => {
                 {/* LAPTOP LOANERS (SINGLE LINK) */}
                 <NavItem eventKey="laptop">
                     <NavIcon>
-                        <Link to="/loaners"> <i className="fa fa-laptop" style={{ fontSize: '1.75em' }} /></Link>
+                        <Link to="/loaners"> <i className="fa fa-laptop" style={{ color: "#fff", fontSize: '1.75em' }} /></Link>
                     </NavIcon>
                     <NavText className="subTitle"><Link to="/loaners">Laptop Checkout</Link></NavText>
                     <NavItem eventKey="products/loaners-mac">
@@ -66,7 +66,7 @@ const MainNav = () => {
 
                 {/* YOUR HISTORY (SINGLE LINK) */}
                 <NavItem eventKey="history">
-                    <NavIcon><i className="fa fa-history" style={{ fontSize: '1.75em' }} /></NavIcon>
+                    <NavIcon><i className="fa fa-history" style={{ color: "#fff", fontSize: '1.75em' }} /></NavIcon>
                     <NavText>Your History</NavText>
                 </NavItem>
 
@@ -75,7 +75,7 @@ const MainNav = () => {
                 {/* LOGOUT (SINGLE LINK) */}
                 <NavItem eventKey="logOut">
                     <NavIcon>
-                        <i className="fa fa-sign-out" style={{ fontSize: '1.75em' }} />
+                        <i className="fa fa-sign-out" style={{color: "#fff", fontSize: '1.75em' }} />
                     </NavIcon>
                     <NavText className="subTitle">Logout</NavText>
                 </NavItem>

@@ -27,7 +27,7 @@ const Carousel = () => {
 
             <img src={img} alt='title or description' data-action="" />
             <img src={img2} alt='title or description' data-action="" />
-            <img src={img3} alt='title or description' />
+            <img src={img3}  className= "reflectBelow" alt='title or description' />
             <img src={img4} alt='title or description' />
             <img src={img5} alt='title or description' />
             <img src={img6} alt='title or description' />

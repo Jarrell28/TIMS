@@ -23,21 +23,19 @@
 /* Table Header - Row Background */
 .ag-theme-balham .ag-header {
     background-color:#CED2D8;
-    /* margin-bottom: 1%; */
+    margin-bottom: 1%;
     border: none;
 }
 
 .ag-theme-balham .ag-cell {
     line-height: 30px;
     padding-top:8px;
-    padding-bottom:8px;
-    
+    padding-bottom:8px;  
 }
 
 
 /* Each Row */
 .ag-theme-balham .ag-row{
-    border-top: #E7E8E9 10px solid !important;
-    border-bottom:#E7E8E9 10px solid !important;
+    border-bottom:#E7E8E9 15px solid !important;
     background-color: #F6F7F7;
 }
