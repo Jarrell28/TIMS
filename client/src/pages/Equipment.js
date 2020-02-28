@@ -4,6 +4,9 @@ import { Transition, animated } from 'react-spring/renderprops';
 
 import InventoryTable from '../components/InventoryTable';
 import NewItem from '../components/NewItem';
+import CarouselHeadlines from '../components/CarouselHeadlines';
+import SearchBar from '../components/SearchBar';
+import SlickSlider from '../components/SlickSlider';
 
 import '../css/dataGrid.css';
 
@@ -24,7 +27,7 @@ class Equipment extends Component {
             }, {
                 headerName: "Category", field: "category", sortable: true, filter: true, editable: true
             }, {
-                headerName: "Delete", field: "delete", sortable: true, filter: true, editable: true, cellRenderer: this.buttonRenderer
+                headerName: "", field: "view", sortable: true, filter: true, editable: true, cellRenderer: this.buttonRenderer
             }],
             rowData: [],
 
@@ -48,13 +51,10 @@ class Equipment extends Component {
                 {
                     displayName: "Warranty Expiration",
                     dbName: "warrantyExpiration"
-                },
-                {
-                    displayName: "Category",
-                    dbName: "CategoryId"
                 }
             ],
-            toggleNewItem: false
+            toggleNewItem: false,
+            categories: []
         }
     }
 
@@ -64,10 +64,14 @@ class Equipment extends Component {
                 if (item.Category) {
                     item.category = item.Category.name
                 }
-                item.delete = item.id;
+                item.view = item.id;
                 // item.delete = <button data-id={item.id}>X</button>;
             })
             this.setState({ rowData: response.data })
+        });
+
+        axios.get("http://localhost:3001/api/categories").then(response => {
+            this.setState({ categories: response.data })
         });
     }
 
@@ -75,16 +79,23 @@ class Equipment extends Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault();
-        const newObj = {};
+
+        let formData = new FormData();
         const elements = e.target.elements;
 
         for (let i = 0; i < elements.length; i++) {
             if (elements[i].name) {
-                newObj[elements[i].name] = elements[i].value
+                formData.append(elements[i].name, elements[i].value)
             }
         }
 
-        axios.post("http://localhost:3001/api/equipment", newObj).then(response => {
+        formData.set("eImage", e.target.eImage.files[0]);
+
+        axios.post("http://localhost:3001/api/equipment", formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(response => {
             const newData = response.data;
             this.setState({ rowData: [...this.state.rowData, newData] });
         })
@@ -92,20 +103,38 @@ class Equipment extends Component {
 
     buttonRenderer = params => {
         let button = document.createElement('button');
-        var text = '';
+        var text = 'View';
         // one star for each medal
-        for (var i = 0; i < params.value; i++) {
-            text += '#';
-        }
+        button.setAttribute("data-id", params.value);
         button.innerHTML = text;
+        button.addEventListener('click', this.getEquipmentById);
 
         return button;
     }
 
+    getEquipmentById = e => {
+        const id = e.target.getAttribute('data-id');
+
+        axios.get("http://localhost:3001/api/equipment/" + id).then(response => {
+            console.log(response.data);
+        })
+    }
+
+
     render() {
+
+        const renderCategories = this.state.categories.length ? this.state.categories.map(category => <option key={category.id} value={parseInt(category.id)}>{category.name}</option>) : "";
+
+
         return (
             <div className="container-fluid">
-                <div className="table-container">
+                <div className="shadowy text-center">
+                    <SlickSlider rowData={this.state.rowData} />
+                    <CarouselHeadlines />
+                </div>
+                <div className="table-bg-container">
+                    <SearchBar />
+
                     <button onClick={this.toggleNewItem} className="add-button">Add New Equipment</button>
                     <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} />
                     <Transition
@@ -119,10 +148,17 @@ class Equipment extends Component {
                         {show => show && (props => (
                             <div className="newItem">
                                 <animated.div style={props}>
-                                    <NewItem inputNames={this.state.inputNames} handleFormSubmit={this.handleFormSubmit}>
-                                        <div className="d-flex justify-content-between">
-                                            <h2>Add New Equipment</h2>
-                                            <span onClick={this.toggleNewItem}>Close</span>
+                                    <NewItem inputNames={this.state.inputNames} handleFormSubmit={this.handleFormSubmit} toggleNewItem={this.toggleNewItem}>
+                                        <div className="form-group">
+                                            <label htmlFor="categorySelect">Category</label>
+                                            <select name="CategoryId" className="form-control" id="categorySelect">
+                                                {renderCategories}
+                                            </select>
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label htmlFor="eImage" className="d-block">Image</label>
+                                            <input type="file" name="eImage" id="eImage"></input>
                                         </div>
                                     </NewItem>
                                 </animated.div>

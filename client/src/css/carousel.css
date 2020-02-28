@@ -90,3 +90,8 @@ img {
 .slick-list {
     padding: 75px 100px 50px !important; 
 }
+
+.slickslider {
+    width: 90%;
+    margin: 0 auto;
+}

@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
 
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
-
 // Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
-import { Button } from 'reactstrap';
 
 import MainNav from './components/MainNav';
-import Carousel from './components/Carousel';
-import CarouselHeadlines from './components/CarouselHeadlines';
-import SearchBar from './components/SearchBar';
-import SlickSlider from './components/SlickSlider';
 
 import Loaner from './pages/Loaner'
 import Equipment from './pages/Equipment';
@@ -20,39 +13,73 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import { Context } from 'ag-grid-community';
 
+
+// class component allows state to be used
 class App extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    productContext: "all"
+  }
+
+  onContextClick = context => {
+    this.setState({ productContext: context })
   }
 
   render() {
+
+    const mainNav = [
+      {
+        title: "Laptops",
+        destination: "towers"
+      },
+      {
+        title: "Desktops",
+        destination: "desktops"
+      },
+      {
+        title: "Docking Stations",
+        destination: "docking-stations"
+      },
+      {
+        title: "Hard Drives",
+        destination: "hard-drives"
+      },
+      {
+        title: "Batteries",
+        destination: "batteries"
+      },
+      {
+        title: "Ram",
+        destination: "ram"
+      },
+      {
+        title: "Mouse",
+        destination: "mouse"
+      },
+      {
+        title: "Keyboard",
+        destination: "keyboard"
+      },
+    ]
+
     return (
       <Router>
 
         <div className="App" >
-          <MainNav />
+          <MainNav onContextClick={this.onContextClick}
+            mainNav={mainNav}
+            productContext={this.state.productContext} />
 
-          {/* <div className="container"> */}
-          {/*<Carousel /> */}
-          <div className="shadowy">
-            <SlickSlider />
-            <CarouselHeadlines />
-          </div>
-
-          {/* EQUIPMENT TABLE */}
-          <div className="table-bg-container">
-            <SearchBar />
-            <Switch>
-              <Route exact path="/" component={Equipment} />
-              <Route exact path="/loaners" component={Loaner} />
-              {/* <Route exact path="/books/:id" component={Detail} /> */}
-              {/* <Route component={NoMatch} /> */}
-            </Switch>
-          </div>
+          <Switch>
+            <Route exact path="/" component={Equipment} />
+            <Route exact path="/loaners" component={Loaner} />
+            {/* <Route exact path="/books/:id" component={Detail} /> */}
+            {/* <Route component={NoMatch} /> */}
+          </Switch>
 
         </div>
-      </Router>
+      </Router >
     )
   }
 }

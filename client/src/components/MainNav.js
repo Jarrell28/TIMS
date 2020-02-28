@@ -1,14 +1,14 @@
 import React from 'react';
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import { Link } from 'react-router-dom';
 
 import '../css/nav.css';
-import logo from '../images/TIMS-logo-06.svg';
+// import logo from '../images/TIMS-logo-06.svg';
 
 // Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
-const MainNav = () => {
+const MainNav = (props) => {
     return (
         <SideNav
         className= "navShadow"
@@ -19,33 +19,26 @@ const MainNav = () => {
             <SideNav.Toggle />
             <SideNav.Nav defaultSelected="products">
 
-                <Link to="/"><img src={logo} className="navLogo" alt='title or description' /></Link>
+                <Link to="/"><img src="images/TIMS-logo-06.svg" className="navLogo" alt='title or description' /></Link>
 
                 {/* PRODUCT SEARCH TAB */}
                 {/* LINK WITH DROP DOWN*/}
                 <NavItem eventKey="products">
                     <NavIcon>
-                        <i className="fa fa-search" style={{ color: "#fff", fontSize: '1.75em' }} />
+                        <Link to="/"> <i className="fa fa-search" style={{ fontSize: '1.75em' }} /></Link>
                     </NavIcon>
-                    <NavText>
+                    <NavText><Link to="/">
                         Product Search
-                    </NavText>
+                        </Link></NavText>
 
-                    <NavItem eventKey="products/barchart" className="nav-color">
-                        <NavText>Towers</NavText>
-                    </NavItem>
-                    <NavItem eventKey="products/barchart">
-                        <NavText>Docking Stations</NavText>
-                    </NavItem>
-                    <NavItem eventKey="products/barchart">
-                        <NavText>Hard Drives</NavText>
-                    </NavItem>
-                    <NavItem eventKey="products/barchart">
-                        <NavText>Batteries</NavText>
-                    </NavItem>
-                    <NavItem eventKey="products/barchart">
-                        <NavText>Ram</NavText>
-                    </NavItem>
+                    {props.mainNav.map((nav, index) => {
+                        return <NavItem key={"mainNav_Context_" + index} eventKey="products/barchart">
+                            <NavText onClick={() => props.onContextClick(nav.destination)}>
+                                {nav.title}
+                            </NavText>
+                        </NavItem>
+                    })}
+
                 </NavItem>
 
 
@@ -81,8 +74,26 @@ const MainNav = () => {
                 </NavItem>
 
             </SideNav.Nav>
-        </SideNav>
+        </SideNav >
     )
 }
+
+// axios call
+// component did mount
+// .map function
+
+// filter by categories
+
+// laptops category
+// componentDidMount() {
+//     axios.get("/category/:id").then(response => {
+//         console.log(response.data)
+//         response.data.forEach(item => {
+//             item.techName = item.tech.name
+//         })
+//         this.setState({ rowData: response.data })
+//     });
+
+
 
 export default MainNav;
