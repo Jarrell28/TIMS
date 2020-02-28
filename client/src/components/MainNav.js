@@ -11,7 +11,7 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 const MainNav = () => {
     return (
         <SideNav
-
+        className= "navShadow"
             onSelect={(selected) => {
                 // Add your code here
             }}
@@ -75,7 +75,7 @@ const MainNav = () => {
                 {/* LOGOUT (SINGLE LINK) */}
                 <NavItem eventKey="logOut">
                     <NavIcon>
-                        <i className="fa fa-sign-out" style={{color: "#fff", fontSize: '1.75em' }} />
+                        <i className="fa fa-sign-out" style={{ color: "#fff", fontSize: '1.75em' }} />
                     </NavIcon>
                     <NavText className="subTitle">Logout</NavText>
                 </NavItem>

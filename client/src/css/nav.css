@@ -3,10 +3,30 @@ body {
     /* width: 100% !important; */
 }
 
-.navShadow{
+/* 
+.split {
+    display: flex;
+    flex-flow: row nowrap;
+    min-height: 100vh;
+  } */
+
+  /* .split-left{
+    display: flex;
+
+  }
+  .split-right{
+    display: flex;
+
+  } */
+
+.navShadow:focus{
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.sidenav---navtext---1AE_f, .sidenav---navtext---1AE_f a{
+    color: #fff !important;
 }
 
 .subTitle{
@@ -55,4 +75,8 @@ Product Search, pop out nav  */
     color:#fff;
 }
 
+/* .reflectBelow	{ 
+	-webkit-box-reflect: below 0;
+    -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(white)); 
+} */
 

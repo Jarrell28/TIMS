@@ -29,18 +29,16 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App" >
 
-          <div className="navShadow">
-            <MainNav />
-          </div>
+        <div className="App" >
+          <MainNav />
+
           {/* <div className="container"> */}
           {/*<Carousel /> */}
           <div className="shadowy">
             <SlickSlider />
             <CarouselHeadlines />
           </div>
-
 
           {/* EQUIPMENT TABLE */}
           <div className="table-bg-container">
