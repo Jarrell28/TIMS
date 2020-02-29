@@ -20,27 +20,27 @@ values
 INSERT into categories
     (name, createdAt, UpdatedAt)
 values
-    ("Laptop", "2020-02-11 13:38:00", "2020-02-11 13:38:00");
+    ("Laptops", "2020-02-11 13:38:00", "2020-02-11 13:38:00");
 
 INSERT into categories
     (name, createdAt, UpdatedAt)
 values
-    ("Desktop", "2020-02-11 13:38:00", "2020-02-11 13:38:00");
+    ("Desktops", "2020-02-11 13:38:00", "2020-02-11 13:38:00");
 
 INSERT into categories
     (name, createdAt, UpdatedAt)
 values
-    ("Docking Station", "2020-02-11 13:38:00", "2020-02-11 13:38:00");
+    ("Docking Stations", "2020-02-11 13:38:00", "2020-02-11 13:38:00");
 
 INSERT into categories
     (name, createdAt, UpdatedAt)
 values
-    ("Hard Drive", "2020-02-11 13:38:00", "2020-02-11 13:38:00");
+    ("Hard Drives", "2020-02-11 13:38:00", "2020-02-11 13:38:00");
 
 INSERT into categories
     (name, createdAt, UpdatedAt)
 values
-    ("Battery", "2020-02-11 13:38:00", "2020-02-11 13:38:00");
+    ("Batteries", "2020-02-11 13:38:00", "2020-02-11 13:38:00");
 
 INSERT into categories
     (name, createdAt, UpdatedAt)
