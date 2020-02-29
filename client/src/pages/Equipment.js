@@ -76,6 +76,28 @@ class Equipment extends Component {
         });
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        //This runs everytime the component updates
+        if (prevState.productContext !== this.props.productContext) {
+            //compare prevProps vs newProps with if statement like in example
+            console.log('product context state has changed.')
+
+            //if state changes, create an axios get request to backend route
+            axios.get("http://localhost:3001/api/equipment/category/" + this.props.productContext).then(response => {
+                response.data.forEach(item => {
+                    if (item.Category) {
+                        item.category = item.Category.name
+                    }
+                    item.view = item.id;
+                    // item.delete = <button data-id={item.id}>X</button>;
+                })
+                this.setState({ rowData: response.data })
+                //update rowData state based off of response
+            });
+        }
+
+    }
+
     toggleNewItem = () => this.setState({ toggleNewItem: !this.state.toggleNewItem });
 
     handleFormSubmit = (e) => {
@@ -135,8 +157,10 @@ class Equipment extends Component {
                 </div>
                 <div className="table-bg-container">
                     <SearchBar />
+                    <div className="container">
+                        <button onClick={this.toggleNewItem} className="add-button">Add New Equipment</button>
 
-                    <button onClick={this.toggleNewItem} className="add-button">Add New Equipment</button>
+                    </div>
                     <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} />
                     <Transition
                         native
@@ -172,5 +196,7 @@ class Equipment extends Component {
         )
     }
 }
+
+
 
 export default Equipment;

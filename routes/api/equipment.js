@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const db = require("../../models");
 const path = require("path");
+const axios = require('axios');
 
 //Find All Equipments
 router.get("/", function (req, res) {
@@ -28,6 +29,34 @@ router.get("/:id", function (req, res) {
             res.json(dbEquipment);
         })
 })
+
+//where query 
+
+router.get("/category/:category", function (req, res) {
+    //save category param into a variable
+    const categoryParam = req.params.category;
+    //query the Category table where the category param equals the category table ID
+
+    if (categoryParam === "0") {
+        db.Equipment.findAll({
+        }).then(dbEquipment => {
+            res.json(dbEquipment);
+        })
+    } else {
+        db.Equipment.findAll({
+            where: {
+                categoryId: categoryParam,
+            }
+        }).then(dbEquipment => {
+            res.json(dbEquipment);
+        })
+    }
+
+})
+
+
+
+
 
 //Create New Equipment
 router.post("/", function (req, res) {

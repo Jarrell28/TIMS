@@ -6,10 +6,11 @@ import "slick-carousel/slick/slick-theme.css";
 import "../css/carousel.css";
 
 const SlickSlider = (props) => {
+    //slider
 
     const renderSlides = () => {
         const slides = props.rowData.map(item => {
-            return <div key={item.id}><img src={"images/" + item.image} alt='title or description' data-action="" style={{ maxWidth: "100%" }} /></div>
+            return <div key={item.id} style={{ width: "250px" }}><img src={"images/" + item.image} alt='title or description' data-action="" style={{ width: "100%" }} /></div>
         })
         return slides;
     }
@@ -45,7 +46,8 @@ const SlickSlider = (props) => {
         slidesToShow: slidesToShow,
         speed: 500,
         focusOnSelect: true,
-        border: "none"
+        border: "none",
+        variableWidth: true
     };
     return (
         <div className="slickslider">
