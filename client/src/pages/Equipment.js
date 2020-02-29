@@ -134,8 +134,10 @@ class Equipment extends Component {
                 </div>
                 <div className="table-bg-container">
                     <SearchBar />
+                    <div className="container">
+                        <button onClick={this.toggleNewItem} className="add-button">Add New Equipment</button>
 
-                    <button onClick={this.toggleNewItem} className="add-button">Add New Equipment</button>
+                    </div>
                     <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} />
                     <Transition
                         native
