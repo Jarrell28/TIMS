@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "../css/carousel.css";
 
 const SlickSlider = (props) => {
+    //slider
 
     const renderSlides = () => {
         const slides = props.rowData.map(item => {
