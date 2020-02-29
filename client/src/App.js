@@ -7,6 +7,7 @@ import MainNav from './components/MainNav';
 
 import Loaner from './pages/Loaner'
 import Equipment from './pages/Equipment';
+import Login from './pages/Login';
 
 import {
   BrowserRouter as Router,
@@ -80,6 +81,7 @@ class App extends Component {
               (<Equipment productContext={this.state.productContext} />)
             } />
             <Route exact path="/loaners" component={Loaner} />
+      <Route exact path="/login" component={Login} />
 
             {/* <Route exact path="/books/:id" component={Detail} /> */}
             {/* <Route component={NoMatch} /> */}
