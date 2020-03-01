@@ -20,7 +20,7 @@ import { Context } from 'ag-grid-community';
 // class component allows state to be used
 class App extends Component {
   state = {
-    productContext: "all"
+    productContext: 0
   }
 
   onContextClick = context => {
@@ -81,7 +81,7 @@ class App extends Component {
               (<Equipment productContext={this.state.productContext} />)
             } />
             <Route exact path="/loaners" component={Loaner} />
-      <Route exact path="/login" component={Login} />
+            <Route exact path="/login" component={Login} />
 
             {/* <Route exact path="/books/:id" component={Detail} /> */}
             {/* <Route component={NoMatch} /> */}

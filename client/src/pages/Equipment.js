@@ -10,6 +10,7 @@ import SlickSlider from '../components/SlickSlider';
 
 import '../css/dataGrid.css';
 
+
 class Equipment extends Component {
     constructor(props) {
         super(props);
@@ -22,8 +23,6 @@ class Equipment extends Component {
                 headerName: "Serial Number", field: "serialNumber", sortable: true, filter: true, editable: true
             }, {
                 headerName: "Expense Number", field: "expenseNumber", sortable: true, filter: true, editable: true
-            }, {
-                headerName: "Warranty Expiration", field: "warrantyExpiration", sortable: true, filter: true, editable: true
             }, {
                 headerName: "Category", field: "category", sortable: true, filter: true, editable: true
             }, {
@@ -47,18 +46,19 @@ class Equipment extends Component {
                 {
                     displayName: "Expense Number",
                     dbName: "expenseNumber"
-                },
-                {
-                    displayName: "Warranty Expiration",
-                    dbName: "warrantyExpiration"
                 }
             ],
             toggleNewItem: false,
-            categories: []
+            categories: [],
+            activeItem: {},
+            count: 0,
+            currentSlide: 0
         }
     }
 
     componentDidMount() {
+        let active = {};
+
         axios.get("http://localhost:3001/api/equipment").then(response => {
             response.data.forEach(item => {
                 if (item.Category) {
@@ -67,8 +67,16 @@ class Equipment extends Component {
                 item.view = item.id;
                 // item.delete = <button data-id={item.id}>X</button>;
             })
-            this.setState({ rowData: response.data })
-        });
+            active = response.data[0];
+            this.setState({ rowData: response.data, activeItem: response.data[0] })
+        }).then(() => {
+            if (active) {
+                axios.get("http://localhost:3001/api/equipment/count/" + active.model).then(response => {
+                    this.setState({ count: response.data })
+                })
+            }
+
+        })
 
         axios.get("http://localhost:3001/api/categories").then(response => {
             this.setState({ categories: response.data })
@@ -77,9 +85,11 @@ class Equipment extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         //This runs everytime the component updates
-        if (prevState.productContext !== this.props.productContext) {
+        if (prevProps.productContext !== this.props.productContext) {
             //compare prevProps vs newProps with if statement like in example
             console.log('product context state has changed.')
+
+            let active = {};
 
             //if state changes, create an axios get request to backend route
             axios.get("http://localhost:3001/api/equipment/category/" + this.props.productContext).then(response => {
@@ -90,12 +100,19 @@ class Equipment extends Component {
                     item.view = item.id;
                     // item.delete = <button data-id={item.id}>X</button>;
                 })
-                this.setState({ rowData: response.data })
+
+                this.setState({ rowData: response.data, activeItem: response.data[0] })
                 //update rowData state based off of response
+            }).then(() => {
+                axios.get("http://localhost:3001/api/equipment/count/" + active.model).then(response => {
+                    this.setState({ count: response.data })
+                })
             });
         }
 
     }
+
+
 
     toggleNewItem = () => this.setState({ toggleNewItem: !this.state.toggleNewItem });
 
@@ -128,18 +145,51 @@ class Equipment extends Component {
         var text = 'View';
         // one star for each medal
         button.setAttribute("data-id", params.value);
+        button.classList.add("view-button");
         button.innerHTML = text;
         button.addEventListener('click', this.getEquipmentById);
 
         return button;
     }
 
-    getEquipmentById = e => {
-        const id = e.target.getAttribute('data-id');
+    getEquipmentById = (e, method) => {
+        let id;
+        if (method === "rowClick") {
+            //e.data.id comes from when the row is clicked, used in onRowClicked function
+            id = e.data.id
+        } else if (method === "slideClick") {
+            // gets the equipment id when slider is clicked
+            id = e.target.parentElement.dataset.index;
+        } else {
+            //e.target is from when the view button is clicked on the table grid
+            id = e.target.getAttribute('data-id')
+
+        }
+
+        let active = {}
 
         axios.get("http://localhost:3001/api/equipment/" + id).then(response => {
-            console.log(response.data);
+            this.setState({ activeItem: response.data });
+            active = response.data;
+        }).then(() => {
+            axios.get("http://localhost:3001/api/equipment/count/" + active.model).then(response => {
+                this.setState({ count: response.data })
+            })
         })
+
+
+    }
+
+    onRowClicked = e => {
+        const rowIndex = e.rowIndex;
+        this.getEquipmentById(e, "rowClick");
+        this.setState({ currentSlide: rowIndex })
+    }
+
+    onSlideClicked = e => {
+        const slideIndex = e.target.offsetParent.dataset.index;
+        this.getEquipmentById(e, "slideClick")
+        this.setState({ currentSlide: slideIndex })
     }
 
 
@@ -151,8 +201,8 @@ class Equipment extends Component {
         return (
             <div className="container-fluid">
                 <div className="shadowy text-center">
-                    <SlickSlider rowData={this.state.rowData} />
-                    <CarouselHeadlines />
+                    <SlickSlider rowData={this.state.rowData} currentSlide={this.state.currentSlide} onSlideClicked={this.onSlideClicked} />
+                    <CarouselHeadlines activeItem={this.state.activeItem} count={this.state.count} category="Equipment" />
                 </div>
                 <div className="table-bg-container">
                     <SearchBar />
@@ -160,7 +210,7 @@ class Equipment extends Component {
                         <button onClick={this.toggleNewItem} className="add-button">Add New Equipment</button>
 
                     </div>
-                    <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} />
+                    <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} onRowClicked={this.onRowClicked} />
                     <Transition
                         native
                         items={this.state.toggleNewItem}

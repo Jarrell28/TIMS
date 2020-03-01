@@ -67,6 +67,27 @@ h2{
 	top:1px;
 }
 
+.view-button {
+    font-family: 'Muli', sans-serif;
+    font-size: 13px;
+    background-color: #D6E3EA;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom:0;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border: none;
+}
+
+.view-button:hover {
+	background:linear-gradient(to bottom, #CDE1E8 5%, rgb(196, 210, 218) 90%);
+	background-color: #D6E3EA;
+}
+.view-button:active {
+	position:relative;
+	top:1px;
+}
+
 .shadowy {
 /* height: 45vh; */
     width: 100%;
@@ -88,4 +109,8 @@ h2{
     margin-top: -40px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.ag-theme-balham .ag-row:hover {
+    cursor: pointer;
 }

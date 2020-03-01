@@ -17,10 +17,6 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        warrantyExpiration: {
-            type: DataTypes.DATE,
-            allowNull: true,
-        },
         checkedOut: {
             type: DataTypes.BOOLEAN,
             allowNull: true,
