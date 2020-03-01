@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const db = require("../../models");
 const path = require("path");
-const axios = require('axios');
 
 //Find All Equipments
 router.get("/", function (req, res) {
@@ -9,6 +8,20 @@ router.get("/", function (req, res) {
         {
             include: [
                 { model: db.Category },
+            ]
+        })
+        .then(function (dbEquipment) {
+            res.json(dbEquipment);
+        })
+})
+
+//Find Equipment Count
+router.get("/count/:model", function (req, res) {
+    const model = req.params.model;
+    db.Equipment.count(
+        {
+            where: [
+                { model },
             ]
         })
         .then(function (dbEquipment) {
