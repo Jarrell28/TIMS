@@ -7,6 +7,7 @@ import NewItem from '../components/NewItem';
 import SlickSlider from '../components/SlickSlider';
 import CarouselHeadlines from '../components/CarouselHeadlines';
 import SearchBar from '../components/SearchBar';
+import ViewLoanerItem from '../components/ViewLoanerItem';
 
 
 export default class Loaner extends Component {
@@ -50,6 +51,7 @@ export default class Loaner extends Component {
                 },
             ],
             toggleNewItem: false,
+            toggleViewItem: false,
             activeItem: {},
             count: 0,
         }
@@ -79,6 +81,7 @@ export default class Loaner extends Component {
     }
 
     toggleNewItem = () => this.setState({ toggleNewItem: !this.state.toggleNewItem });
+    toggleViewItem = () => this.setState({ toggleViewItem: !this.state.toggleViewItem });
 
     handleFormSubmit = (e) => {
         e.preventDefault();
@@ -113,7 +116,7 @@ export default class Loaner extends Component {
         button.setAttribute("data-id", params.value);
         button.classList.add("view-button");
         button.innerHTML = text;
-        button.addEventListener('click', this.getLoanerById);
+        button.addEventListener('click', this.onButtonClicked);
 
         return button;
     }
@@ -128,10 +131,9 @@ export default class Loaner extends Component {
         } else if (method === "slideClick") {
             // gets the loaner id when slider is clicked
             id = e.target.parentElement.dataset.index;
-        } else {
+        } else if (method === "buttonClick") {
             //e.target is from when the view button is clicked on the table grid
             id = e.target.getAttribute('data-id')
-
         }
 
         axios.get("http://localhost:3001/api/loaners/" + id).then(response => {
@@ -154,6 +156,11 @@ export default class Loaner extends Component {
         const slideIndex = e.target.offsetParent.dataset.index;
         this.getLoanerById(e, "slideClick")
         this.setState({ currentSlide: slideIndex })
+    }
+
+    onButtonClicked = e => {
+        this.getLoanerById(e, "buttonClick");
+        this.toggleViewItem();
     }
 
 
@@ -190,6 +197,25 @@ export default class Loaner extends Component {
                                             <input type="file" name="eImage" id="eImage"></input>
                                         </div>
                                     </NewItem>
+                                </animated.div>
+                            </div>
+                        ))}
+                    </Transition>
+
+                    <Transition
+                        native
+                        items={this.state.toggleViewItem}
+                        from={{ opacity: 0, marginTop: -500 }}
+                        enter={{ opacity: 1, marginTop: 20 }}
+                        leave={{ opacity: 0, marginTop: -500 }}
+                        config={{ duration: 300 }}
+                    >
+                        {show => show && (props => (
+                            <div className="viewItem">
+                                <animated.div style={props}>
+                                    <ViewLoanerItem activeItem={this.state.activeItem} toggleViewItem={this.toggleViewItem} count={this.state.count}>
+
+                                    </ViewLoanerItem>
                                 </animated.div>
                             </div>
                         ))}

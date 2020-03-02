@@ -7,6 +7,7 @@ import NewItem from '../components/NewItem';
 import CarouselHeadlines from '../components/CarouselHeadlines';
 import SearchBar from '../components/SearchBar';
 import SlickSlider from '../components/SlickSlider';
+import ViewItem from '../components/ViewItem';
 
 import '../css/dataGrid.css';
 
@@ -49,6 +50,7 @@ class Equipment extends Component {
                 }
             ],
             toggleNewItem: false,
+            toggleViewItem: false,
             categories: [],
             activeItem: {},
             count: 0,
@@ -115,6 +117,7 @@ class Equipment extends Component {
 
 
     toggleNewItem = () => this.setState({ toggleNewItem: !this.state.toggleNewItem });
+    toggleViewItem = () => this.setState({ toggleViewItem: !this.state.toggleViewItem });
 
     handleFormSubmit = (e) => {
         e.preventDefault();
@@ -147,7 +150,7 @@ class Equipment extends Component {
         button.setAttribute("data-id", params.value);
         button.classList.add("view-button");
         button.innerHTML = text;
-        button.addEventListener('click', this.getEquipmentById);
+        button.addEventListener('click', this.onButtonClicked);
 
         return button;
     }
@@ -160,10 +163,9 @@ class Equipment extends Component {
         } else if (method === "slideClick") {
             // gets the equipment id when slider is clicked
             id = e.target.parentElement.dataset.index;
-        } else {
+        } else if (method === "buttonClick") {
             //e.target is from when the view button is clicked on the table grid
             id = e.target.getAttribute('data-id')
-
         }
 
         let active = {}
@@ -190,6 +192,11 @@ class Equipment extends Component {
         const slideIndex = e.target.offsetParent.dataset.index;
         this.getEquipmentById(e, "slideClick")
         this.setState({ currentSlide: slideIndex })
+    }
+
+    onButtonClicked = e => {
+        this.getEquipmentById(e, "buttonClick");
+        this.toggleViewItem();
     }
 
 
@@ -235,6 +242,25 @@ class Equipment extends Component {
                                             <input type="file" name="eImage" id="eImage"></input>
                                         </div>
                                     </NewItem>
+                                </animated.div>
+                            </div>
+                        ))}
+                    </Transition>
+
+                    <Transition
+                        native
+                        items={this.state.toggleViewItem}
+                        from={{ opacity: 0, marginTop: -500 }}
+                        enter={{ opacity: 1, marginTop: 20 }}
+                        leave={{ opacity: 0, marginTop: -500 }}
+                        config={{ duration: 300 }}
+                    >
+                        {show => show && (props => (
+                            <div className="viewItem">
+                                <animated.div style={props}>
+                                    <ViewItem activeItem={this.state.activeItem} toggleViewItem={this.toggleViewItem} count={this.state.count}>
+
+                                    </ViewItem>
                                 </animated.div>
                             </div>
                         ))}
