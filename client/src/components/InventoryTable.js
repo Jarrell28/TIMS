@@ -9,7 +9,6 @@ import axios from 'axios';
 const InventoryTable = (props) => {
 
     const onCellValueChanged = (event) => {
-        console.log(event);
         axios({
             url: "http://localhost:3001/api/equipment/" + event.data.id,
             method: "PUT",
@@ -18,7 +17,6 @@ const InventoryTable = (props) => {
     }
 
     const onGridReady = (gridApi) => {
-        console.log(gridApi);
         gridApi.api.sizeColumnsToFit();
     }
 
@@ -43,6 +41,7 @@ const InventoryTable = (props) => {
                 onGridReady={onGridReady}
                 rowSelection='single'
                 buttonRenderer={props.buttonRenderer}
+                onRowClicked={props.onRowClicked}
             >
             </AgGridReact>
         </div >

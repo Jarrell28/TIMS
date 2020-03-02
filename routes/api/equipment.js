@@ -15,6 +15,20 @@ router.get("/", function (req, res) {
         })
 })
 
+//Find Equipment Count
+router.get("/count/:model", function (req, res) {
+    const model = req.params.model;
+    db.Equipment.count(
+        {
+            where: [
+                { model },
+            ]
+        })
+        .then(function (dbEquipment) {
+            res.json(dbEquipment);
+        })
+})
+
 //Find Equipment By ID
 router.get("/:id", function (req, res) {
     db.Equipment.findByPk(req.params.id,
@@ -27,6 +41,34 @@ router.get("/:id", function (req, res) {
             res.json(dbEquipment);
         })
 })
+
+//where query 
+
+router.get("/category/:category", function (req, res) {
+    //save category param into a variable
+    const categoryParam = req.params.category;
+    //query the Category table where the category param equals the category table ID
+
+    if (categoryParam === "0") {
+        db.Equipment.findAll({
+        }).then(dbEquipment => {
+            res.json(dbEquipment);
+        })
+    } else {
+        db.Equipment.findAll({
+            where: {
+                categoryId: categoryParam,
+            }
+        }).then(dbEquipment => {
+            res.json(dbEquipment);
+        })
+    }
+
+})
+
+
+
+
 
 //Create New Equipment
 router.post("/", function (req, res) {

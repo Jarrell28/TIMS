@@ -78,21 +78,9 @@ const MainNav = (props) => {
     )
 }
 
-// axios call
-// component did mount
-// .map function
 
-// filter by categories
 
-// laptops category
-// componentDidMount() {
-//     axios.get("/category/:id").then(response => {
-//         console.log(response.data)
-//         response.data.forEach(item => {
-//             item.techName = item.tech.name
-//         })
-//         this.setState({ rowData: response.data })
-//     });
+
 
 
 
