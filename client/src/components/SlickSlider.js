@@ -10,7 +10,7 @@ const SlickSlider = (props) => {
 
     const renderSlides = () => {
         const slides = props.rowData.map(item => {
-            return <div key={item.id}><img src={"images/" + item.image} alt='title or description' data-action="" style={{ maxWidth: "100%" }} /></div>
+            return <div key={item.id}><img src={"images/" + item.image} alt='title or description' data-action="" style={{ maxWidth: "100%"}} /></div>
         })
         return slides;
     }
