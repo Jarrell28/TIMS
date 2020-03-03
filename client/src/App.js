@@ -8,11 +8,7 @@ import MainNav from './components/MainNav';
 
 import Loaner from './pages/Loaner'
 import Equipment from './pages/Equipment';
-<<<<<<< HEAD
-import FormPage from './stores/LoginForm';
-=======
 import Login from './pages/Login';
->>>>>>> master
 
 import {
   BrowserRouter as Router,

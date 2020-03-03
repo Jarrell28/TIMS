@@ -2,7 +2,7 @@ import React from 'react';
 import InputField from './InputField';
 import SubmitButton from './SubmitButton';
 import UserStore from './UserStore';
-
+import "./App.css";
 
 class LoginForm extends React.Component {
 

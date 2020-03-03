@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import '../css/login.css';
+
 
 class Login extends Component {
     constructor(props) {
@@ -44,20 +46,22 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="container">
-                <h1>Login Page</h1>
-                <form onSubmit={this.handleFormSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" name="email" onChange={this.handleInputChange} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" id="password" name="password" onChange={this.handleInputChange} />
-                    </div>
+            <div class='container' id='logback'>
+                <div className="container" id="log">
+                    <h1>Login Page</h1>
+                    <form onSubmit={this.handleFormSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input type="email" className="form-control" id="email" aria-describedby="emailHelp" name="email" onChange={this.handleInputChange} />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input type="password" className="form-control" id="password" name="password" onChange={this.handleInputChange} />
+                        </div>
 
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                </form>
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                    </form>
+                </div>
             </div>
         )
     }
