@@ -15,7 +15,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { Context } from 'ag-grid-community';
+
 
 
 // class component allows state to be used
@@ -73,19 +73,20 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <MainNav onContextClick={this.onContextClick}
+          {/* <MainNav onContextClick={this.onContextClick}
             mainNav={mainNav}
-            productContext={this.state.productContext} />
+            productContext={this.state.productContext} /> */}
 
           <Switch>
             <Route exact path="/" render={props =>
-              (<Equipment productContext={this.state.productContext} />)
+              (<Equipment productContext={this.state.productContext} onContextClick={this.onContextClick}
+                mainNav={mainNav} />)
             } />
-            <Route exact path="/loaners" component={Loaner} />
+            <Route exact path="/loaners" render={props =>
+              (<Loaner productContext={this.state.productContext} onContextClick={this.onContextClick}
+                mainNav={mainNav} />)
+            } />
             <Route exact path="/login" component={Login} />
-
-            {/* <Route exact path="/books/:id" component={Detail} /> */}
-            {/* <Route component={NoMatch} /> */}
           </Switch>
 
         </div>

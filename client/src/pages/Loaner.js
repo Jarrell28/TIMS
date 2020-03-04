@@ -9,6 +9,7 @@ import SlickSlider from '../components/SlickSlider';
 import CarouselHeadlines from '../components/CarouselHeadlines';
 import SearchBar from '../components/SearchBar';
 import ViewLoanerItem from '../components/ViewLoanerItem';
+import MainNav from '../components/MainNav';
 
 
 export default class Loaner extends Component {
@@ -168,6 +169,11 @@ export default class Loaner extends Component {
     render() {
         return (
             <div className="container-fluid" >
+
+                <MainNav onContextClick={this.props.onContextClick}
+                    mainNav={this.props.mainNav}
+                    productContext={this.props.productContext} />
+
                 <div className="shadowy text-center">
                     <SlickSlider rowData={this.state.rowData} currentSlide={this.state.currentSlide} onSlideClicked={this.onSlideClicked} />
                     <CarouselHeadlines activeItem={this.state.activeItem} count={this.state.count} category="Loaners" />
