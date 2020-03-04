@@ -34,6 +34,10 @@ img {
     /* flex: 10 10 !important; */
 }
 
+/* .reflectBelow	{ 
+	-webkit-box-reflect: below 0;
+    -webkit-gradient:(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(white)); 
+} */
 
 /* .-webkit-box-reflect{
     below .25px -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0))

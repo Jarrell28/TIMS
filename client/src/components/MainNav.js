@@ -11,7 +11,7 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 const MainNav = (props) => {
     return (
         <SideNav
-
+        className= "navShadow"
             onSelect={(selected) => {
                 // Add your code here
             }}

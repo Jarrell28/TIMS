@@ -1,3 +1,45 @@
+
+.login-bg{
+background-image: url('/login-bg.jpeg');
+height: 100vh;
+background-repeat: no-repeat;
+background-size:cover;
+}
+
+.login-container {
+font-family: 'Muli', sans-serif;
+background-color: #2C3A47;
+padding: 80px;
+color: white;
+width: 40%;
+margin: 0;
+position: absolute;
+top: 50%;
+left: 50%;
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
+}
+
+.submit-btn-container{
+    padding-top: 5%;
+    margin: auto;
+}
+.login-submit-btn{
+    font-family: 'Muli', sans-serif;
+    font-size: 13px;
+    background-color: #25CCF7;
+    width:100%;
+    /* margin: auto; */
+    margin-top: 10px;
+    margin-bottom:10px;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    border: none;
+    margin: 0 auto;
+    display: block;
+
+}
+
 .form-elegant .font-small {
   font-size: 0.8rem;
 }

@@ -3,6 +3,9 @@ import axios from 'axios';
 import '../css/login.css';
 
 
+import Logo from "../images/light-blue-logo-06.svg";
+
+
 class Login extends Component {
     constructor(props) {
         super(props)
@@ -46,7 +49,31 @@ class Login extends Component {
 
     render() {
         return (
-            <div class='container' id='logback'>
+
+                <div className="login-bg">
+
+                    <div className="login-container">
+                    <p style= {{textAlign:"center"}}><img src = {Logo} style={{width: "50%", marginBottom: "10%", }} /></p>
+                        <h1>Account Login</h1>
+
+                        <form onSubmit={this.handleFormSubmit}>
+                            <div className="form-group">
+                                <label htmlFor="email">Email</label>
+                                <input type="email" className="form-control" id="email" aria-describedby="emailHelp" name="email" onChange={this.handleInputChange} />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="password">Password</label>
+                                <input type="password" className="form-control" id="password" name="password" onChange={this.handleInputChange} />
+                            </div>
+                            <div className="submit-btn-container">
+                                <button type="submit" className="login-submit-btn">Submit</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+          /*  <div class='container' id='logback'>
                 <div className="container" id="log">
                     <h1>Login Page</h1>
                     <form onSubmit={this.handleFormSubmit}>
@@ -62,7 +89,8 @@ class Login extends Component {
                         <button type="submit" className="btn btn-primary">Submit</button>
                     </form>
                 </div>
-            </div>
+            </div>*/
+
         )
     }
 }

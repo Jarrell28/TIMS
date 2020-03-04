@@ -2,6 +2,33 @@ body {
     font-family: 'Muli', sans-serif;
     /* width: 100% !important; */
 }
+
+/* 
+.split {
+    display: flex;
+    flex-flow: row nowrap;
+    min-height: 100vh;
+  } */
+
+  /* .split-left{
+    display: flex;
+
+  }
+  .split-right{
+    display: flex;
+
+  } */
+
+.navShadow:focus{
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.sidenav---navtext---1AE_f, .sidenav---navtext---1AE_f a{
+    color: #fff !important;
+}
+
 .subTitle{
     margin-left: 10px;
 }
@@ -40,6 +67,18 @@ Product Search, pop out nav  */
     color: #25CCF7;
 }
 
+.navitemClassName{
+    color: #25CCF7;
+}
+ /* Product Search - sub menu} */
+.sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL .sidenav---sidenav-subnav---1EN61 > .sidenav---sidenav-subnavitem---1cD47 > .sidenav---navitem---9uL5T{
+    color:#fff;
+}
+
+/* .reflectBelow	{ 
+	-webkit-box-reflect: below 0;
+    -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(white)); 
+} */
 .sidenav---sidenav---_2tBP {
     position: fixed;
 }
