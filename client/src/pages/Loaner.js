@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Transition, animated } from 'react-spring/renderprops';
+import { Redirect } from 'react-router-dom';
 
 
 import InventoryTable from '../components/InventoryTable';
@@ -167,69 +168,76 @@ export default class Loaner extends Component {
 
 
     render() {
-        return (
-            <div className="container-fluid" >
+        if (localStorage.usertoken) {
 
-                <MainNav onContextClick={this.props.onContextClick}
-                    mainNav={this.props.mainNav}
-                    productContext={this.props.productContext} />
+            return (
+                <div className="container-fluid" >
 
-                <div className="shadowy text-center">
-                    <SlickSlider rowData={this.state.rowData} currentSlide={this.state.currentSlide} onSlideClicked={this.onSlideClicked} />
-                    <CarouselHeadlines activeItem={this.state.activeItem} count={this.state.count} category="Loaners" />
-                </div>
-                <div className="table-bg-container">
-                    <SearchBar />
-                    <div className="container mt-4">
-                        <button onClick={this.toggleNewItem} className="add-button">Add New Loaner</button>
+                    <MainNav onContextClick={this.props.onContextClick}
+                        mainNav={this.props.mainNav}
+                        productContext={this.props.productContext} />
+
+                    <div className="shadowy text-center">
+                        <SlickSlider rowData={this.state.rowData} currentSlide={this.state.currentSlide} onSlideClicked={this.onSlideClicked} />
+                        <CarouselHeadlines activeItem={this.state.activeItem} count={this.state.count} category="Loaners" />
+                    </div>
+                    <div className="table-bg-container">
+                        <SearchBar />
+                        <div className="container mt-4">
+                            <button onClick={this.toggleNewItem} className="add-button">Add New Loaner</button>
+
+                        </div>
+                        <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} onRowClicked={this.onRowClicked} />
+
+                        <Transition
+                            native
+                            items={this.state.toggleNewItem}
+                            from={{ opacity: 0, marginTop: -500 }}
+                            enter={{ opacity: 1, marginTop: 20 }}
+                            leave={{ opacity: 0, marginTop: -500 }}
+                            config={{ duration: 300 }}
+                        >
+                            {show => show && (props => (
+                                <div className="newItem">
+                                    <animated.div style={props}>
+                                        <NewItem inputNames={this.state.inputNames} handleFormSubmit={this.handleFormSubmit} toggleNewItem={this.toggleNewItem}>
+
+                                            <div className="form-group">
+                                                <label htmlFor="eImage" className="d-block">Image</label>
+                                                <input type="file" name="eImage" id="eImage"></input>
+                                            </div>
+                                        </NewItem>
+                                    </animated.div>
+                                </div>
+                            ))}
+                        </Transition>
+
+                        <Transition
+                            native
+                            items={this.state.toggleViewItem}
+                            from={{ opacity: 0, marginTop: -500 }}
+                            enter={{ opacity: 1, marginTop: 20 }}
+                            leave={{ opacity: 0, marginTop: -500 }}
+                            config={{ duration: 300 }}
+                        >
+                            {show => show && (props => (
+                                <div className="viewItem">
+                                    <animated.div style={props}>
+                                        <ViewLoanerItem activeItem={this.state.activeItem} toggleViewItem={this.toggleViewItem} count={this.state.count}>
+
+                                        </ViewLoanerItem>
+                                    </animated.div>
+                                </div>
+                            ))}
+                        </Transition>
 
                     </div>
-                    <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} onRowClicked={this.onRowClicked} />
-
-                    <Transition
-                        native
-                        items={this.state.toggleNewItem}
-                        from={{ opacity: 0, marginTop: -500 }}
-                        enter={{ opacity: 1, marginTop: 20 }}
-                        leave={{ opacity: 0, marginTop: -500 }}
-                        config={{ duration: 300 }}
-                    >
-                        {show => show && (props => (
-                            <div className="newItem">
-                                <animated.div style={props}>
-                                    <NewItem inputNames={this.state.inputNames} handleFormSubmit={this.handleFormSubmit} toggleNewItem={this.toggleNewItem}>
-
-                                        <div className="form-group">
-                                            <label htmlFor="eImage" className="d-block">Image</label>
-                                            <input type="file" name="eImage" id="eImage"></input>
-                                        </div>
-                                    </NewItem>
-                                </animated.div>
-                            </div>
-                        ))}
-                    </Transition>
-
-                    <Transition
-                        native
-                        items={this.state.toggleViewItem}
-                        from={{ opacity: 0, marginTop: -500 }}
-                        enter={{ opacity: 1, marginTop: 20 }}
-                        leave={{ opacity: 0, marginTop: -500 }}
-                        config={{ duration: 300 }}
-                    >
-                        {show => show && (props => (
-                            <div className="viewItem">
-                                <animated.div style={props}>
-                                    <ViewLoanerItem activeItem={this.state.activeItem} toggleViewItem={this.toggleViewItem} count={this.state.count}>
-
-                                    </ViewLoanerItem>
-                                </animated.div>
-                            </div>
-                        ))}
-                    </Transition>
-
                 </div>
-            </div>
-        )
+            )
+        }
+
+        else {
+            return <Redirect to='/login' />
+        }
     }
 }
