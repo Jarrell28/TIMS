@@ -1,5 +1,5 @@
 import React from 'react';
-
+import "../css/checkout.css";
 
 const ViewItem = (props) => {
     return (
@@ -7,25 +7,30 @@ const ViewItem = (props) => {
 
 
             <div className="d-flex justify-content-between">
-                <h2>You've Selected</h2>
-                <span onClick={props.toggleViewItem}>Close</span>
+                <h2 className="selected">You've Selected</h2>
+                <span onClick={props.toggleViewItem} className="exit">X</span>
             </div>
-            <img src={"images/" + props.activeItem.image} alt="image" className="d-block" style={{ width: "200px" }} />
-            <strong>IN-STOCK</strong>
+            <p style={{ textAlign: "center" }}>
+                <img src={"images/" + props.activeItem.image} alt="image" style={{ width: "350px" }} />
+            </p>
 
-            <p>CATEGORY</p>
-            <h3>{props.activeItem.Category.name}</h3>
+            <p className="inStock">IN-STOCK</p>
 
-            <p>ITEM NAME</p>
-            <h3>{props.activeItem.brand + " " + props.activeItem.model}</h3>
+            <p className="spacerDiv"></p>
 
-            <p>AVAILABLE</p>
-            <h3>{props.count}</h3>
+            <p className="subHeader">CATEGORY</p>
+            <h3 className="header">{props.activeItem.Category.name}</h3>
 
-            <p>SERIAL NUMBER</p>
-            <h3>{props.activeItem.serialNumber}</h3>
+            <p className="subHeader">ITEM NAME</p>
+            <h3 className="header">{props.activeItem.brand + " " + props.activeItem.model}</h3>
 
-            <button>CHECKOUT ITEM</button>
+            <p className="subHeader">AVAILABLE</p>
+            <h3 className="header">{props.count}</h3>
+
+            <p className="subHeader">SERIAL NUMBER</p>
+            <h3 className="header">{props.activeItem.serialNumber}</h3>
+
+            <button className="checkoutBtn">CHECKOUT ITEM</button>
         </div>
     )
 }

@@ -237,14 +237,14 @@ class Equipment extends Component {
                                 <animated.div style={props}>
                                     <NewItem inputNames={this.state.inputNames} handleFormSubmit={this.handleFormSubmit} toggleNewItem={this.toggleNewItem}>
                                         <div className="form-group">
-                                            <label htmlFor="categorySelect">Category</label>
+                                            <label htmlFor="categorySelect" className="newItemLabel">Category</label>
                                             <select name="CategoryId" className="form-control" id="categorySelect">
                                                 {renderCategories}
                                             </select>
                                         </div>
 
                                         <div className="form-group">
-                                            <label htmlFor="eImage" className="d-block">Image</label>
+                                            <label htmlFor="eImage" className="d-block newItemLabel">Image</label>
                                             <input type="file" name="eImage" id="eImage"></input>
                                         </div>
                                     </NewItem>
