@@ -21,7 +21,7 @@ import { Context } from 'ag-grid-community';
 // class component allows state to be used
 class App extends Component {
   state = {
-    productContext: "all"
+    productContext: 0
   }
 
   onContextClick = context => {

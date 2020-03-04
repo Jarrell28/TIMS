@@ -13,10 +13,6 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        expenseNumber: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
         customerId: {
             type: DataTypes.STRING,
             allowNull: true,
@@ -32,6 +28,10 @@ module.exports = function (sequelize, DataTypes) {
         },
         checkoutIn: {
             type: DataTypes.DATE,
+            allowNull: true
+        },
+        image: {
+            type: DataTypes.STRING,
             allowNull: true
         }
 

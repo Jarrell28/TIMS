@@ -18,7 +18,6 @@ const InventoryTable = (props) => {
     }
 
     const onGridReady = (gridApi) => {
-        console.log(gridApi);
         gridApi.api.sizeColumnsToFit();
     }
 
@@ -43,6 +42,7 @@ const InventoryTable = (props) => {
                 onGridReady={onGridReady}
                 rowSelection='single'
                 buttonRenderer={props.buttonRenderer}
+                onRowClicked={props.onRowClicked}
             >
             </AgGridReact>
         </div >
