@@ -59,8 +59,8 @@ class Equipment extends Component {
     }
 
     componentDidMount() {
-        let active = {};
 
+        let active = {};
         axios.get("http://localhost:3001/api/equipment").then(response => {
             response.data.forEach(item => {
                 if (item.Category) {
