@@ -4,25 +4,25 @@ const db = require("../../models");
 const jwt = require("jsonwebtoken");
 
 //Find User By ID
-router.get("/:id", function(req, res) {
-  db.User.findByPk(req.params.id).then(function(dbUser) {
+router.get("/:id", function (req, res) {
+  db.User.findByPk(req.params.id).then(function (dbUser) {
     res.json(dbUser);
   });
 });
 
 //Create New User
-router.post("/", function(req, res) {
+router.post("/", function (req, res) {
   db.User.findOrCreate({
     where: { email: req.body.email },
     defaults: req.body
-  }).then(function(dbUser) {
+  }).then(function (dbUser) {
     res.json(dbUser);
   });
 });
 
 //Update User
-router.put("/:id", function(req, res) {
-  db.User.update(req.body, { where: { id: req.params.id } }).then(function(
+router.put("/:id", function (req, res) {
+  db.User.update(req.body, { where: { id: req.params.id } }).then(function (
     dbUser
   ) {
     res.json(dbUser);
@@ -30,15 +30,15 @@ router.put("/:id", function(req, res) {
 });
 
 //Delete User
-router.delete("/:id", function(req, res) {
-  db.User.destroy({ where: { id: req.params.id } }).then(function(dbUser) {
+router.delete("/:id", function (req, res) {
+  db.User.destroy({ where: { id: req.params.id } }).then(function (dbUser) {
     res.json(dbUser);
   });
 });
 
 //login
 router.post("/login", (req, res) => {
-  console.log(req.body);
+  console.log(req.body.email);
   db.User.findAll({
     where: {
       email: req.body.email
@@ -51,16 +51,19 @@ router.post("/login", (req, res) => {
           let token = jwt.sign(user[0].dataValues, process.env.SECRET_KEY, {
             expiresIn: 1440
           });
-          res.send(token);
+          res.send({
+            success: true,
+            token
+          });
         } else {
-          res.json({ error: "User does not exist" });
+          res.json({ success: false, error: "User does not exist" });
         }
       } else {
-        res.json({ error: "User does not exist" });
+        res.json({ success: false, error: "User does not exist" });
       }
     })
     .catch(err => {
-      res.json({ error: "User does not exist" });
+      res.json({ success: false, error: "User does not exist" });
     });
 });
 
