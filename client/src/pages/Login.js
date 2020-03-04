@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../css/login.css';
 
-import Logo from "../images/TIMS-logo-DARK-BLUE-05.png";
+import Logo from "../images/light-blue-logo-06.svg";
 
 
 
@@ -53,7 +53,7 @@ class Login extends Component {
                 <div className="login-bg">
 
                     <div className="login-container">
-                    {Logo}
+                    <p style= {{textAlign:"center"}}><img src = {Logo} style={{width: "50%", marginBottom: "10%", }} /></p>
                         <h1>Account Login</h1>
 
                         <form onSubmit={this.handleFormSubmit}>
