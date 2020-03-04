@@ -53,6 +53,8 @@ h2{
     height: 100%;
     background: rgba(0, 0, 0, .5);
     z-index: 9999;
+    overflow: scroll;
+  
 }
 
 .viewItem .item {
@@ -60,7 +62,7 @@ h2{
     max-width: 50vw;
     margin: 20px auto 0;
     padding: 20px;
-    height: 95vh;
+    min-height: 95vh;
     border-radius: 10px;
 }
 
@@ -75,7 +77,7 @@ h2{
     margin-bottom:10px;
     padding-top: 1%;
     padding-bottom: 1%;
-    border: none;
+    border: 2.5px solid #CED2D8;
 
 }
 

@@ -1,0 +1,51 @@
+.item{
+    background-color: #D6E3EA !important;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.spacerDiv{
+    margin-bottom: 5%;
+}
+
+.selected{
+    font-family: 'Muli', sans-serif;
+    color: #9097A0;
+    font-size: 3rem;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 5%;
+}
+
+.inStock{
+    font-family: 'Muli', sans-serif;
+    font-size: 2rem;
+    color: #77A553;
+}
+.header{
+    font-family: 'Muli', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 2%;
+}
+.subHeader{
+    font-family: 'Muli', sans-serif;
+    color: #9097A0;
+    font-size: 1.50rem;
+    letter-spacing: .15rem;
+
+}
+
+.checkoutBtn{
+    font-family: 'Muli', sans-serif;
+    font-size: 13px;
+    background-color: #A1AAB0;
+    color: white;
+    width:50%;
+    margin-top: 10px;
+    margin-bottom:10px;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    border: none;
+    margin: 0 auto;
+    display: block;
+}
