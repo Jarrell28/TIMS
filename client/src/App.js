@@ -1,35 +1,28 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 // Be sure to include styles at some point, probably during your bootstraping
-import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 
-import MainNav from './components/MainNav';
+import MainNav from "./components/MainNav";
 
+import Loaner from "./pages/Loaner";
+import Equipment from "./pages/Equipment";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 
-import Loaner from './pages/Loaner'
-import Equipment from './pages/Equipment';
-import Login from './pages/Login';
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
-
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // class component allows state to be used
 class App extends Component {
   state = {
     productContext: 0
-  }
+  };
 
   onContextClick = context => {
-    this.setState({ productContext: context })
-  }
+    this.setState({ productContext: context });
+  };
 
   render() {
-
     const mainNav = [
       {
         title: "All",
@@ -66,9 +59,8 @@ class App extends Component {
       {
         title: "Keyboard",
         destination: 8
-      },
-
-    ]
+      }
+    ];
 
     return (
       <Router>
@@ -78,20 +70,44 @@ class App extends Component {
             productContext={this.state.productContext} /> */}
 
           <Switch>
-            <Route exact path="/" render={props =>
-              (<Equipment productContext={this.state.productContext} onContextClick={this.onContextClick}
-                mainNav={mainNav} />)
-            } />
-            <Route exact path="/loaners" render={props =>
-              (<Loaner productContext={this.state.productContext} onContextClick={this.onContextClick}
-                mainNav={mainNav} />)
-            } />
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <Equipment
+                  productContext={this.state.productContext}
+                  onContextClick={this.onContextClick}
+                  mainNav={mainNav}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/loaners"
+              render={props => (
+                <Loaner
+                  productContext={this.state.productContext}
+                  onContextClick={this.onContextClick}
+                  mainNav={mainNav}
+                />
+              )}
+            />
             <Route exact path="/login" component={Login} />
+            <Route
+              exact
+              path="/profile"
+              render={props => (
+                <Profile
+                  productContext={this.state.productContext}
+                  onContextClick={this.onContextClick}
+                  mainNav={mainNav}
+                />
+              )}
+            />
           </Switch>
-
         </div>
-      </Router >
-    )
+      </Router>
+    );
   }
 }
 
