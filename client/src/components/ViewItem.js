@@ -8,7 +8,7 @@ const ViewItem = (props) => {
 
             <div className="d-flex justify-content-between">
                 <h2 className="selected">You've Selected</h2>
-                <span onClick={props.toggleViewItem}>Close</span>
+                <span onClick={props.toggleViewItem} className="exit">X</span>
             </div>
             <p style={{ textAlign: "center" }}>
                 <img src={"images/" + props.activeItem.image} alt="image" style={{ width: "350px" }} />
