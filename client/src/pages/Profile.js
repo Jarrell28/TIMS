@@ -15,14 +15,12 @@ class Profile extends Component {
 
   componentDidMount() {
     const token = localStorage.usertoken;
-    if (token) {
-      const decoded = jwt_decode(token);
-      this.setState({
-        name: decoded.name,
-        email: decoded.email,
-        role: decoded.role
-      });
-    }
+    const decoded = jwt_decode(token);
+    this.setState({
+      name: decoded.name,
+      email: decoded.email,
+      role: decoded.role
+    });
   }
 
   render() {
@@ -45,7 +43,7 @@ class Profile extends Component {
             <p class="h2 my-3">
               Role: {this.state.role ? this.state.role : "Technician"}
             </p>
-                
+
           </div>
         </div>
       </div>
