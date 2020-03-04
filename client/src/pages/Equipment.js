@@ -8,6 +8,7 @@ import CarouselHeadlines from '../components/CarouselHeadlines';
 import SearchBar from '../components/SearchBar';
 import SlickSlider from '../components/SlickSlider';
 import ViewItem from '../components/ViewItem';
+import MainNav from '../components/MainNav';
 
 import '../css/dataGrid.css';
 
@@ -207,6 +208,11 @@ class Equipment extends Component {
 
         return (
             <div className="container-fluid">
+
+                <MainNav onContextClick={this.props.onContextClick}
+                    mainNav={this.props.mainNav}
+                    productContext={this.props.productContext} />
+
                 <div className="shadowy text-center">
                     <SlickSlider rowData={this.state.rowData} currentSlide={this.state.currentSlide} onSlideClicked={this.onSlideClicked} />
                     <CarouselHeadlines activeItem={this.state.activeItem} count={this.state.count} category="Equipment" />
