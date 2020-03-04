@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../css/login.css';
 
-import Logo from "../images/light-blue-logo-06.svg";
 
+import Logo from "../images/light-blue-logo-06.svg";
 
 
 class Login extends Component {
@@ -72,6 +72,24 @@ class Login extends Component {
 
                     </div>
                 </div>
+
+          /*  <div class='container' id='logback'>
+                <div className="container" id="log">
+                    <h1>Login Page</h1>
+                    <form onSubmit={this.handleFormSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input type="email" className="form-control" id="email" aria-describedby="emailHelp" name="email" onChange={this.handleInputChange} />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input type="password" className="form-control" id="password" name="password" onChange={this.handleInputChange} />
+                        </div>
+
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>*/
 
         )
     }

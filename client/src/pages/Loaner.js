@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Transition, animated } from 'react-spring/renderprops';
 
+
 import InventoryTable from '../components/InventoryTable';
 import NewItem from '../components/NewItem';
 import SlickSlider from '../components/SlickSlider';

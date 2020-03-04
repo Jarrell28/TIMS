@@ -5,6 +5,7 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 import MainNav from './components/MainNav';
 
+
 import Loaner from './pages/Loaner'
 import Equipment from './pages/Equipment';
 import Login from './pages/Login';

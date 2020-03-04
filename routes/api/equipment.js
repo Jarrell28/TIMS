@@ -4,6 +4,7 @@ const path = require("path");
 
 //Find All Equipments
 router.get("/", function (req, res) {
+    console.log("get equipment")
     db.Equipment.findAll(
         {
             include: [
