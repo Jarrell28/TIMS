@@ -1,6 +1,6 @@
 body {
-    font-family: 'Muli', sans-serif;
-    /* width: 100% !important; */
+  font-family: "Muli", sans-serif;
+  /* width: 100% !important; */
 }
 
 /* 
@@ -10,7 +10,7 @@ body {
     min-height: 100vh;
   } */
 
-  /* .split-left{
+/* .split-left{
     display: flex;
 
   }
@@ -19,60 +19,73 @@ body {
 
   } */
 
-.navShadow:focus{
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+.navShadow:focus {
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
-.sidenav---navtext---1AE_f, .sidenav---navtext---1AE_f a{
-    color: #fff !important;
+.sidenav---navtext---1AE_f,
+.sidenav---navtext---1AE_f a {
+  color: #007bff;
+  color: (143, 18, 18) !important;
 }
 
-.subTitle{
-    margin-left: 10px;
+.subTitle {
+  margin-left: 10px;
 }
 
 .sidenav---sidenav---_2tBP {
-    background:#2C3A47 !important;
-    color: #fff;
+  background: #2c3a47 !important;
+  color: #fff;
 }
 
 .navLogo {
-    margin: 15px;
-    margin-bottom: 20px;
-    margin-top: 10px;
+  margin: 15px;
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .sidenav---navicon---3gCRo {
-background-color: #25CCF7;
+  background-color: #fff;
 }
 
-.sidenav{
-color: #fff;
+.sidenav {
+  color: #fff;
 }
 
-.navtext{
-    color: #fff;
+.navtext {
+  color: #f6f6f6(21, 14, 46);
 }
 
-
-.sidenav---sidenav-nav---3tvij > .sidenav---sidenav-navitem---uwIJ- > .sidenav---navitem---9uL5T .sidenav---navicon---3gCRo > *, .sidenav---sidenav-nav---3tvij > .sidenav---sidenav-navitem---uwIJ- > .sidenav---navitem---9uL5T .sidenav---navtext---1AE_f > {
-    color: #fff; 
+.sidenav---sidenav-nav---3tvij
+  > .sidenav---sidenav-navitem---uwIJ-
+  > .sidenav---navitem---9uL5T
+  .sidenav---navicon---3gCRo
+  > *,
+.sidenav---sidenav-nav---3tvij
+  > .sidenav---sidenav-navitem---uwIJ-
+  > .sidenav---navitem---9uL5T
+  .sidenav---navtext---1AE_f
+  > {
+  color: rgb(233, 223, 223);
 }
 
 /* 
 Product Search, pop out nav  */
 .sidenav---sidenav-subnavitem---1cD47 {
-    color: #25CCF7;
+  color: #25ccf7;
 }
 
-.navitemClassName{
-    color: #25CCF7;
+.navitemClassName {
+  color: #25ccf7;
 }
- /* Product Search - sub menu} */
-.sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL .sidenav---sidenav-subnav---1EN61 > .sidenav---sidenav-subnavitem---1cD47 > .sidenav---navitem---9uL5T{
-    color:#fff;
+/* Product Search - sub menu} */
+.sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL
+  .sidenav---sidenav-subnav---1EN61
+  > .sidenav---sidenav-subnavitem---1cD47
+  > .sidenav---navitem---9uL5T {
+  color: #25ccf7;
 }
 
 /* .reflectBelow	{ 
@@ -80,7 +93,5 @@ Product Search, pop out nav  */
     -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(white)); 
 } */
 .sidenav---sidenav---_2tBP {
-    position: fixed;
+  position: fixed;
 }
-
-
