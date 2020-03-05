@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import Image from "../images/peter.png";
-import MainNav from "../components/MainNav";
 import jwt_decode from "jwt-decode";
 import { Redirect } from 'react-router-dom'
+import axios from "axios";
+
+import Image from "../images/peter.png";
+import MainNav from "../components/MainNav";
+import InventoryTable from '../components/InventoryTable';
 
 class Profile extends Component {
   constructor(props) {
@@ -10,21 +13,53 @@ class Profile extends Component {
     this.state = {
       name: "",
       email: "",
-      errors: {}
+      columnDefs: [{
+        headerName: "Status", field: "status", sortable: true, filter: true, editable: false,
+      }, {
+        headerName: "Date Approved", field: "approvedDate", sortable: true, filter: true, editable: false
+      }, {
+        headerName: "Requested By", field: "userRequested", sortable: true, filter: true, editable: false
+      }, {
+        headerName: "Approved By", field: "userApproved", sortable: true, filter: true, editable: false
+      }, {
+        headerName: "Equipment", field: "equipment", sortable: true, filter: true, editable: false
+      }],
+      rowData: [],
     };
   }
 
   componentDidMount() {
     const token = localStorage.usertoken;
-    if (token) {
-      const decoded = jwt_decode(token);
-      this.setState({
-        name: decoded.name,
-        email: decoded.email,
-        role: decoded.role
-      });
 
-    }
+    const decoded = jwt_decode(token);
+    this.setState({
+      name: decoded.name,
+      email: decoded.email,
+      role: decoded.role
+    });
+
+    axios.get("http://localhost:3001/api/requests/user/" + decoded.id).then(response => {
+      response.data.forEach(item => {
+        if (!item.approvedDate) {
+          item.approvedDate = "N/A";
+        }
+
+        if (item.Equipment) {
+          item.equipment = item.Equipment.brand + " " + item.Equipment.model;
+        }
+
+        if (item.userRequest) {
+          item.userRequested = item.userRequest.name
+        }
+
+        if (!item.userApprove) {
+          item.userApproved = "N/A";
+        }
+      })
+
+      this.setState({ rowData: response.data });
+    })
+
   }
 
   render() {
@@ -51,6 +86,11 @@ class Profile extends Component {
               </p>
 
             </div>
+          </div>
+
+          <div className="table-bg-container mt-5 pt-5">
+            <h2 className="mb-4 text-center">Equipment Requested</h2>
+            <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} />
           </div>
         </div>
       );

@@ -1,7 +1,29 @@
 import React from 'react';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+
 import "../css/checkout.css";
 
+
+
 const ViewItem = (props) => {
+
+    const onCheckout = () => {
+        const token = localStorage.usertoken;
+        const decoded = jwt_decode(token);
+
+        let obj = {
+            status: "Pending",
+            userRequestId: decoded.id,
+            EquipmentId: props.activeItem.id
+        };
+
+        axios.post("http://localhost:3001/api/requests", obj).then(response => {
+            window.location.href = "/profile";
+        })
+
+    }
+
     return (
         <div className="item">
 
@@ -30,7 +52,7 @@ const ViewItem = (props) => {
             <p className="subHeader">SERIAL NUMBER</p>
             <h3 className="header">{props.activeItem.serialNumber}</h3>
 
-            <button className="checkoutBtn">CHECKOUT ITEM</button>
+            <button className="checkoutBtn" onClick={onCheckout}>CHECKOUT ITEM</button>
         </div>
     )
 }

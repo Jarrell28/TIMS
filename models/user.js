@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
     // Giving the Author model a name of type STRING
     name: {
@@ -19,9 +19,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  User.associate = function(models) {
-    models.User.hasMany(models.Request);
-  };
 
   // add the hooks for bycrypt ( for create pass and for read pass)
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
