@@ -40,7 +40,7 @@ class Login extends Component {
                 console.log(response);
                 if (response.data.success) {
                     localStorage.setItem('usertoken', response.data.token)
-                    this.props.history.push(`/`)
+                    this.props.history.push(`/profile`)
                 } else {
                     alert(response.data.error);
                 }

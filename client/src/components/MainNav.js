@@ -9,6 +9,11 @@ import "../css/nav.css";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 
 const MainNav = props => {
+
+  const logout = () => {
+    localStorage.removeItem("usertoken");
+    window.location.href = "/login";
+  }
   return (
     <SideNav
       className="navShadow"
@@ -93,13 +98,13 @@ const MainNav = props => {
 
         {/* LOGOUT (SINGLE LINK) */}
         <NavItem eventKey="logOut">
-          <NavIcon>
+          <NavIcon onClick={logout}>
             <i
               className="fa fa-sign-out"
               style={{ color: "#fff", fontSize: "1.75em" }}
             />
           </NavIcon>
-          <NavText className="subTitle">Logout</NavText>
+          <NavText className="subTitle" onClick={logout}>Logout</NavText>
         </NavItem>
       </SideNav.Nav>
     </SideNav>

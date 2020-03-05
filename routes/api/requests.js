@@ -17,6 +17,26 @@ router.get("/", function (req, res) {
         })
 })
 
+//Find Request by user ID
+router.get("/user/:id", function (req, res) {
+    db.Request.findAll(
+        {
+            where: { userRequestId: req.params.id },
+            include: [
+                { model: db.User, as: "userRequest" },
+                { model: db.User, as: "userApprove" },
+                { model: db.Equipment },
+                { model: db.Loaner }
+            ]
+        })
+        .then(function (dbRequest) {
+            res.json(dbRequest);
+        })
+        .catch(function (error) {
+            res.json(error);
+        })
+})
+
 //Find Request By ID
 router.get("/:id", function (req, res) {
     db.Request.findByPk(req.params.id,
