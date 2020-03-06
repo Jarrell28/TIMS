@@ -12,7 +12,7 @@ export default class Loaner extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:3001/api/users").then(response => {
+    axios.get("/api/users").then(response => {
       console.log(response.data);
       response.data.forEach(item => {
         // item.category = item.Category.name

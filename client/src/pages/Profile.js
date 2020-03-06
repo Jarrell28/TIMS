@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode";
 import { Redirect } from 'react-router-dom'
 import axios from "axios";
 
-import Image from "../images/peter.png";
+import Image from "../images/profile-pic.png";
 import MainNav from "../components/MainNav";
 import InventoryTable from '../components/InventoryTable';
 
@@ -38,7 +38,7 @@ class Profile extends Component {
       role: decoded.role
     });
 
-    axios.get("http://localhost:3001/api/requests/user/" + decoded.id).then(response => {
+    axios.get("/api/requests/user/" + decoded.id).then(response => {
       response.data.forEach(item => {
         if (!item.approvedDate) {
           item.approvedDate = "N/A";

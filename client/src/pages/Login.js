@@ -32,7 +32,7 @@ class Login extends Component {
         }
 
         axios
-            .post('http://localhost:3001/api/users/login', {
+            .post('/api/users/login', {
                 email: user.email,
                 password: user.password
             })
