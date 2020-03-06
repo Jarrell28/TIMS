@@ -63,7 +63,7 @@ class Equipment extends Component {
     componentDidMount() {
 
         let active = {};
-        axios.get("http://localhost:3001/api/equipment").then(response => {
+        axios.get("/api/equipment").then(response => {
             response.data.forEach(item => {
                 if (item.Category) {
                     item.category = item.Category.name
@@ -75,14 +75,14 @@ class Equipment extends Component {
             this.setState({ rowData: response.data, activeItem: response.data[0] })
         }).then(() => {
             if (active) {
-                axios.get("http://localhost:3001/api/equipment/count/" + active.model).then(response => {
+                axios.get("/api/equipment/count/" + active.model).then(response => {
                     this.setState({ count: response.data })
                 })
             }
 
         })
 
-        axios.get("http://localhost:3001/api/categories").then(response => {
+        axios.get("/api/categories").then(response => {
             this.setState({ categories: response.data })
         });
     }
@@ -96,7 +96,7 @@ class Equipment extends Component {
             let active = {};
 
             //if state changes, create an axios get request to backend route
-            axios.get("http://localhost:3001/api/equipment/category/" + this.props.productContext).then(response => {
+            axios.get("/api/equipment/category/" + this.props.productContext).then(response => {
                 response.data.forEach(item => {
                     if (item.Category) {
                         item.category = item.Category.name
@@ -108,7 +108,7 @@ class Equipment extends Component {
                 this.setState({ rowData: response.data, activeItem: response.data[0] })
                 //update rowData state based off of response
             }).then(() => {
-                axios.get("http://localhost:3001/api/equipment/count/" + active.model).then(response => {
+                axios.get("/api/equipment/count/" + active.model).then(response => {
                     this.setState({ count: response.data })
                 })
             });
@@ -135,7 +135,7 @@ class Equipment extends Component {
 
         formData.set("eImage", e.target.eImage.files[0]);
 
-        axios.post("http://localhost:3001/api/equipment", formData, {
+        axios.post("/api/equipment", formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -172,11 +172,11 @@ class Equipment extends Component {
 
         let active = {}
 
-        axios.get("http://localhost:3001/api/equipment/" + id).then(response => {
+        axios.get("/api/equipment/" + id).then(response => {
             this.setState({ activeItem: response.data });
             active = response.data;
         }).then(() => {
-            axios.get("http://localhost:3001/api/equipment/count/" + active.model).then(response => {
+            axios.get("/api/equipment/count/" + active.model).then(response => {
                 this.setState({ count: response.data })
             })
         })
