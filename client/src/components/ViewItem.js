@@ -18,7 +18,7 @@ const ViewItem = (props) => {
             EquipmentId: props.activeItem.id
         };
 
-        axios.post("http://localhost:3001/api/requests", obj).then(response => {
+        axios.post("/api/requests", obj).then(response => {
             window.location.href = "/profile";
         })
 
