@@ -3,7 +3,6 @@ import SideNav, { NavItem, NavIcon, NavText } from "@trendmicro/react-sidenav";
 import { Link } from "react-router-dom";
 
 import "../css/nav.css";
-// import logo from '../images/TIMS-logo-06.svg';
 
 // Be sure to include styles at some point, probably during your bootstraping
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
@@ -11,7 +10,7 @@ import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 const MainNav = props => {
 
   const logout = () => {
-    localStorage.removeItem("usertoken");
+    sessionStorage.removeItem("usertoken");
     window.location.href = "/login";
   }
   return (

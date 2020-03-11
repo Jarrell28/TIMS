@@ -9,7 +9,7 @@ import "../css/checkout.css";
 const ViewItem = (props) => {
 
     const onCheckout = () => {
-        const token = localStorage.usertoken;
+        const token = sessionStorage.usertoken;
         const decoded = jwt_decode(token);
 
         let obj = {
@@ -30,7 +30,7 @@ const ViewItem = (props) => {
 
             <div className="d-flex justify-content-between">
                 <h2 className="selected">You've Selected</h2>
-                <span onClick={props.toggleViewItem} className="exit">X</span>
+                <span onClick={props.toggleViewItem} className="exit" style={{ cursor: "pointer" }}>X</span>
             </div>
             <p style={{ textAlign: "center" }}>
                 <img src={"images/" + props.activeItem.image} alt="image" style={{ width: "350px" }} />

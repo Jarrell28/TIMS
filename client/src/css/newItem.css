@@ -8,10 +8,7 @@
     font-size: 2rem;
     margin-bottom: 4%;
     color: #A1AAB0;
-    width: 80% !important;
     height: 35px!important;
-    margin-left:50px;
-   margin-right:auto;
    display:block;
 
 }
@@ -35,8 +32,6 @@
 .newItemLabel{
     font-family: 'Muli', sans-serif;
     font-size: 2rem;
-    margin-left: 50px;
-    margin-right:auto;
     display:block;
   
 }

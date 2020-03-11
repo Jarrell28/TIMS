@@ -22,7 +22,7 @@ const NewItem = (props) => {
                 <div className="d-flex justify-content-between">
 
                     <div className="header">Add New Equipment</div>
-                    <span onClick={props.toggleNewItem}>Close</span>
+                    <span onClick={props.toggleNewItem} className="exit" style={{ cursor: "pointer" }}>X</span>
                 </div>
 
 

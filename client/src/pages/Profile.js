@@ -3,7 +3,6 @@ import jwt_decode from "jwt-decode";
 import { Redirect } from 'react-router-dom'
 import axios from "axios";
 
-import Image from "../images/profile-pic.png";
 import MainNav from "../components/MainNav";
 import InventoryTable from '../components/InventoryTable';
 
@@ -29,7 +28,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    const token = localStorage.usertoken;
+    const token = sessionStorage.usertoken;
 
     const decoded = jwt_decode(token);
     this.setState({
@@ -63,7 +62,7 @@ class Profile extends Component {
   }
 
   render() {
-    if (localStorage.usertoken) {
+    if (sessionStorage.usertoken) {
 
       return (
         <div className="container-fluid">
@@ -74,7 +73,7 @@ class Profile extends Component {
           />
           <div className="container mt-4">
             <div className="profile-card text-center">
-              <img src={Image} alt="profile" width="250" height="250" />
+              <img src="../../images/profile-pic.png" alt="profile" width="250" height="250" />
               <h1 className="mt-4">
                 Name: {this.state.name ? this.state.name : "James"}
               </h1>

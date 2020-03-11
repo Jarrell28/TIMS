@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Transition, animated } from 'react-spring/renderprops';
 import { Redirect } from 'react-router-dom';
 
-
+import API from '../utils/API';
 import InventoryTable from '../components/InventoryTable';
 import NewItem from '../components/NewItem';
 import SlickSlider from '../components/SlickSlider';
@@ -63,7 +63,7 @@ export default class Loaner extends Component {
     componentDidMount() {
         let active = {};
 
-        axios.get("/api/loaners").then(response => {
+        API.getData("loaners").then(response => {
             response.data.forEach(item => {
 
                 if (item.techId) {
@@ -76,7 +76,7 @@ export default class Loaner extends Component {
             this.setState({ rowData: response.data, activeItem: response.data[0] })
         }).then(() => {
             if (active) {
-                axios.get("/api/loaners/count/" + active.model).then(response => {
+                API.getDataCount("loaners", active).then(response => {
                     this.setState({ count: response.data })
                 })
             }
@@ -139,11 +139,11 @@ export default class Loaner extends Component {
             id = e.target.getAttribute('data-id')
         }
 
-        axios.get("/api/loaners/" + id).then(response => {
+        API.getDataById("loaners", id).then(response => {
             this.setState({ activeItem: response.data });
             active = response.data;
         }).then(() => {
-            axios.get("/api/loaners/count/" + active.model).then(response => {
+            API.getDataCount("loaners", active).then(response => {
                 this.setState({ count: response.data })
             })
         })
@@ -168,7 +168,7 @@ export default class Loaner extends Component {
 
 
     render() {
-        if (localStorage.usertoken) {
+        if (sessionStorage.usertoken) {
 
             return (
                 <div className="container-fluid" >

@@ -1,16 +1,15 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Be sure to include styles at some point, probably during your bootstraping
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
-
-import MainNav from "./components/MainNav";
 
 import Loaner from "./pages/Loaner";
 import Equipment from "./pages/Equipment";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // class component allows state to be used
 class App extends Component {
@@ -104,6 +103,10 @@ class App extends Component {
                 />
               )}
             />
+
+            <Route path="*">
+              <Redirect to='/' />
+            </Route>
           </Switch>
         </div>
       </Router>

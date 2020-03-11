@@ -57,6 +57,7 @@ class SlickSlider extends Component {
             focusOnSelect: true,
             border: "none",
             variableWidth: true,
+            rows: 1
         };
 
         return (
