@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -7,9 +7,21 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import axios from 'axios';
 
 const InventoryTable = (props) => {
+    const didMountRef = useRef(false);
+    const gridRef = useRef();
+
+    useEffect(() => {
+        if (didMountRef.current) {
+            gridRef.current.api.forEachNode((node, i) => {
+                if (node.rowIndex === props.currentSlide) {
+                    node.setSelected(true, true);
+                }
+            })
+        } else didMountRef.current = true
+    })
 
     const onCellValueChanged = (event) => {
-        console.log("ID", event.data.id);
+        // console.log("ID", event.data.id);
         axios({
             url: "/api/equipment/" + event.data.id,
             method: "PUT",
@@ -19,6 +31,12 @@ const InventoryTable = (props) => {
 
     const onGridReady = (gridApi) => {
         gridApi.api.sizeColumnsToFit();
+        gridApi.api.forEachNode((node, i) => {
+            // console.log(node.rowIndex, props.currentSlide)
+            if (node.rowIndex === props.currentSlide) {
+                node.setSelected(true, true);
+            }
+        })
     }
 
     return (
@@ -33,6 +51,7 @@ const InventoryTable = (props) => {
             }}
         >
             <AgGridReact
+                ref={gridRef}
                 columnDefs={props.columnDefs}
                 rowData={props.rowData}
                 getRowNodeId={data => data.id}

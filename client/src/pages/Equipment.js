@@ -192,7 +192,7 @@ class Equipment extends Component {
     }
 
     onSlideClicked = e => {
-        const slideIndex = e.target.offsetParent.dataset.index;
+        const slideIndex = parseInt(e.target.offsetParent.dataset.index);
         this.getEquipmentById(e, "slideClick")
         this.setState({ currentSlide: slideIndex })
     }
@@ -226,7 +226,7 @@ class Equipment extends Component {
                             <button onClick={this.toggleNewItem} className="add-button">Add New Equipment</button>
 
                         </div>
-                        <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} onRowClicked={this.onRowClicked} />
+                        <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} onRowClicked={this.onRowClicked} currentSlide={this.state.currentSlide} />
                         <Transition
                             native
                             items={this.state.toggleNewItem}

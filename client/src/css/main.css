@@ -137,3 +137,7 @@ h2{
 .ag-theme-balham .ag-row:hover {
     cursor: pointer;
 }
+
+.ag-theme-balham .ag-row-selected {
+    background-color: #b7e4ff !important;
+}
