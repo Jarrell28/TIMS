@@ -1,6 +1,6 @@
 
 .login-bg{
-background-image: url('/login-bg.jpeg');
+background-image: url('/images/login-bg.jpeg');
 height: 100vh;
 background-repeat: no-repeat;
 background-size:cover;
@@ -59,7 +59,7 @@ transform: translate(-50%, -50%);
     0 4px 15px 0 rgba(36, 133, 255, 0.15);
 }
 #logback {
-  background-image: url("../image/background4.jpeg");
+  background-image: url("/images/login-bg.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Transition, animated } from 'react-spring/renderprops';
 import { Redirect } from 'react-router-dom';
 
+import API from '../utils/API';
 import InventoryTable from '../components/InventoryTable';
 import NewItem from '../components/NewItem';
 import CarouselHeadlines from '../components/CarouselHeadlines';
@@ -63,7 +64,7 @@ class Equipment extends Component {
     componentDidMount() {
 
         let active = {};
-        axios.get("/api/equipment").then(response => {
+        API.getData("equipment").then(response => {
             response.data.forEach(item => {
                 if (item.Category) {
                     item.category = item.Category.name
@@ -75,14 +76,14 @@ class Equipment extends Component {
             this.setState({ rowData: response.data, activeItem: response.data[0] })
         }).then(() => {
             if (active) {
-                axios.get("/api/equipment/count/" + active.model).then(response => {
+                API.getDataCount("equipment", active).then(response => {
                     this.setState({ count: response.data })
                 })
             }
 
         })
 
-        axios.get("/api/categories").then(response => {
+        API.getData("categories").then(response => {
             this.setState({ categories: response.data })
         });
     }
@@ -108,7 +109,7 @@ class Equipment extends Component {
                 this.setState({ rowData: response.data, activeItem: response.data[0] })
                 //update rowData state based off of response
             }).then(() => {
-                axios.get("/api/equipment/count/" + active.model).then(response => {
+                API.getDataCount("equipment", active).then(response => {
                     this.setState({ count: response.data })
                 })
             });
@@ -172,11 +173,11 @@ class Equipment extends Component {
 
         let active = {}
 
-        axios.get("/api/equipment/" + id).then(response => {
+        API.getDataById("equipment", id).then(response => {
             this.setState({ activeItem: response.data });
             active = response.data;
         }).then(() => {
-            axios.get("/api/equipment/count/" + active.model).then(response => {
+            API.getDataCount("equipment", active).then(response => {
                 this.setState({ count: response.data })
             })
         })
@@ -206,7 +207,7 @@ class Equipment extends Component {
 
         const renderCategories = this.state.categories.length ? this.state.categories.map(category => <option key={category.id} value={parseInt(category.id)}>{category.name}</option>) : "";
 
-        if (localStorage.usertoken) {
+        if (sessionStorage.usertoken) {
 
             return (
                 <div className="container-fluid">

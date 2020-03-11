@@ -3,9 +3,6 @@ import axios from 'axios';
 import '../css/login.css';
 
 
-import Logo from "../images/light-blue-logo-06.svg";
-
-
 class Login extends Component {
     constructor(props) {
         super(props)
@@ -39,7 +36,7 @@ class Login extends Component {
             .then(response => {
                 console.log(response);
                 if (response.data.success) {
-                    localStorage.setItem('usertoken', response.data.token)
+                    sessionStorage.setItem('usertoken', response.data.token)
                     this.props.history.push(`/profile`)
                 } else {
                     alert(response.data.error);
@@ -57,7 +54,7 @@ class Login extends Component {
             <div className="login-bg">
 
                 <div className="login-container">
-                    <p style={{ textAlign: "center" }}><img src={Logo} style={{ width: "50%", marginBottom: "10%", }} /></p>
+                    <p style={{ textAlign: "center" }}><img src="../../images/light-blue-logo-06.svg" style={{ width: "50%", marginBottom: "10%", }} /></p>
                     <h1>Account Login</h1>
 
                     <form onSubmit={this.handleFormSubmit}>
