@@ -14,12 +14,38 @@ import Profile from "./pages/Profile";
 // class component allows state to be used
 class App extends Component {
   state = {
-    productContext: 0
+    productContext: 0,
+    activePage: "products"
   };
+
+  componentDidMount() {
+    this.checkPage();
+  }
 
   onContextClick = context => {
     this.setState({ productContext: context });
   };
+
+  checkPage = () => {
+    const currentPage = window.location.pathname;
+    let activePage;
+    switch (currentPage) {
+      case "/":
+        activePage = "products"
+        break;
+      case "/loaners":
+        activePage = "laptop"
+        break;
+      case "/profile":
+        activePage = "user"
+        break;
+      default:
+        activePage = "products"
+        break;
+    }
+
+    this.setState({ activePage });
+  }
 
   render() {
     const mainNav = [
@@ -64,9 +90,6 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          {/* <MainNav onContextClick={this.onContextClick}
-            mainNav={mainNav}
-            productContext={this.state.productContext} /> */}
 
           <Switch>
             <Route
@@ -77,6 +100,8 @@ class App extends Component {
                   productContext={this.state.productContext}
                   onContextClick={this.onContextClick}
                   mainNav={mainNav}
+                  checkPage={this.checkPage}
+                  activePage={this.state.activePage}
                 />
               )}
             />
@@ -88,6 +113,8 @@ class App extends Component {
                   productContext={this.state.productContext}
                   onContextClick={this.onContextClick}
                   mainNav={mainNav}
+                  checkPage={this.checkPage}
+                  activePage={this.state.activePage}
                 />
               )}
             />
@@ -100,6 +127,8 @@ class App extends Component {
                   productContext={this.state.productContext}
                   onContextClick={this.onContextClick}
                   mainNav={mainNav}
+                  checkPage={this.checkPage}
+                  activePage={this.state.activePage}
                 />
               )}
             />

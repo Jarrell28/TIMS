@@ -214,7 +214,10 @@ class Equipment extends Component {
 
                     <MainNav onContextClick={this.props.onContextClick}
                         mainNav={this.props.mainNav}
-                        productContext={this.props.productContext} />
+                        productContext={this.props.productContext}
+                        checkPage={this.props.checkPage}
+                        activePage={this.props.activePage}
+                    />
 
                     <div className="shadowy text-center">
                         <SlickSlider rowData={this.state.rowData} currentSlide={this.state.currentSlide} onSlideClicked={this.onSlideClicked} />
