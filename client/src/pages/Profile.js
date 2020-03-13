@@ -70,6 +70,8 @@ class Profile extends Component {
       this.setState({ rowData: response.data });
     })
 
+    this.props.checkPage();
+
   }
 
   render() {
@@ -81,6 +83,8 @@ class Profile extends Component {
             onContextClick={this.props.onContextClick}
             mainNav={this.props.mainNav}
             productContext={this.props.productContext}
+            checkPage={this.props.checkPage}
+            activePage={this.props.activePage}
           />
           <div className="container mt-4">
             <div className="profile-card text-center">

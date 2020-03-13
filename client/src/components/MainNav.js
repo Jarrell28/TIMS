@@ -13,17 +13,13 @@ const MainNav = props => {
     sessionStorage.removeItem("usertoken");
     window.location.href = "/login";
   }
+
   return (
     <SideNav
       className="navShadow"
-      onSelect={(selected, e) => {
-        // Add your code here
-        e.persist();
-        console.log(e);
-      }}
     >
       <SideNav.Toggle />
-      <SideNav.Nav selected="user">
+      <SideNav.Nav selected={props.activePage}>
         <Link to="/">
           <img
             src="images/TIMS-logo-06.svg"
@@ -34,11 +30,11 @@ const MainNav = props => {
 
         {/* PRODUCT SEARCH TAB */}
         {/* LINK WITH DROP DOWN*/}
-        <NavItem eventKey="products">
+        <NavItem eventKey="products" onClick={props.checkPage}>
           <NavIcon>
             <Link to="/">
               {" "}
-              <i className="fa fa-search" style={{ fontSize: "1.75em" }} />
+              <i className="fa fa-search" style={{ color: "#fff", fontSize: "1.75em" }} />
             </Link>
           </NavIcon>
           <NavText>
@@ -49,18 +45,20 @@ const MainNav = props => {
             return (
               <NavItem
                 key={"mainNav_Context_" + index}
-                eventKey="products/barchart"
+              // eventKey={"product/barchart-" + index}
               >
                 <NavText onClick={() => props.onContextClick(nav.destination)}>
                   {nav.title}
                 </NavText>
               </NavItem>
+
             );
           })}
         </NavItem>
 
+
         {/* LAPTOP LOANERS (SINGLE LINK) */}
-        <NavItem eventKey="laptop">
+        <NavItem eventKey="laptop" onClick={props.checkPage}>
           <NavIcon>
             <Link to="/loaners">
               {" "}
@@ -73,16 +71,16 @@ const MainNav = props => {
           <NavText className="subTitle">
             <Link to="/loaners">Laptop Checkout</Link>
           </NavText>
-          {/* <NavItem eventKey="products/loaners-mac">
+          <NavItem eventKey="products/loaners-mac">
             <NavText>Mac</NavText>
           </NavItem>
           <NavItem eventKey="products/loaners-windows">
-            <NavText>Windows</NavText> */}
-          {/* </NavItem> */}
+            <NavText>Windows</NavText>
+          </NavItem>
         </NavItem>
 
         {/* YOUR HISTORY (SINGLE LINK) */}
-        <NavItem eventKey="user">
+        <NavItem eventKey="user" onClick={props.checkPage}>
           <NavIcon>
             <Link to="/profile">
               {" "}
