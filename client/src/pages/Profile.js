@@ -22,6 +22,9 @@ class Profile extends Component {
         headerName: "Approved By", field: "userApproved", sortable: true, filter: true, editable: false
       }, {
         headerName: "Equipment", field: "equipment", sortable: true, filter: true, editable: false
+      }
+        , {
+        headerName: "Loaner", field: "loaner", sortable: true, filter: true, editable: false
       }],
       rowData: [],
     };
@@ -45,6 +48,8 @@ class Profile extends Component {
 
         if (item.Equipment) {
           item.equipment = item.Equipment.brand + " " + item.Equipment.model;
+        } else {
+          item.equipment = "N/A";
         }
 
         if (item.userRequest) {
@@ -53,6 +58,12 @@ class Profile extends Component {
 
         if (!item.userApprove) {
           item.userApproved = "N/A";
+        }
+
+        if (item.Loaner) {
+          item.loaner = item.Loaner.brand + " " + item.Loaner.model;
+        } else {
+          item.loaner = "N/A";
         }
       })
 

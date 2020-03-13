@@ -16,12 +16,14 @@ const MainNav = props => {
   return (
     <SideNav
       className="navShadow"
-      onSelect={selected => {
+      onSelect={(selected, e) => {
         // Add your code here
+        e.persist();
+        console.log(e);
       }}
     >
       <SideNav.Toggle />
-      <SideNav.Nav defaultSelected="products">
+      <SideNav.Nav selected="user">
         <Link to="/">
           <img
             src="images/TIMS-logo-06.svg"
@@ -71,12 +73,12 @@ const MainNav = props => {
           <NavText className="subTitle">
             <Link to="/loaners">Laptop Checkout</Link>
           </NavText>
-          <NavItem eventKey="products/loaners-mac">
+          {/* <NavItem eventKey="products/loaners-mac">
             <NavText>Mac</NavText>
           </NavItem>
           <NavItem eventKey="products/loaners-windows">
-            <NavText>Windows</NavText>
-          </NavItem>
+            <NavText>Windows</NavText> */}
+          {/* </NavItem> */}
         </NavItem>
 
         {/* YOUR HISTORY (SINGLE LINK) */}
