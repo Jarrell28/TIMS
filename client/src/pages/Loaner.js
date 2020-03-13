@@ -57,6 +57,7 @@ export default class Loaner extends Component {
             toggleViewItem: false,
             activeItem: {},
             count: 0,
+            currentSlide: 0
         }
     }
 
@@ -156,7 +157,7 @@ export default class Loaner extends Component {
     }
 
     onSlideClicked = e => {
-        const slideIndex = e.target.offsetParent.dataset.index;
+        const slideIndex = parseInt(e.target.offsetParent.dataset.index);
         this.getLoanerById(e, "slideClick")
         this.setState({ currentSlide: slideIndex })
     }
@@ -187,7 +188,7 @@ export default class Loaner extends Component {
                             <button onClick={this.toggleNewItem} className="add-button">Add New Loaner</button>
 
                         </div>
-                        <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} onRowClicked={this.onRowClicked} />
+                        <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} onRowClicked={this.onRowClicked} currentSlide={this.state.currentSlide} />
 
                         <Transition
                             native
