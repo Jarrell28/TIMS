@@ -14,18 +14,22 @@ import Profile from "./pages/Profile";
 // class component allows state to be used
 class App extends Component {
   state = {
+    //Used to filter equipment page via categories
     productContext: 0,
     activePage: "products"
   };
 
   componentDidMount() {
+    //checks current page displays appropriate data
     this.checkPage();
   }
 
+  //Updates productContext when clicking sublink in product ul to filter data
   onContextClick = context => {
     this.setState({ productContext: context });
   };
 
+  //checks current page updates activePage variable to determine data to be displayed
   checkPage = () => {
     const currentPage = window.location.pathname;
     let activePage;
@@ -48,6 +52,7 @@ class App extends Component {
   }
 
   render() {
+    //Nav Array to create submenu under products ul
     const mainNav = [
       {
         title: "All",
@@ -90,8 +95,8 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-
           <Switch>
+            {/* Route for Equipment Page */}
             <Route
               exact
               path="/"
@@ -105,6 +110,7 @@ class App extends Component {
                 />
               )}
             />
+            {/* Route for Loaners Page */}
             <Route
               exact
               path="/loaners"
@@ -118,7 +124,9 @@ class App extends Component {
                 />
               )}
             />
+            {/* Route for Login Page */}
             <Route exact path="/login" component={Login} />
+            {/* Route for Profile Page */}
             <Route
               exact
               path="/profile"
@@ -132,7 +140,7 @@ class App extends Component {
                 />
               )}
             />
-
+            {/* If incorrect route, routs to home page */}
             <Route path="*">
               <Redirect to='/' />
             </Route>

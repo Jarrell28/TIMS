@@ -9,6 +9,7 @@ import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 
 const MainNav = props => {
 
+  //Logout function
   const logout = () => {
     sessionStorage.removeItem("usertoken");
     window.location.href = "/login";
@@ -19,6 +20,7 @@ const MainNav = props => {
       className="navShadow"
     >
       <SideNav.Toggle />
+      {/* TIMS LOGO */}
       <SideNav.Nav selected={props.activePage}>
         <Link to="/">
           <img
@@ -41,6 +43,7 @@ const MainNav = props => {
             <Link to="/">Product Search</Link>
           </NavText>
 
+          {/* Loops mainNav array from App.js to display sublinks under Product Search */}
           {props.mainNav.map((nav, index) => {
             return (
               <NavItem

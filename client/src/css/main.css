@@ -13,6 +13,7 @@
 
 body {
     background-color: #F7F7F7;
+    height: 100vh;
 }
 
 .table-container{
@@ -112,7 +113,7 @@ h2{
 }
 
 .shadowy {
-/* height: 510px; */
+    /* height: 510px; */
     width: 100%;
     padding-bottom: 30px;
     /* box-shadow: 5px 10px 25px 2px rgb(236, 236, 236) !important; */
@@ -129,7 +130,6 @@ h2{
     width: 100%;
     background-color: #E7E8E9;
     z-index: 0;
-    margin-top: -40px;
     margin-left: auto;
     margin-right: auto;
 }

@@ -43,8 +43,8 @@ router.get("/:id", function (req, res) {
         })
 })
 
-//where query 
 
+//Query to get data back based on productContext value to filter data by category
 router.get("/category/:category", function (req, res) {
     //save category param into a variable
     const categoryParam = req.params.category;
