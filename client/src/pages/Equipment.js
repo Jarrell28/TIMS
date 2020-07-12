@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Transition, animated } from 'react-spring/renderprops';
 import { Redirect } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 import API from '../utils/API';
 import InventoryTable from '../components/InventoryTable';
@@ -30,7 +31,7 @@ class Equipment extends Component {
             }, {
                 headerName: "Category", field: "category", sortable: true, filter: true, editable: true
             }, {
-                headerName: "", field: "view", sortable: true, filter: true, editable: true, cellRenderer: this.buttonRenderer
+                headerName: "", field: "view", sortable: true, filter: true, editable: false, cellRenderer: this.buttonRenderer
             }],
             rowData: [],
 
@@ -86,13 +87,35 @@ class Equipment extends Component {
         API.getData("categories").then(response => {
             this.setState({ categories: response.data })
         });
+
+        //Checks if currently logged in user is a technician
+        const token = sessionStorage.usertoken;
+        const decodedToken = jwt_decode(token);
+
+        //If they are, it prevents them from editing the table data by setting editable boolean to false
+        if (decodedToken.role === "technician") {
+            this.setState({
+                columnDefs: [{
+                    headerName: "Brand", field: "brand", sortable: true, filter: true, editable: false,
+                }, {
+                    headerName: "Model", field: "model", sortable: true, filter: true, editable: false
+                }, {
+                    headerName: "Serial Number", field: "serialNumber", sortable: true, filter: true, editable: false
+                }, {
+                    headerName: "Expense Number", field: "expenseNumber", sortable: true, filter: true, editable: false
+                }, {
+                    headerName: "Category", field: "category", sortable: true, filter: true, editable: false
+                }, {
+                    headerName: "", field: "view", sortable: true, filter: true, editable: false, cellRenderer: this.buttonRenderer
+                }],
+            })
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
         //This runs everytime the component updates
         if (prevProps.productContext !== this.props.productContext) {
             //compare prevProps vs newProps with if statement like in example
-            console.log('product context state has changed.')
 
             let active = {};
 
