@@ -2,9 +2,11 @@ import React from 'react';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 
-
+//Modal that display selected item on Loaner Page
 const ViewLoanerItem = (props) => {
 
+    //When checking out item, it gets current user, attaches their id to this request
+    //and sets the request status to pending
     const onCheckout = () => {
         const token = sessionStorage.usertoken;
         const decoded = jwt_decode(token);
@@ -15,6 +17,7 @@ const ViewLoanerItem = (props) => {
             LoanerId: props.activeItem.id
         };
 
+        //After submitting request, redirects to profile page
         axios.post("/api/requests", obj).then(response => {
             window.location.href = "/profile";
         })

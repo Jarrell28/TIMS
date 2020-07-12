@@ -78,6 +78,10 @@ img {
     border-color: white;
 }
 
+.slick-slide div:focus {
+    outline: none;
+}
+
 /* Active Image in Carousel */
 .slick-current {
     transform: scale(1.75);

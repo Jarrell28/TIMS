@@ -38,7 +38,7 @@ router.delete("/:id", function (req, res) {
 
 //login
 router.post("/login", (req, res) => {
-  console.log(req.body.email);
+  // console.log(req.body.email);
   db.User.findAll({
     where: {
       email: req.body.email
@@ -46,8 +46,9 @@ router.post("/login", (req, res) => {
   })
     .then(user => {
       if (user) {
-        console.log(user[0].dataValues.password, req.body.password);
+        //checks if passwords match 
         if (req.body.password === user[0].dataValues.password) {
+          //creates token via JWT
           let token = jwt.sign(user[0].dataValues, process.env.SECRET_KEY, {
             expiresIn: 1440
           });
@@ -56,9 +57,11 @@ router.post("/login", (req, res) => {
             token
           });
         } else {
-          res.json({ success: false, error: "User does not exist" });
+          //User exists but password doesn't match
+          res.json({ success: false, error: "Could not validate user" });
         }
       } else {
+        //User doesn't exist
         res.json({ success: false, error: "User does not exist" });
       }
     })

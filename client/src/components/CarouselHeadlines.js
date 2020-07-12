@@ -1,14 +1,9 @@
 import React from 'react';
 
-// css styling ---> Carousel.css
-
-
+//Shows item name, category and quantity for Equipment page and Loaner Page
 const CarouselHeadlines = (props) => {
 
-
-
     if (props.category === "Equipment") {
-
         if (props.activeItem) {
             return (
                 <div>
@@ -22,10 +17,7 @@ const CarouselHeadlines = (props) => {
         } else {
             return (
                 <div>
-                    <h1 className="headlines">Item Unavailable</h1>
-
-                    <div className="sub-headline">No Category</div>
-                    <div className="sub-headline-in-stock">{props.count} AVAILABLE</div>
+                    <h1 className="headlines">No Items in this category</h1>
                 </div>
             )
         }
@@ -40,8 +32,6 @@ const CarouselHeadlines = (props) => {
             </div>
         )
     }
-
-
 }
 
 export default CarouselHeadlines;

@@ -68,8 +68,6 @@ router.post("/", function (req, res) {
                 res.json(dbLoaner);
             })
     }
-
-
 })
 
 //Update Loaner

@@ -6,20 +6,29 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 import axios from 'axios';
 
+//Component that display data in table
 const InventoryTable = (props) => {
     const didMountRef = useRef(false);
     const gridRef = useRef();
 
+    //React hook for when component updates
+    //Functionality to match selected table row to update which row is active
     useEffect(() => {
         if (didMountRef.current) {
             gridRef.current.api.forEachNode((node, i) => {
                 if (node.rowIndex === props.currentSlide) {
                     node.setSelected(true, true);
+                    //Create ref to be able to scroll to list when selecting slider?
+                    // var currentRow = document.querySelector(`[row-index='${node.rowIndex}']`);
+                    // currentRow.scrollIntoView();
+                    // console.log(currentRow);
+
                 }
             })
         } else didMountRef.current = true
     })
 
+    //Updates data in DB when editing text in cell
     const onCellValueChanged = (event) => {
         // console.log("ID", event.data.id);
         axios({
@@ -29,15 +38,19 @@ const InventoryTable = (props) => {
         }).then(data => console.log(data));
     }
 
+    //On initial grid load, highlights the active row
     const onGridReady = (gridApi) => {
-        gridApi.api.sizeColumnsToFit();
+        // gridApi.api.sizeColumnsToFit();
         gridApi.api.forEachNode((node, i) => {
-            // console.log(node.rowIndex, props.currentSlide)
             if (node.rowIndex === props.currentSlide) {
                 node.setSelected(true, true);
             }
         })
     }
+
+    const onFirstDataRendered = params => {
+        params.api.sizeColumnsToFit();
+    };
 
     return (
         <div
@@ -62,11 +75,11 @@ const InventoryTable = (props) => {
                 rowSelection='single'
                 buttonRenderer={props.buttonRenderer}
                 onRowClicked={props.onRowClicked}
+                onFirstDataRendered={onFirstDataRendered}
             >
             </AgGridReact>
         </div >
     )
 }
-// domLayout="autoHeight"
 
 export default InventoryTable;

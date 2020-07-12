@@ -4,10 +4,11 @@ import jwt_decode from 'jwt-decode';
 
 import "../css/checkout.css";
 
-
-
+//Modal that display selected item on Equipment Page
 const ViewItem = (props) => {
 
+    //When checking out item, it gets current user, attaches their id to this request
+    //and sets the request status to pending
     const onCheckout = () => {
         const token = sessionStorage.usertoken;
         const decoded = jwt_decode(token);
@@ -18,6 +19,7 @@ const ViewItem = (props) => {
             EquipmentId: props.activeItem.id
         };
 
+        //After submitting request, redirects to profile page
         axios.post("/api/requests", obj).then(response => {
             window.location.href = "/profile";
         })
@@ -26,8 +28,6 @@ const ViewItem = (props) => {
 
     return (
         <div className="item">
-
-
             <div className="d-flex justify-content-between">
                 <h2 className="selected">You've Selected</h2>
                 <span onClick={props.toggleViewItem} className="exit" style={{ cursor: "pointer" }}>X</span>

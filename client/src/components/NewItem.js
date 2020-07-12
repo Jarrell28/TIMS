@@ -2,9 +2,10 @@ import React from 'react';
 import "../css/main.css";
 import "../css/newItem.css";
 
-// This is the ADD NEW PRODUCT Module Component
+// This is the ADD NEW PRODUCT Component
 const NewItem = (props) => {
 
+    //Loops through inputNames array of parent component and displays dynamic inputs
     const renderInputs = props.inputNames.map(input => {
         return (
             <div className="form-group" key={input.dbName + "-id"}>

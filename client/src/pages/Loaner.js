@@ -19,6 +19,7 @@ export default class Loaner extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            //Defining columns to be showed in table
             columnDefs: [{
                 headerName: "Brand", field: "brand", sortable: true, filter: true, editable: true,
             }, {
@@ -38,8 +39,10 @@ export default class Loaner extends Component {
             }, {
                 headerName: "", field: "view", sortable: true, filter: true, editable: false, cellRenderer: this.buttonRenderer
             }],
+            //rowData will later be populated with data from the DB and displayed in table
             rowData: [],
 
+            //Input names used by NewItem component when creating a new Item
             inputNames: [
                 {
                     displayName: "Brand",
@@ -54,29 +57,40 @@ export default class Loaner extends Component {
                     dbName: "serialNumber"
                 },
             ],
+            //Used to toggle new item modal
             toggleNewItem: false,
+            //Used to toggle view item modal
             toggleViewItem: false,
+            //Currently selected item
             activeItem: {},
+            //Gets quantity of specific item
             count: 0,
+            //Gets current slide in Slider Carousel
             currentSlide: 0
         }
     }
 
     componentDidMount() {
+        //active Item
         let active = {};
 
+        //Fetches data from Loaners table
         API.getData("loaners").then(response => {
             response.data.forEach(item => {
-
+                //If item has technician id attaches technician name to result
                 if (item.techId) {
                     item.techName = item.tech.name
                 }
+                //Gets Id to be used by view button in table
                 item.view = item.id;
 
             })
+            //Sets active as first result from response
             active = response.data[0];
+            //Updates rowData and activeItem
             this.setState({ rowData: response.data, activeItem: response.data[0] })
         }).then(() => {
+            //if there is an active item gets total quantity of that model from DB
             if (active) {
                 API.getDataCount("loaners", active).then(response => {
                     this.setState({ count: response.data })
@@ -114,35 +128,41 @@ export default class Loaner extends Component {
         }
     }
 
+    //Toggles for modals for new item and viewing item
     toggleNewItem = () => this.setState({ toggleNewItem: !this.state.toggleNewItem });
     toggleViewItem = () => this.setState({ toggleViewItem: !this.state.toggleViewItem });
 
+    //Handling form when creating new item
     handleFormSubmit = (e) => {
         e.preventDefault();
 
+        //Creates new form object
         let formData = new FormData();
+        //gets all input elements
         const elements = e.target.elements;
-
+        //loops elements array and adds name and values to form object
         for (let i = 0; i < elements.length; i++) {
             if (elements[i].name) {
                 formData.append(elements[i].name, elements[i].value)
                 console.log(elements[i].name)
             }
         }
-
+        //Sets image to form object
         formData.set("eImage", e.target.eImage.files[0]);
 
-
+        //Sends data to backend to be created in DB
         axios.post("/api/loaners", formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(response => {
+            //Updates rowData object
             const newData = response.data;
             this.setState({ rowData: [...this.state.rowData, newData] });
         })
     }
 
+    //Creates view button in the table
     buttonRenderer = params => {
         let button = document.createElement('button');
         var text = 'View';
@@ -155,6 +175,7 @@ export default class Loaner extends Component {
         return button;
     }
 
+    //Gets Loaner by id when selecting view button, table row, or slide item
     getLoanerById = (e, method) => {
         let id;
         let active = {}
@@ -180,18 +201,21 @@ export default class Loaner extends Component {
         })
     }
 
+    //When clicking row item in table, fetches item by id
     onRowClicked = e => {
         const rowIndex = e.rowIndex;
         this.getLoanerById(e, "rowClick");
         this.setState({ currentSlide: rowIndex })
     }
 
+    //When clicking slide, fetches item by id
     onSlideClicked = e => {
         const slideIndex = parseInt(e.target.offsetParent.dataset.index);
         this.getLoanerById(e, "slideClick")
         this.setState({ currentSlide: slideIndex })
     }
 
+    //When clicking view button, fetches item by id
     onButtonClicked = e => {
         this.getLoanerById(e, "buttonClick");
         this.toggleViewItem();
@@ -199,6 +223,7 @@ export default class Loaner extends Component {
 
 
     render() {
+        //Checks if there is a user logged in, if not redirects to login page
         if (sessionStorage.usertoken) {
 
             return (
@@ -216,13 +241,13 @@ export default class Loaner extends Component {
                         <CarouselHeadlines activeItem={this.state.activeItem} count={this.state.count} category="Loaners" />
                     </div>
                     <div className="table-bg-container">
-                        <SearchBar />
-                        <div className="container mt-4">
+                        {/* <SearchBar /> */}
+                        <div className="container">
                             <button onClick={this.toggleNewItem} className="add-button">Add New Loaner</button>
 
                         </div>
                         <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} buttonRenderer={this.buttonRenderer} onRowClicked={this.onRowClicked} currentSlide={this.state.currentSlide} />
-
+                        {/* Modal for new item form */}
                         <Transition
                             native
                             items={this.state.toggleNewItem}
@@ -246,6 +271,7 @@ export default class Loaner extends Component {
                             ))}
                         </Transition>
 
+                        {/* Modal for viewing item */}
                         <Transition
                             native
                             items={this.state.toggleViewItem}
@@ -271,6 +297,7 @@ export default class Loaner extends Component {
         }
 
         else {
+            //If user isn't logged in, redirects to login
             return <Redirect to='/login' />
         }
     }
