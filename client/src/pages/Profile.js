@@ -180,12 +180,19 @@ class Profile extends Component {
               <h1 className="mt-4">
                 Name: {this.state.name ? this.state.name : "James"}
               </h1>
-              <p className="h2 my-3">
-                Email: {this.state.email ? this.state.email : "jterrell@test.com"}
-              </p>
-              <p className="h2 my-3">
-                Role: {this.state.role ? this.state.role : "Technician"}
-              </p>
+
+              {this.state.role === "guest" ?
+                <p>Guest has view only capabilities</p>
+                :
+                <div><p className="h2 my-3">
+                  Email: {this.state.email ? this.state.email : "jterrell@test.com"}
+                </p>
+                  <p className="h2 my-3">
+                    Role: {this.state.role ? this.state.role : "Technician"}
+                  </p>
+                </div>
+
+              }
 
             </div>
           </div>

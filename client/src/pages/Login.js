@@ -47,6 +47,11 @@ class Login extends Component {
             })
     }
 
+    guestLogin = () => {
+        this.setState({ email: "guest@guest.com", password: "guest" });
+    }
+
+
 
     render() {
         return (
@@ -69,7 +74,11 @@ class Login extends Component {
                         <div className="submit-btn-container">
                             <button type="submit" className="login-submit-btn">Submit</button>
                         </div>
+
+                        <button id="guest-login" onClick={this.guestLogin}>Guest Login</button>
                     </form>
+
+
 
                 </div>
             </div>
