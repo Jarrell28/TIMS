@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+// import { BrowserHistory } from 'react-router';
 
 // Be sure to include styles at some point, probably during your bootstraping
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
@@ -13,11 +14,15 @@ import Profile from "./pages/Profile";
 
 // class component allows state to be used
 class App extends Component {
-  state = {
-    //Used to filter equipment page via categories
-    productContext: 0,
-    activePage: "products"
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      //Used to filter equipment page via categories
+      productContext: 0,
+      activePage: "products"
+    };
+  }
+
 
   componentDidMount() {
     //checks current page displays appropriate data
@@ -26,11 +31,19 @@ class App extends Component {
 
   //Updates productContext when clicking sublink in product ul to filter data
   onContextClick = context => {
-    this.setState({ productContext: context });
+    console.log(this.state.activePage);
+    if (this.state.activePage !== "products") {
+      this.setState({ activePage: "products", productContext: context });
+      window.location.href = "/";
+    } else {
+      this.setState({ productContext: context });
+    }
+
   };
 
   //checks current page updates activePage variable to determine data to be displayed
   checkPage = () => {
+    console.log(this.state.activePage);
     const currentPage = window.location.pathname;
     let activePage;
     switch (currentPage) {
@@ -93,60 +106,58 @@ class App extends Component {
     ];
 
     return (
-      <Router>
-        <div className="App">
-          <Switch>
-            {/* Route for Equipment Page */}
-            <Route
-              exact
-              path="/"
-              render={props => (
-                <Equipment
-                  productContext={this.state.productContext}
-                  onContextClick={this.onContextClick}
-                  mainNav={mainNav}
-                  checkPage={this.checkPage}
-                  activePage={this.state.activePage}
-                />
-              )}
-            />
-            {/* Route for Loaners Page */}
-            <Route
-              exact
-              path="/loaners"
-              render={props => (
-                <Loaner
-                  productContext={this.state.productContext}
-                  onContextClick={this.onContextClick}
-                  mainNav={mainNav}
-                  checkPage={this.checkPage}
-                  activePage={this.state.activePage}
-                />
-              )}
-            />
-            {/* Route for Login Page */}
-            <Route exact path="/login" component={Login} />
-            {/* Route for Profile Page */}
-            <Route
-              exact
-              path="/profile"
-              render={props => (
-                <Profile
-                  productContext={this.state.productContext}
-                  onContextClick={this.onContextClick}
-                  mainNav={mainNav}
-                  checkPage={this.checkPage}
-                  activePage={this.state.activePage}
-                />
-              )}
-            />
-            {/* If incorrect route, routs to home page */}
-            <Route path="*">
-              <Redirect to='/' />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+      <div className="App">
+        <Switch>
+          {/* Route for Equipment Page */}
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <Equipment
+                productContext={this.state.productContext}
+                onContextClick={this.onContextClick}
+                mainNav={mainNav}
+                checkPage={this.checkPage}
+                activePage={this.state.activePage}
+              />
+            )}
+          />
+          {/* Route for Loaners Page */}
+          <Route
+            exact
+            path="/loaners"
+            render={props => (
+              <Loaner
+                productContext={this.state.productContext}
+                onContextClick={this.onContextClick}
+                mainNav={mainNav}
+                checkPage={this.checkPage}
+                activePage={this.state.activePage}
+              />
+            )}
+          />
+          {/* Route for Login Page */}
+          <Route exact path="/login" component={Login} />
+          {/* Route for Profile Page */}
+          <Route
+            exact
+            path="/profile"
+            render={props => (
+              <Profile
+                productContext={this.state.productContext}
+                onContextClick={this.onContextClick}
+                mainNav={mainNav}
+                checkPage={this.checkPage}
+                activePage={this.state.activePage}
+              />
+            )}
+          />
+          {/* If incorrect route, routs to home page */}
+          <Route path="*">
+            <Redirect to='/' />
+          </Route>
+        </Switch>
+      </div>
     );
   }
 }
