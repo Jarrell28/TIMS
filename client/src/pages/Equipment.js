@@ -106,26 +106,28 @@ class Equipment extends Component {
         });
 
         //Checks if currently logged in user is a technician
-        const token = sessionStorage.usertoken;
-        const decodedToken = jwt_decode(token);
+        if (sessionStorage.usertoken) {
+            const token = sessionStorage.usertoken;
+            const decodedToken = jwt_decode(token);
 
-        //If they are, it prevents them from editing the table data by setting editable boolean to false
-        if (decodedToken.role === "technician") {
-            this.setState({
-                columnDefs: [{
-                    headerName: "Brand", field: "brand", sortable: true, filter: true, editable: false,
-                }, {
-                    headerName: "Model", field: "model", sortable: true, filter: true, editable: false
-                }, {
-                    headerName: "Serial Number", field: "serialNumber", sortable: true, filter: true, editable: false
-                }, {
-                    headerName: "Expense Number", field: "expenseNumber", sortable: true, filter: true, editable: false
-                }, {
-                    headerName: "Category", field: "category", sortable: true, filter: true, editable: false
-                }, {
-                    headerName: "", field: "view", sortable: true, filter: true, editable: false, cellRenderer: this.buttonRenderer
-                }],
-            })
+            //If they are, it prevents them from editing the table data by setting editable boolean to false
+            if (decodedToken.role === "technician") {
+                this.setState({
+                    columnDefs: [{
+                        headerName: "Brand", field: "brand", sortable: true, filter: true, editable: false,
+                    }, {
+                        headerName: "Model", field: "model", sortable: true, filter: true, editable: false
+                    }, {
+                        headerName: "Serial Number", field: "serialNumber", sortable: true, filter: true, editable: false
+                    }, {
+                        headerName: "Expense Number", field: "expenseNumber", sortable: true, filter: true, editable: false
+                    }, {
+                        headerName: "Category", field: "category", sortable: true, filter: true, editable: false
+                    }, {
+                        headerName: "", field: "view", sortable: true, filter: true, editable: false, cellRenderer: this.buttonRenderer
+                    }],
+                })
+            }
         }
     }
 

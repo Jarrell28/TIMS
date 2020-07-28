@@ -149,7 +149,11 @@ class Profile extends Component {
       url: "/api/requests/" + id,
       method: "PUT",
       data: { status: "Approved", userApproveId: this.state.id, approvedDate: dateFormatted }
-    }).then(data => console.log(data));
+    }).then(() => {
+      API.getData("requests").then(response => {
+        this.loopRequestData(response)
+      })
+    });
   }
 
   //deny functionality for updating DB
@@ -162,7 +166,11 @@ class Profile extends Component {
       url: "/api/requests/" + id,
       method: "PUT",
       data: { status: "Deny", userApproveId: this.state.id, approvedDate: dateFormatted }
-    }).then(data => console.log(data));
+    }).then(() => {
+      API.getData("requests").then(response => {
+        this.loopRequestData(response);
+      })
+    });
   }
 
   render() {
