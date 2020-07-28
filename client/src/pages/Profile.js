@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import jwt_decode from "jwt-decode";
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 import axios from "axios";
 
 import MainNav from "../components/MainNav";
 import InventoryTable from '../components/InventoryTable';
+import API from '../utils/API';
+
 
 class Profile extends Component {
   constructor(props) {
@@ -29,12 +31,13 @@ class Profile extends Component {
         headerName: "Loaner", field: "loaner", sortable: true, filter: true, editable: false
       }],
       rowData: [],
+      requestData: []
     };
   }
 
   componentDidMount() {
+    //checks for currently logged in user information and updates state
     const token = sessionStorage.usertoken;
-
     const decoded = jwt_decode(token);
     this.setState({
       id: decoded.id,
@@ -146,7 +149,11 @@ class Profile extends Component {
       url: "/api/requests/" + id,
       method: "PUT",
       data: { status: "Approved", userApproveId: this.state.id, approvedDate: dateFormatted }
-    }).then(data => console.log(data));
+    }).then(() => {
+      API.getData("requests").then(response => {
+        this.loopRequestData(response)
+      })
+    });
   }
 
   //deny functionality for updating DB
@@ -159,12 +166,16 @@ class Profile extends Component {
       url: "/api/requests/" + id,
       method: "PUT",
       data: { status: "Deny", userApproveId: this.state.id, approvedDate: dateFormatted }
-    }).then(data => console.log(data));
+    }).then(() => {
+      API.getData("requests").then(response => {
+        this.loopRequestData(response);
+      })
+    });
   }
 
   render() {
+    //Checks if user is logged in else redirects to login page
     if (sessionStorage.usertoken) {
-
       return (
         <div className="container-fluid">
           <MainNav
@@ -198,14 +209,20 @@ class Profile extends Component {
           </div>
 
           <div className="table-bg-container mt-5 pt-5">
-            <h2 className="mb-4 text-center">Equipment Requested</h2>
+            <h2 className="mb-4 text-center">Your Equipment Requested</h2>
             <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} />
           </div>
+
+          {this.state.requestData.length ? (
+            <div className="table-bg-container pt-5">
+              <h2 className="mb-4 text-center">All Equipment Requested</h2>
+              <InventoryTable rowData={this.state.requestData} columnDefs={this.state.columnDefs} />
+            </div>
+          ) : ""}
         </div>
       );
     } else {
       return <Redirect to='/login' />
-
     }
   }
 }

@@ -36,7 +36,8 @@ class Login extends Component {
             .then(response => {
                 console.log(response);
                 if (response.data.success) {
-                    sessionStorage.setItem('usertoken', response.data.token)
+                    sessionStorage.setItem('usertoken', response.data.token);
+                    // console.log(this.props);
                     this.props.history.push(`/profile`)
                 } else {
                     alert(response.data.error);

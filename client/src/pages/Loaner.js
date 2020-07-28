@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Transition, animated } from 'react-spring/renderprops';
 import { Redirect } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 import API from '../utils/API';
 import InventoryTable from '../components/InventoryTable';
@@ -36,7 +37,7 @@ export default class Loaner extends Component {
             }, {
                 headerName: "Technician", field: "techName", sortable: true, filter: true, editable: true
             }, {
-                headerName: "", field: "view", sortable: true, filter: true, editable: true, cellRenderer: this.buttonRenderer
+                headerName: "", field: "view", sortable: true, filter: true, editable: false, cellRenderer: this.buttonRenderer
             }],
             //rowData will later be populated with data from the DB and displayed in table
             rowData: [],
@@ -96,6 +97,38 @@ export default class Loaner extends Component {
                 })
             }
         })
+
+        //Checks if currently logged in user is a technician
+        if (sessionStorage.usertoken) {
+            const token = sessionStorage.usertoken;
+            const decodedToken = jwt_decode(token);
+
+            //If they are, it prevents them from editing the table data by setting editable boolean to false
+            if (decodedToken.role === "technician") {
+                this.setState({
+                    columnDefs: [{
+                        headerName: "Brand", field: "brand", sortable: true, filter: true, editable: false,
+                    }, {
+                        headerName: "Model", field: "model", sortable: true, filter: true, editable: false
+                    }, {
+                        headerName: "Serial Number", field: "serialNumber", sortable: true, filter: true, editable: false
+                    }, {
+                        headerName: "Customer ID", field: "customerId", sortable: true, filter: true, editable: false
+                    }, {
+                        headerName: "Checked Out", field: "checkedOut", sortable: true, filter: true, editable: false
+                    }, {
+                        headerName: "Date Out", field: "checkoutDate", sortable: true, filter: true, editable: false
+                    }, {
+                        headerName: "Date In", field: "checkoutIn", sortable: true, filter: true, editable: false
+                    }, {
+                        headerName: "Technician", field: "techName", sortable: true, filter: true, editable: false
+                    }, {
+                        headerName: "", field: "view", sortable: true, filter: true, editable: false, cellRenderer: this.buttonRenderer
+                    }]
+                })
+            }
+        }
+
     }
 
     //Toggles for modals for new item and viewing item
