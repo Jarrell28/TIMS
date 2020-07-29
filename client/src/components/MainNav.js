@@ -43,7 +43,7 @@ const MainNav = props => {
             <Link to="/">Product Search</Link>
           </NavText>
 
-          {/* Loops mainNav array from App.js to display sublinks under Product Search */}
+          {/* Loops mainNav array from App.js to display sublinks under Product Search
           {props.mainNav.map((nav, index) => {
             return (
               <NavItem
@@ -56,7 +56,7 @@ const MainNav = props => {
               </NavItem>
 
             );
-          })}
+          })} */}
         </NavItem>
 
 
@@ -74,12 +74,12 @@ const MainNav = props => {
           <NavText className="subTitle">
             <Link to="/loaners">Laptop Checkout</Link>
           </NavText>
-          <NavItem eventKey="products/loaners-mac">
+          {/* <NavItem eventKey="products/loaners-mac">
             <NavText>Mac</NavText>
           </NavItem>
           <NavItem eventKey="products/loaners-windows">
             <NavText>Windows</NavText>
-          </NavItem>
+          </NavItem> */}
         </NavItem>
 
         {/* YOUR HISTORY (SINGLE LINK) */}

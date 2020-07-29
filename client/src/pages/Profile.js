@@ -59,6 +59,14 @@ class Profile extends Component {
         { headerName: "", field: "Deny", sortable: true, filter: true, editable: true, cellRenderer: this.buttonDeny }
         ]
       })
+    } else if (decoded.role === "guest") {
+      axios.get("/api/requests/").then(response => this.loopRequestData(response));
+      this.setState({
+        columnDefs: [...this.state.columnDefs,
+        { headerName: "", field: "Approve", sortable: true, filter: true, editable: true, cellRenderer: this.buttonApprove },
+        { headerName: "", field: "Deny", sortable: true, filter: true, editable: true, cellRenderer: this.buttonDeny }
+        ]
+      })
     }
 
     this.props.checkPage();
@@ -100,6 +108,17 @@ class Profile extends Component {
         if (item.status === "Pending") {
           item.Approve = item.id;
           item.Deny = item.id;
+        }
+      }
+
+      if (this.state.role === "guest") {
+        if (item.userRequest) {
+          if (item.userRequest.name === "Guest") {
+            if (item.status === "Pending") {
+              item.Approve = item.id;
+              item.Deny = item.id;
+            }
+          }
         }
 
       }
@@ -165,7 +184,7 @@ class Profile extends Component {
     axios({
       url: "/api/requests/" + id,
       method: "PUT",
-      data: { status: "Deny", userApproveId: this.state.id, approvedDate: dateFormatted }
+      data: { status: "Denied", userApproveId: this.state.id, approvedDate: dateFormatted }
     }).then(() => {
       API.getData("requests").then(response => {
         this.loopRequestData(response);
@@ -193,7 +212,7 @@ class Profile extends Component {
               </h1>
 
               {this.state.role === "guest" ?
-                <p>Guest has view only capabilities</p>
+                <p>Guest account can view all requests, create items and approve/deny requests only made by guest account</p>
                 :
                 <div><p className="h2 my-3">
                   Email: {this.state.email ? this.state.email : "jterrell@test.com"}
