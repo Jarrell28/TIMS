@@ -22,17 +22,17 @@ class Equipment extends Component {
         this.state = {
             //Defining columns to be showed in table
             columnDefs: [{
-                headerName: "Brand", field: "brand", sortable: true, filter: true, editable: true,
+                headerName: "Brand", field: "brand", sortable: true, filter: true, editable: true, resizable: true
             }, {
-                headerName: "Model", field: "model", sortable: true, filter: true, editable: true
+                headerName: "Model", field: "model", sortable: true, filter: true, editable: true, resizable: true
             }, {
-                headerName: "Serial Number", field: "serialNumber", sortable: true, filter: true, editable: true
+                headerName: "Serial Number", field: "serialNumber", sortable: true, filter: true, editable: true, resizable: true
             }, {
-                headerName: "Expense Number", field: "expenseNumber", sortable: true, filter: true, editable: true
+                headerName: "Expense Number", field: "expenseNumber", sortable: true, filter: true, editable: true, resizable: true
             }, {
-                headerName: "Category", field: "category", sortable: true, filter: true, editable: true
+                headerName: "Category", field: "category", sortable: true, filter: true, editable: true, resizable: true
             }, {
-                headerName: "", field: "view", sortable: true, filter: true, editable: false, cellRenderer: this.buttonRenderer
+                headerName: "", field: "view", sortable: true, filter: true, editable: false, cellRenderer: this.buttonRenderer, resizable: true
             }],
             //rowData will later be populated with data from the DB and displayed in table
             rowData: [],
@@ -114,17 +114,17 @@ class Equipment extends Component {
             if (decodedToken.role === "technician") {
                 this.setState({
                     columnDefs: [{
-                        headerName: "Brand", field: "brand", sortable: true, filter: true, editable: false,
+                        headerName: "Brand", field: "brand", sortable: true, filter: true, editable: false, resizable: true
                     }, {
-                        headerName: "Model", field: "model", sortable: true, filter: true, editable: false
+                        headerName: "Model", field: "model", sortable: true, filter: true, editable: false, resizable: true
                     }, {
-                        headerName: "Serial Number", field: "serialNumber", sortable: true, filter: true, editable: false
+                        headerName: "Serial Number", field: "serialNumber", sortable: true, filter: true, editable: false, resizable: true
                     }, {
-                        headerName: "Expense Number", field: "expenseNumber", sortable: true, filter: true, editable: false
+                        headerName: "Expense Number", field: "expenseNumber", sortable: true, filter: true, editable: false, resizable: true
                     }, {
-                        headerName: "Category", field: "category", sortable: true, filter: true, editable: false
+                        headerName: "Category", field: "category", sortable: true, filter: true, editable: false, resizable: true
                     }, {
-                        headerName: "", field: "view", sortable: true, filter: true, editable: false, cellRenderer: this.buttonRenderer
+                        headerName: "", field: "view", sortable: true, filter: true, editable: false, cellRenderer: this.buttonRenderer, resizable: true
                     }],
                 })
             }

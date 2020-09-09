@@ -21,23 +21,23 @@ export default class Loaner extends Component {
         this.state = {
             //Defining columns to be showed in table
             columnDefs: [{
-                headerName: "Brand", field: "brand", sortable: true, filter: true, editable: true,
+                headerName: "Brand", field: "brand", sortable: true, filter: true, editable: true, resizable: true
             }, {
-                headerName: "Model", field: "model", sortable: true, filter: true, editable: true
+                headerName: "Model", field: "model", sortable: true, filter: true, editable: true, resizable: true
             }, {
-                headerName: "Serial Number", field: "serialNumber", sortable: true, filter: true, editable: true
+                headerName: "Serial Number", field: "serialNumber", sortable: true, filter: true, editable: true, resizable: true
             }, {
-                headerName: "Customer ID", field: "customerId", sortable: true, filter: true, editable: true
+                headerName: "Customer ID", field: "customerId", sortable: true, filter: true, editable: true, resizable: true
             }, {
-                headerName: "Checked Out", field: "checkedOut", sortable: true, filter: true, editable: true
+                headerName: "Checked Out", field: "checkedOut", sortable: true, filter: true, editable: true, resizable: true
             }, {
-                headerName: "Date Out", field: "checkoutDate", sortable: true, filter: true, editable: true
+                headerName: "Date Out", field: "checkoutDate", sortable: true, filter: true, editable: true, resizable: true
             }, {
-                headerName: "Date In", field: "checkoutIn", sortable: true, filter: true, editable: true
+                headerName: "Date In", field: "checkoutIn", sortable: true, filter: true, editable: true, resizable: true
             }, {
-                headerName: "Technician", field: "techName", sortable: true, filter: true, editable: true
+                headerName: "Technician", field: "techName", sortable: true, filter: true, editable: true, resizable: true
             }, {
-                headerName: "", field: "view", sortable: true, filter: true, editable: false, cellRenderer: this.buttonRenderer
+                headerName: "", field: "view", sortable: true, filter: true, editable: false, cellRenderer: this.buttonRenderer, resizable: true
             }],
             //rowData will later be populated with data from the DB and displayed in table
             rowData: [],
@@ -84,6 +84,12 @@ export default class Loaner extends Component {
                 //Gets Id to be used by view button in table
                 item.view = item.id;
 
+                let checkoutDateNew = new Date(item.checkoutDate);
+                item.checkoutDate = checkoutDateNew.toLocaleDateString();
+
+                let checkoutInNew = new Date(item.checkoutIn);
+                item.checkoutIn = checkoutInNew.toLocaleDateString();
+
             })
             //Sets active as first result from response
             active = response.data[0];
@@ -107,23 +113,23 @@ export default class Loaner extends Component {
             if (decodedToken.role === "technician") {
                 this.setState({
                     columnDefs: [{
-                        headerName: "Brand", field: "brand", sortable: true, filter: true, editable: false,
+                        headerName: "Brand", field: "brand", sortable: true, filter: true, editable: false, resizable: true
                     }, {
-                        headerName: "Model", field: "model", sortable: true, filter: true, editable: false
+                        headerName: "Model", field: "model", sortable: true, filter: true, editable: false, resizable: true
                     }, {
-                        headerName: "Serial Number", field: "serialNumber", sortable: true, filter: true, editable: false
+                        headerName: "Serial Number", field: "serialNumber", sortable: true, filter: true, editable: false, resizable: true
                     }, {
-                        headerName: "Customer ID", field: "customerId", sortable: true, filter: true, editable: false
+                        headerName: "Customer ID", field: "customerId", sortable: true, filter: true, editable: false, resizable: true
                     }, {
-                        headerName: "Checked Out", field: "checkedOut", sortable: true, filter: true, editable: false
+                        headerName: "Checked Out", field: "checkedOut", sortable: true, filter: true, editable: false, resizable: true
                     }, {
-                        headerName: "Date Out", field: "checkoutDate", sortable: true, filter: true, editable: false
+                        headerName: "Date Out", field: "checkoutDate", sortable: true, filter: true, editable: false, resizable: true
                     }, {
-                        headerName: "Date In", field: "checkoutIn", sortable: true, filter: true, editable: false
+                        headerName: "Date In", field: "checkoutIn", sortable: true, filter: true, editable: false, resizable: true
                     }, {
-                        headerName: "Technician", field: "techName", sortable: true, filter: true, editable: false
+                        headerName: "Technician", field: "techName", sortable: true, filter: true, editable: false, resizable: true
                     }, {
-                        headerName: "", field: "view", sortable: true, filter: true, editable: false, cellRenderer: this.buttonRenderer
+                        headerName: "", field: "view", sortable: true, filter: true, editable: false, cellRenderer: this.buttonRenderer, resizable: true
                     }]
                 })
             }

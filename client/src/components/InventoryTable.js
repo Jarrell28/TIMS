@@ -69,7 +69,7 @@ const InventoryTable = (props) => {
                 rowData={props.rowData}
                 getRowNodeId={data => data.id}
                 onCellValueChanged={onCellValueChanged}
-                rowHeight="75"
+                rowHeight="65"
                 domLayout="normal"
                 onGridReady={onGridReady}
                 rowSelection='single'

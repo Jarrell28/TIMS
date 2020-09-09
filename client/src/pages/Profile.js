@@ -17,18 +17,18 @@ class Profile extends Component {
       email: "",
       role: "",
       columnDefs: [{
-        headerName: "Status", field: "status", sortable: true, filter: true, editable: false,
+        headerName: "Status", field: "status", sortable: true, filter: true, editable: false, resizable: true
       }, {
-        headerName: "Date Approved", field: "approvedDate", sortable: true, filter: true, editable: false
+        headerName: "Date Approved", field: "approvedDate", sortable: true, filter: true, editable: false, resizable: true
       }, {
-        headerName: "Requested By", field: "userRequested", sortable: true, filter: true, editable: false
+        headerName: "Requested By", field: "userRequested", sortable: true, filter: true, editable: false, resizable: true
       }, {
-        headerName: "Approved By", field: "userApproved", sortable: true, filter: true, editable: false
+        headerName: "Approved By", field: "userApproved", sortable: true, filter: true, editable: false, resizable: true
       }, {
-        headerName: "Equipment", field: "equipment", sortable: true, filter: true, editable: false
+        headerName: "Equipment", field: "equipment", sortable: true, filter: true, editable: false, resizable: true
       }
         , {
-        headerName: "Loaner", field: "loaner", sortable: true, filter: true, editable: false
+        headerName: "Loaner", field: "loaner", sortable: true, filter: true, editable: false, resizable: true
       }],
       rowData: [],
       requestData: []
@@ -48,23 +48,32 @@ class Profile extends Component {
 
     //If the user is a technician, shows only his requests
     if (decoded.role === "technician") {
-      axios.get("/api/requests/user/" + decoded.id).then(response => this.loopRequestData(response));
+      axios.get("/api/requests/user/" + decoded.id).then(response => this.loopRequestData(response, "rowData"));
+      this.setState({
+        columnDefs: [...this.state.columnDefs,
+        { headerName: "", field: "Check In", sortable: true, filter: true, editable: true, cellRenderer: this.buttonCheckIn }
+        ]
+      })
     }
     //If the user is a administrator, shows all requests
     else if (decoded.role === "administrator") {
-      axios.get("/api/requests/").then(response => this.loopRequestData(response));
+      axios.get("/api/requests/user/" + decoded.id).then(response => this.loopRequestData(response, "rowData"));
+      axios.get("/api/requests/").then(response => this.loopRequestData(response, "requestData"));
       this.setState({
         columnDefs: [...this.state.columnDefs,
         { headerName: "", field: "Approve", sortable: true, filter: true, editable: true, cellRenderer: this.buttonApprove },
-        { headerName: "", field: "Deny", sortable: true, filter: true, editable: true, cellRenderer: this.buttonDeny }
+        { headerName: "", field: "Deny", sortable: true, filter: true, editable: true, cellRenderer: this.buttonDeny },
+        { headerName: "", field: "Check In", sortable: true, filter: true, editable: true, cellRenderer: this.buttonCheckIn }
         ]
       })
     } else if (decoded.role === "guest") {
-      axios.get("/api/requests/").then(response => this.loopRequestData(response));
+      axios.get("/api/requests/user/" + decoded.id).then(response => this.loopRequestData(response, "rowData"));
+      axios.get("/api/requests/").then(response => this.loopRequestData(response, "requestData"));
       this.setState({
         columnDefs: [...this.state.columnDefs,
         { headerName: "", field: "Approve", sortable: true, filter: true, editable: true, cellRenderer: this.buttonApprove },
-        { headerName: "", field: "Deny", sortable: true, filter: true, editable: true, cellRenderer: this.buttonDeny }
+        { headerName: "", field: "Deny", sortable: true, filter: true, editable: true, cellRenderer: this.buttonDeny },
+        { headerName: "", field: "CheckIn", sortable: true, filter: true, editable: true, cellRenderer: this.buttonCheckIn }
         ]
       })
     }
@@ -74,10 +83,13 @@ class Profile extends Component {
   }
 
   //Loops the requests from DB and updates rowData state
-  loopRequestData = response => {
+  loopRequestData = (response, dataArray) => {
     response.data.forEach(item => {
       if (!item.approvedDate) {
         item.approvedDate = "N/A";
+      } else {
+        let newDate = new Date(item.approvedDate);
+        item.approvedDate = newDate.toLocaleDateString();
       }
 
       if (item.Equipment) {
@@ -98,6 +110,12 @@ class Profile extends Component {
 
       if (item.Loaner) {
         item.loaner = item.Loaner.brand + " " + item.Loaner.model;
+        if (item.Loaner.checkedOut) {
+          if (item.status === "Approved" && !item.completed) {
+            item.CheckIn = [item.Loaner.id, item.id];
+          }
+        }
+
       } else {
         item.loaner = "N/A";
       }
@@ -124,7 +142,11 @@ class Profile extends Component {
       }
     })
 
-    this.setState({ rowData: response.data });
+    if (dataArray === "rowData") {
+      this.setState({ rowData: response.data });
+    } else if (dataArray === "requestData") {
+      this.setState({ requestData: response.data });
+    }
   }
 
   //Creates Approve button in the table
@@ -158,6 +180,22 @@ class Profile extends Component {
     }
   }
 
+  //Creates Deny button in the table
+  buttonCheckIn = params => {
+    //Shows deny button only if item status is still pending
+    if (params.value) {
+      let button = document.createElement('button');
+      var text = 'Check In';
+      //Sets data-id attribute to be id of item
+      button.setAttribute("data-id", params.value[0]);
+      button.setAttribute("data-requestid", params.value[1]);
+      button.classList.add("view-button");
+      button.innerHTML = text;
+      button.addEventListener('click', this.LoanerCheckIn);
+      return button;
+    }
+  }
+
   //approval functionality for updating DB
   approveRequest = e => {
     let id = e.target.dataset.id
@@ -170,8 +208,10 @@ class Profile extends Component {
       data: { status: "Approved", userApproveId: this.state.id, approvedDate: dateFormatted }
     }).then(() => {
       API.getData("requests").then(response => {
-        this.loopRequestData(response)
+        this.loopRequestData(response, "requestData")
       })
+    }).then(() => {
+      axios.get("/api/requests/user/" + this.state.id).then(response => this.loopRequestData(response, "rowData"));
     });
   }
 
@@ -187,10 +227,48 @@ class Profile extends Component {
       data: { status: "Denied", userApproveId: this.state.id, approvedDate: dateFormatted }
     }).then(() => {
       API.getData("requests").then(response => {
-        this.loopRequestData(response);
+        this.loopRequestData(response, "requestData");
       })
+    }).then(() => {
+      axios.get("/api/requests/user/" + this.state.id).then(response => this.loopRequestData(response, "rowData"));
     });
   }
+
+  //deny functionality for updating DB
+  LoanerCheckIn = e => {
+    let id = e.target.dataset.id;
+    let requestId = e.target.dataset.requestid;
+    const date = new Date(Date.now());
+    let dateFormatted = date.toDateString();
+
+    const loanerData = {
+      customerId: "N/A",
+      checkedOut: false,
+      checkoutDate: null,
+      checkoutIn: dateFormatted,
+      techId: null
+    }
+
+    axios({
+      url: "/api/loaners/" + id,
+      method: "PUT",
+      data: loanerData
+    }).then(() => {
+      axios({
+        url: "/api/requests/" + requestId,
+        method: "PUT",
+        data: { completed: true }
+      });
+    })
+      .then(() => {
+        API.getData("requests").then(response => {
+          this.loopRequestData(response, "requestData");
+        });
+      }).then(() => {
+        axios.get("/api/requests/user/" + this.state.id).then(response => this.loopRequestData(response, "rowData"));
+      });
+  }
+
 
   render() {
     //Checks if user is logged in else redirects to login page
@@ -232,12 +310,12 @@ class Profile extends Component {
             <InventoryTable rowData={this.state.rowData} columnDefs={this.state.columnDefs} />
           </div>
 
-          {this.state.requestData.length ? (
+          {this.state.requestData.length && (
             <div className="table-bg-container pt-5">
               <h2 className="mb-4 text-center">All Equipment Requested</h2>
               <InventoryTable rowData={this.state.requestData} columnDefs={this.state.columnDefs} />
             </div>
-          ) : ""}
+          )}
         </div>
       );
     } else {

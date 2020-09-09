@@ -54,9 +54,9 @@ const ViewLoanerItem = (props) => {
                 <span onClick={props.toggleViewItem} className="exit" style={{ cursor: "pointer" }}>X</span>
             </div>
             <p style={{ textAlign: "center" }}><img src={"images/" + props.activeItem.image} alt="image" style={{ width: "200px" }} /></p>
-            <p className="inStock">IN-STOCK</p>
+            {/* <p className="inStock">IN-STOCK</p> */}
 
-            <p className="spacerDiv"></p>
+            {/* <p className="spacerDiv"></p> */}
 
             <p className="subHeader">ITEM NAME</p>
             <h3 className="header">{props.activeItem.brand + " " + props.activeItem.model}</h3>
@@ -64,13 +64,23 @@ const ViewLoanerItem = (props) => {
             <p className="subHeader">AVAILABLE</p>
             <h3 className="header">{props.count}</h3>
 
-
+            <p className="subHeader">Serial Number</p>
             <h3 className="header">{props.activeItem.serialNumber}</h3>
+
+            <p className="subHeader">Checked Out</p>
+            <h3 className="header">{props.activeItem.checkedOut ? "True" : "False"}</h3>
+
+            {props.activeItem.checkedOut &&
+                <div>
+                    <p className="subHeader">Checked Out By</p>
+                    <h3 className="header">{props.activeItem.tech.name}</h3>
+                </div>
+            }
 
             <form onSubmit={onCheckout}>
                 <p className="subHeader">Customer ID</p>
-                <input type="text" placeholder="Customer ID" name="customerId" required />
-                <button type="submit" className="checkoutBtn">CHECKOUT ITEM</button>
+                <input type="text" placeholder={props.activeItem.checkedOut ? props.activeItem.customerId : "Customer ID"} name="customerId" required="required" id="customerId" />
+                <button type="submit" className="checkoutBtn" disabled={props.activeItem.checkedOut ? true : false}>CHECKOUT ITEM</button>
             </form>
         </div>
     )

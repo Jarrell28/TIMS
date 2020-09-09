@@ -49,3 +49,12 @@
     margin: 0 auto;
     display: block;
 }
+
+#customerId {
+    margin-bottom: 20px;
+    padding: 3px 5px;
+    width: 200px;
+    height: 30px;
+    font-size: 18px;
+    text-align: center;
+}
